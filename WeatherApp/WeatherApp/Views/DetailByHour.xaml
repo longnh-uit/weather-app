@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.DetailByHour">
     <ContentPage.Content>
-        <ListView x:Name="listItemHour" HasUnevenRows="True" >
+        <ListView x:Name="listItemHour" HasUnevenRows="True" SeparatorVisibility="None" 
+                  ItemSelected="listItemHour_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -14,7 +15,7 @@
 
                                 <Grid HeightRequest="200" >
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto" ></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>

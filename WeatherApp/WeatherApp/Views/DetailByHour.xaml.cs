@@ -26,5 +26,11 @@ namespace WeatherApp.Views
             itemsList.Add("abc");
             listItemHour.ItemsSource = itemsList;
         }
+
+        private void listItemHour_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var list = (ListView)sender;
+            list.SelectedItem = null;
+        }
     }
 }
