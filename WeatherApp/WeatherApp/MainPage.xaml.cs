@@ -27,7 +27,7 @@ namespace WeatherApp
             var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
 
-            Detail = new NavigationPage(page);
+            Detail.Navigation.PushAsync(page);
             IsPresented = false;
 
             FlyoutPage.ListView.SelectedItem = null;
