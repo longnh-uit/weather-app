@@ -2,29 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.MainPageFlyout"
-             Title="Flyout">
-    <StackLayout BackgroundColor="{StaticResource PageBackgroundColor}">
+             Title="Flyout" BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout >
+        <Label
+                Padding="15" 
+                Text="CÀI ĐẶT"
+                VerticalOptions="FillAndExpand" 
+                VerticalTextAlignment="Center"
+                FontSize="24" BackgroundColor="#8DB5FA"
+                Style="{DynamicResource SubtitleStyle}"/>
         <ListView x:Name="MenuItemsListView"
-              SeparatorVisibility="None"
-              HasUnevenRows="true"
-              ItemsSource="{Binding MenuItems}">
-            <ListView.Header>
-                <Label
-                    Padding="15,10" 
-                    Text="CÀI ĐẶT"
-                    VerticalOptions="FillAndExpand" 
-                    VerticalTextAlignment="Center"
-                    FontSize="24"
-                    Style="{DynamicResource SubtitleStyle}"/>
-            </ListView.Header>
+              SeparatorVisibility="Default"
+              HasUnevenRows="true" SeparatorColor="White"
+              ItemsSource="{Binding MenuItems}" Margin="15,0,15,0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="0,15,0,15" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Image Source="{Binding Icon}"/>
                             <Label VerticalOptions="FillAndExpand" 
-                    VerticalTextAlignment="Center" 
-                    Text="{Binding Title}" 
-                    FontSize="24"/>
+                                   VerticalTextAlignment="Center" 
+                                   Text="{Binding Title}" 
+                                   FontSize="24"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
