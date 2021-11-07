@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WeatherApp.Views.DetailByHour">
+             x:Class="WeatherApp.Views.DetailByHour"
+             Title="24 giờ tới">
     <ContentPage.Content>
         <ListView x:Name="listItemHour" HasUnevenRows="True" SeparatorVisibility="None" 
                   ItemSelected="listItemHour_ItemSelected">
@@ -16,6 +17,7 @@
                                 <Grid HeightRequest="200" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" ></RowDefinition>
+                                        <RowDefinition Height="2" ></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
@@ -26,7 +28,7 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-
+                                    
                                     <Label Text="10:00 CN Th11 07" Grid.Row="0" Grid.Column="0" FontSize="20"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
                                     <Label Text="29°C" Grid.Row="0" Grid.Column="1" FontSize="20"
@@ -36,23 +38,25 @@
                        HorizontalOptions="End" VerticalOptions="Center"
                        HeightRequest="50" WidthRequest="50"></Image>
 
-                                    <Label Text="Mưa dông" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
+                                    <BoxView BackgroundColor="Red" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                                    <Label Text="Mưa dông" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
                        HorizontalOptions="Center" VerticalOptions="Center"></Label>
 
-                                    <Label Text="Lượng mưa 2 in" Grid.Row="2" Grid.Column="0" FontSize="18"
+                                    <Label Text="Lượng mưa 2 in" Grid.Row="3" Grid.Column="0" FontSize="18"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Tốc độ gió 7km/h" Grid.Row="2" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-
-                                    <Label Text="Độ ẩm 72%" Grid.Row="3" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Hướng gió" Grid.Row="3" Grid.Column="1" FontSize="18"
+                                    <Label Text="Tốc độ gió 7km/h" Grid.Row="3" Grid.Column="1" FontSize="18"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 
-                                    <Label Text="Khả năng mưa 80%" Grid.Row="4" Grid.Column="0" FontSize="18"
+                                    <Label Text="Độ ẩm 72%" Grid.Row="4" Grid.Column="0" FontSize="18"
+                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    <Label Text="Hướng gió" Grid.Row="4" Grid.Column="1" FontSize="18"
+                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+
+                                    <Label Text="Khả năng mưa 80%" Grid.Row="5" Grid.Column="0" FontSize="18"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                     </Label>
-                                    <Label Text="Tầm nhìn 10km" Grid.Row="4" Grid.Column="1" FontSize="18"
+                                    <Label Text="Tầm nhìn 10km" Grid.Row="5" Grid.Column="1" FontSize="18"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 
                                 </Grid>
