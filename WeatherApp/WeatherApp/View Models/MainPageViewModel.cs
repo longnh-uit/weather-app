@@ -9,7 +9,7 @@ using WeatherApp.Views;
 namespace WeatherApp.View_Models
 {
 
-    class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<MainPageFlyoutMenuItem> MenuItems { get; set; }
 
@@ -17,9 +17,9 @@ namespace WeatherApp.View_Models
         {
             MenuItems = new ObservableCollection<MainPageFlyoutMenuItem>(new[]
             {
-                new MainPageFlyoutMenuItem { Id = 0, Title = "Thêm vị trí", Icon = "marker_16px.png", TargetType = typeof(ChangeLocationPage) },
-                new MainPageFlyoutMenuItem { Id = 1, Title = "Cài đặt đơn vị", Icon = "marker_16px.png", TargetType = typeof(UnitSettingPage) },
-                new MainPageFlyoutMenuItem { Id = 2, Title = "Màu nền", Icon = "marker_16px.png", TargetType = typeof(DetailByHour) }
+                new MainPageFlyoutMenuItem { Id = 0, Title = "Thêm vị trí", Icon = "marker_20px.png", TargetType = typeof(ChangeLocationPage) },
+                new MainPageFlyoutMenuItem { Id = 1, Title = "Cài đặt đơn vị", Icon = "temperature_sensitive_20px.png", TargetType = typeof(UnitSettingPage) },
+                new MainPageFlyoutMenuItem { Id = 2, Title = "Màu nền", Icon = "paint_palette_20px.png", TargetType = typeof(DetailByHour) }
             });
         }
 

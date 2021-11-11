@@ -8,7 +8,7 @@
         <pages:MainPageFlyout x:Name="FlyoutPage"/>
     </FlyoutPage.Flyout>
     <FlyoutPage.Detail>
-        <NavigationPage>
+        <NavigationPage BarBackgroundColor="{DynamicResource PageBackgroundColor}">
             <x:Arguments>
                 <pages:MainPageDetail />
             </x:Arguments>
