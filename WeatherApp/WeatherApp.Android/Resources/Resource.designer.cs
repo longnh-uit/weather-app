@@ -11692,7 +11692,7 @@ namespace WeatherApp.Droid
 			public const int ic_mtrl_chip_close_circle = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int marker_16px = 2131165296;
+			public const int marker_20px = 2131165296;
 			
 			// aapt resource value: 0x7F070071
 			public const int material_ic_calendar_black_24dp = 2131165297;
@@ -11782,13 +11782,19 @@ namespace WeatherApp.Droid
 			public const int notify_panel_notification_icon_bg = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int test_custom_background = 2131165326;
+			public const int paint_palette_20px = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int tooltip_frame_dark = 2131165327;
+			public const int temperature_sensitive_20px = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int tooltip_frame_light = 2131165328;
+			public const int test_custom_background = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int tooltip_frame_dark = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public const int tooltip_frame_light = 2131165330;
 			
 			static Drawable()
 			{
