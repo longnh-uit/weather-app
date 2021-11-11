@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.MainPageFlyout"
+             Title="Flyout" BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <StackLayout >
+        <Label
+                Padding="15" 
+                Text="CÀI ĐẶT"
+                VerticalOptions="FillAndExpand" 
+                VerticalTextAlignment="Center"
+                FontSize="24" BackgroundColor="#8DB5FA"
+                Style="{DynamicResource SubtitleStyle}"/>
+        <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="Default"
+              HasUnevenRows="true" SeparatorColor="White"
+              ItemsSource="{Binding MenuItems}" Margin="15,0,15,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="0,15,0,15" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Image Source="{Binding Icon}"/>
+                            <Label VerticalOptions="FillAndExpand" 
+                                   VerticalTextAlignment="Center" 
+                                   Text="{Binding Title}" 
+                                   FontSize="20"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

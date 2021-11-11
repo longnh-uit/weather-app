@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.MainPageDetail"
+             Title="Detail" BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <Grid RowSpacing="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" CornerRadius="5" HorizontalOptions="Center" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="15,10,15,20" BackgroundColor="DarkKhaki">
+            <Grid RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="20"
+                       Grid.Row="0" Grid.Column="0" TextColor="Black"></Label>
+                <Label Text="22:00" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large"
+                       Grid.Row="1" Grid.Column="0" TextColor="Black"></Label>
+                <Label Text="29°C" VerticalOptions="EndAndExpand"  FontSize="50"
+                       Grid.Row="0" Grid.RowSpan="2"  Grid.Column="1" TextColor="Black"></Label>
+                <Image Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg" 
+                       Grid.Row="0" Grid.Column="2" 
+                       HorizontalOptions="Center" VerticalOptions="End" 
+                       HeightRequest="50" WidthRequest="50"></Image>
+                <Label Text="Nhieu May" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                       Grid.Row="1" Grid.Column="2" TextColor="Black"></Label>
+                <Label Padding="0,20,0,0" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                       Grid.Row="2" Grid.ColumnSpan="3"  Grid.Column="0" TextColor="Black"></Label>
+                <Label Text="Gio: B, 19km/h" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                       Grid.Row="3" Grid.ColumnSpan="3"  Grid.Column="0" TextColor="Black"></Label>
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="1" CornerRadius="10" HorizontalOptions="Center" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="10" BackgroundColor="AntiqueWhite">
+            <Grid HeightRequest="200">
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="2" CornerRadius="10" HorizontalOptions="Center" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="10" BackgroundColor="AntiqueWhite">
+            <Grid HeightRequest="200">
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="3" CornerRadius="10" HorizontalOptions="Center" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="10" BackgroundColor="AntiqueWhite">
+            <Grid HeightRequest="200">
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

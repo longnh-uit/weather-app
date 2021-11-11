@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using WeatherApp.Views;
 namespace WeatherApp
 {
     public partial class App : Application
@@ -10,7 +10,7 @@ namespace WeatherApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
