@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Views.SearchLocationPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <ImageButton x:Name="BackButton" BackgroundColor="{DynamicResource PageBackgroundColor}"
+                             Source="back_50px" Clicked="BackButton_Clicked"
+                             WidthRequest="30" HeightRequest="30"/>
+                <SearchBar Placeholder="Tìm kiếm..."/>
+            </StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

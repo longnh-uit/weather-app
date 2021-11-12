@@ -15,7 +15,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="50"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Text="+" Grid.Row="0" Grid.Column="0"></Button>
+                <Button x:Name="AddButton" Text="+" Grid.Row="0" Grid.Column="0" Clicked="AddButton_Clicked"></Button>
                 <Label Text="Thêm vị trí" VerticalOptions="Center" HorizontalOptions="Start" 
                        Grid.Row="0" Grid.Column="1"></Label>
 

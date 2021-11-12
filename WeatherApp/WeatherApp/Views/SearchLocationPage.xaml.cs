@@ -10,16 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace WeatherApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChangeLocationPage : ContentPage
+    public partial class SearchLocationPage : ContentPage
     {
-        public ChangeLocationPage()
+        public SearchLocationPage()
         {
             InitializeComponent();
         }
 
-        private void AddButton_Clicked(object sender, EventArgs e)
+        private void ImageButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SearchLocationPage());
+
+        }
+
+        private void BackButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopModalAsync();
         }
     }
 }
