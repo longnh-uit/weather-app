@@ -10,7 +10,7 @@
     <FlyoutPage.Detail>
         <NavigationPage BarBackgroundColor="{DynamicResource PageBackgroundColor}">
             <x:Arguments>
-                <pages:MainPageDetail />
+                <pages:MainCarouselPage/>
             </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>
