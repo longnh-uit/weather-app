@@ -16,5 +16,10 @@ namespace WeatherApp.Views
         {
             InitializeComponent();
         }
+
+        private void AddButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SearchLocationPage());
+        }
     }
 }

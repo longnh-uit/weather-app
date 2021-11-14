@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Views.SearchLocationPage"
+             xmlns:local="clr-namespace:WeatherApp"
+             BackgroundColor="#18465E"
+             Padding="15, 10, 15, 0">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="BackButton" BackgroundColor="#18465E"
+                             Source="back_40px" Clicked="BackButton_Clicked"
+                             WidthRequest="50" HeightRequest="50"
+                             Grid.Row="0" Grid.Column="0"/>
+                <local:CustomEntry Margin="30,0,0,0" x:Name="SearchEntry" Placeholder="Tìm kiếm..." TextChanged="SearchEntry_TextChanged"
+                                   TextColor="White" PlaceholderColor="#AAAAAA" FontSize="20"
+                                   Grid.Row="0" Grid.Column="1"/>
+                <ImageButton x:Name="ClearButton" BackgroundColor="#18465E"
+                             Source="delete_30px" Clicked="ClearButton_Clicked"
+                             WidthRequest="30" HeightRequest="30" 
+                             Grid.Row="0" Grid.Column="2" IsVisible="False"/>
+            </Grid>
+            <Label Text="suggest here!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
