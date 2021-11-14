@@ -38,7 +38,7 @@ namespace WeatherApp
 
         private void btnDetailDay_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DetailByHour());
+            Navigation.PushAsync(new DetailByDay());
         }
     }
 }

@@ -15,6 +15,23 @@ namespace WeatherApp.Views
         public DetailByDay()
         {
             InitializeComponent();
+            ItemsAdded();
+        }
+
+        List<string> itemsList = new List<string>();
+        void ItemsAdded()
+        {
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            listItemDay.ItemsSource = itemsList;
+        }
+
+        private void listItemDay_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var list = (ListView)sender;
+            list.SelectedItem = null;
         }
     }
 }
