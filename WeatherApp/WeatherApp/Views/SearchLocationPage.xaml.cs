@@ -26,5 +26,16 @@ namespace WeatherApp.Views
         {
             Navigation.PopModalAsync();
         }
+
+        private void ClearButton_Clicked(object sender, EventArgs e)
+        {
+            SearchEntry.Text = "";
+        }
+
+        private void SearchEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchEntry.Text != "") ClearButton.IsVisible = true;
+            else ClearButton.IsVisible = false;
+        }
     }
 }

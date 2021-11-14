@@ -17,6 +17,8 @@ namespace WeatherApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            string color = ((Xamarin.Forms.Color)Xamarin.Forms.Application.Current.Resources["PageBackgroundColor"]).ToHex();
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor(color));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
