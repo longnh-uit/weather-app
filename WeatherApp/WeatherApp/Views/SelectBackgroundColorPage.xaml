@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Views.SelectBackgroundColorPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="0" Margin="0 ,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout  BackgroundColor="White" Grid.Row="0" Grid.Column="0">
+                <Grid RowSpacing="20" ColumnSpacing="5" Margin="10" >
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button BackgroundColor="DeepPink" Grid.Row="0" Grid.Column="0" CornerRadius="50"></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="0" Grid.Column="1" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="DeepPink" Grid.Row="0" Grid.Column="2" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="0" Grid.Column="3" CornerRadius="50" ></Button>
+
+                    <Button BackgroundColor="DeepPink" Grid.Row="1" Grid.Column="1" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="1" Grid.Column="0" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="DeepPink" Grid.Row="1" Grid.Column="3" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="1" Grid.Column="2" CornerRadius="50" ></Button>
+
+                    <Button BackgroundColor="DeepPink" Grid.Row="2" Grid.Column="0" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="2" Grid.Column="1" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="DeepPink" Grid.Row="2" Grid.Column="2" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="2" Grid.Column="3" CornerRadius="50" ></Button>
+
+                    <Button BackgroundColor="DeepPink" Grid.Row="3" Grid.Column="1" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="3" Grid.Column="0" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="DeepPink" Grid.Row="3" Grid.Column="3" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="3" Grid.Column="2" CornerRadius="100"></Button>
+                    
+                    <Button BackgroundColor="DeepPink" Grid.Row="4" Grid.Column="1" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="4" Grid.Column="0" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="DeepPink" Grid.Row="4" Grid.Column="3" CornerRadius="50" ></Button>
+                    <Button BackgroundColor="Blue" Grid.Row="4" Grid.Column="2" CornerRadius="100"></Button>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="0">
+                <Button HeightRequest="100" HorizontalOptions="FillAndExpand" 
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        Text="Sử dụng màu mặc định" FontSize="Large"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
