@@ -15,11 +15,26 @@ namespace WeatherApp.Views
         public ChangeLocationPage()
         {
             InitializeComponent();
+            ItemsAdded();
         }
 
         private void AddButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new SearchLocationPage());
+        }
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            Navigation.PushModalAsync(new SearchLocationPage());
+        }
+
+        List<string> itemsList = new List<string>();
+        void ItemsAdded()
+        {
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            itemsList.Add("abc");
+            listPositionSearch.ItemsSource = itemsList;
         }
     }
 }

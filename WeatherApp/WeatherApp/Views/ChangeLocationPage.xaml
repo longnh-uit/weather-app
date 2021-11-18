@@ -2,26 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.ChangeLocationPage"
-             Title="Chỉnh sửa vị trí" BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddButton" Text="+" Grid.Row="0" Grid.Column="0" Clicked="AddButton_Clicked"></Button>
+                <Button x:Name="AddButton" Text="+" Grid.Row="0" Grid.Column="0" FontSize="20"
+                        Clicked="AddButton_Clicked" BackgroundColor="Transparent"></Button>
                 <Label Text="Thêm vị trí" VerticalOptions="Center" HorizontalOptions="Start" 
-                       Grid.Row="0" Grid.Column="1"></Label>
-
-                <Button Text="+" Grid.Row="1" Grid.Column="0"></Button>
-                <Label Text="Hà nội, Việt Nam" VerticalOptions="Center" HorizontalOptions="Start" 
-                       Grid.Row="1" Grid.Column="1"></Label>
+                       Grid.Row="0" Grid.Column="1" FontSize="20">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <ListView x:Name="listPositionSearch" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="marker_20px.png" Grid.Row="0" Grid.Column="0" Aspect="Fill" WidthRequest="10" HeightRequest="10"></Image>
+                                    <Label Text="Hà nội, Việt Nam" VerticalOptions="Center" HorizontalOptions="Start" 
+                                        Grid.Row="0" Grid.Column="1" FontSize="20"></Label>
+                                    <Button Text="X" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" FontSize="20" ></Button>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
             </Grid>
         </StackLayout>
     </ContentPage.Content>
