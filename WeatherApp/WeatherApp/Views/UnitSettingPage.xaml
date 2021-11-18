@@ -4,9 +4,21 @@
              x:Class="WeatherApp.Views.UnitSettingPage" Title="Cài đặt đơn vị" BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+        <Label Text="Nhiệt độ" Grid.Row="0" HorizontalOptions="Center" FontSize="Medium"/>
+        <CollectionView x:Name="TemperaturePicker" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="80" HeightRequest="40">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Title}" TextColor="Black" FontSize="Medium" WidthRequest="40"
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+        </CollectionView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
