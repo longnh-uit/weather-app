@@ -4,9 +4,12 @@
              x:Class="WeatherApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="PageBackgroundColor">#71A3F8</Color>
+            <Color x:Key="PageBackgroundColor">#7097DA</Color>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#50000000"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
