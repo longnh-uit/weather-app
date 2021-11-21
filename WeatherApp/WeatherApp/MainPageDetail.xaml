@@ -4,7 +4,7 @@
              x:Class="WeatherApp.MainPageDetail"
              Title="Detail" BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="marker_20px.png" Order="Primary" Priority="0"/>
+        <ToolbarItem IconImageSource="marker_20px.png" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
     <ScrollView>
 

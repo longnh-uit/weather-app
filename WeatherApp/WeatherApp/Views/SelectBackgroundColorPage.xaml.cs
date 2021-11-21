@@ -16,5 +16,16 @@ namespace WeatherApp.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            Application.Current.Resources["PageBackgroundColor"] =  button.BackgroundColor;
+        }
+
+        private void BtnDefault_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.Resources["PageBackgroundColor"] = "#7097DA";
+        }
     }
 }

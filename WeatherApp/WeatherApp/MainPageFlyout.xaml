@@ -9,7 +9,7 @@
                 Text="CÀI ĐẶT"
                 VerticalOptions="FillAndExpand" 
                 VerticalTextAlignment="Center"
-                FontSize="24" BackgroundColor="#8DB5FA"
+                FontSize="24" BackgroundColor="{DynamicResource PageBackgroundColor}"
                 Style="{DynamicResource SubtitleStyle}"/>
         <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="Default"
