@@ -13,12 +13,12 @@
                         <StackLayout Margin="15" Orientation="Vertical" >
                             <Frame CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="10" BackgroundColor="AntiqueWhite">
+                                   IsClippedToBounds="True" Padding="10" >
 
                                 <Grid HeightRequest="200" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" ></RowDefinition>
-                                        <RowDefinition Height="2" ></RowDefinition>
+                                        <RowDefinition Height="1" ></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
@@ -39,7 +39,7 @@
                        HorizontalOptions="End" VerticalOptions="Center"
                        HeightRequest="50" WidthRequest="50"></Image>
 
-                                    <BoxView BackgroundColor="Red" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                    <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
 
                                     <Label Text="Mưa dông" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
                        HorizontalOptions="Center" VerticalOptions="Center"></Label>
