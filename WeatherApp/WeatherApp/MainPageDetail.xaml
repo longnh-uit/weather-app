@@ -31,9 +31,9 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="20" VerticalTextAlignment="Center"
+                    <Label x:Name="DateLabel" Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="20" VerticalTextAlignment="Center"
                        Grid.Row="0" Grid.Column="0"></Label>
-                    <Label Text="22:00" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large" VerticalTextAlignment="Center"
+                    <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large" VerticalTextAlignment="Center"
                        Grid.Row="1" Grid.Column="0"></Label>
                     <Label Text="29°C" VerticalOptions="EndAndExpand"  FontSize="50"
                        Grid.Row="0" Grid.RowSpan="2"  Grid.Column="1"></Label>
