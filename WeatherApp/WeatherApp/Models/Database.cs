@@ -6,7 +6,7 @@ using SQLite;
 
 namespace WeatherApp.Models
 {
-    class Database
+    public class Database
     {
         private readonly string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         private string path;
@@ -21,7 +21,8 @@ namespace WeatherApp.Models
                 {
                     //create table
                     _ = connection.CreateTable<Variable>();
-//                    _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
+                    //_ = connection.Update(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
+                    _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
                     return true;
                 }
             }
@@ -44,6 +45,25 @@ namespace WeatherApp.Models
             catch (Exception)
             {
                 return null;
+                throw;
+            }
+        }
+
+        public bool UpdateBgColor(Variable color)
+        {
+            try
+            {
+                // Create Database
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    connection.Update(color);
+                    return true;
+                }
+                //return connection.Query<Variable>("select * from Variable where bgColorName=" + bgColor);
+            }
+            catch (Exception)
+            {
+                return false;
                 throw;
             }
         }

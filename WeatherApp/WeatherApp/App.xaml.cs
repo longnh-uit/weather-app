@@ -9,21 +9,20 @@ namespace WeatherApp
 {
     public partial class App : Application
     {
-        readonly Database db = new Database();
+        public static Database db = new Database();
         public App()
         {
             InitializeComponent();
             db.CreateDatebase();
-            Application.Current.Resources["PageBackgroundColor"] = Color.FromHex("#aaaaaa");
-            //initGetBgColor(db, "backgroundColor");
+            initGetBgColor();
             MainPage = new NavigationPage(new MainPage());
         }
 
-        void initGetBgColor(Database db, string color)
+        void initGetBgColor()
         {
             //Database db = new Database();
-            //List<Variable> item = db.GetBgColor(color);
-
+            Variable item = db.GetBgColor();
+            Application.Current.Resources["PageBackgroundColor"] = Color.FromHex(item.VariableValue);
             //Current.Resources["PageBackgroundColor"] = "Red";
         }
         protected override void OnStart()

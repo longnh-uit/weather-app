@@ -4,7 +4,7 @@
              x:Class="WeatherApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="PageBackgroundColor">#7097DA</Color>
+            <Color x:Key="PageBackgroundColor"></Color>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
             </Style>

@@ -11,6 +11,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <ScrollView>
+                
+            
             <StackLayout  BackgroundColor="White" Grid.Row="0" Grid.Column="0">
                 <Grid RowSpacing="20" ColumnSpacing="5" Margin="10" >
                     <Grid.RowDefinitions >
@@ -73,7 +76,7 @@
                             CornerRadius="50" Clicked="Button_Clicked"></Button>
                 </Grid>
             </StackLayout>
-
+            </ScrollView>
             <StackLayout Grid.Row="1" Grid.Column="0">
                 <Button HeightRequest="100" HorizontalOptions="FillAndExpand" x:Name="BtnDefault"
                         BackgroundColor="{DynamicResource PageBackgroundColor}" Clicked="BtnDefault_Clicked"
