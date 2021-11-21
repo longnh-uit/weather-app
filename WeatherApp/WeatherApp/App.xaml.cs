@@ -9,12 +9,12 @@ namespace WeatherApp
 {
     public partial class App : Application
     {
+        readonly Database db = new Database();
         public App()
         {
             InitializeComponent();
-            Database db = new Database();
             db.CreateDatebase();
-            //Application.Current.Resources["PageBackgroundColor"] = "Red";
+            Application.Current.Resources["PageBackgroundColor"] = Color.FromHex("#aaaaaa");
             //initGetBgColor(db, "backgroundColor");
             MainPage = new NavigationPage(new MainPage());
         }

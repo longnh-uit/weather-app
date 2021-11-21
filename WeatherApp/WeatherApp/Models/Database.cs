@@ -8,41 +8,37 @@ namespace WeatherApp.Models
 {
     class Database
     {
-        string folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-        
-        
+        private readonly string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        private string path;
+
         public bool CreateDatebase()
         {
             try
             {
-        
-                
-                // create db
-                string path = System.IO.Path.Combine(folder, "Database.db");
-                var connection = new SQLiteConnection(path);
-                
-                //create table
-                connection.CreateTable<Variable>();
-
-                connection.Insert(new Variable { bgColorValue= "#7097DA", bgColorID=100,bgColorName="backgroundColor"});
-
-                return true;
-
+                // Create Database
+                path = System.IO.Path.Combine(folder, "database.db");
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    //create table
+                    _ = connection.CreateTable<Variable>();
+//                    _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
+                    return true;
+                }
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 return false;
                 throw;
             }
         }
 
-        public List<Variable> GetBgColor(string bgColor)
+        public Variable GetBgColor()
         {
             try
             {
-                string path = System.IO.Path.Combine(folder, "Database.db");
-                var connection = new SQLiteConnection(path);
-                return connection.Table<Variable>().ToList();
+                // Create Database
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                    return connection.Table<Variable>().FirstOrDefault(x => x.VariableName == "backgroundColor");
                 //return connection.Query<Variable>("select * from Variable where bgColorName=" + bgColor);
             }
             catch (Exception)
