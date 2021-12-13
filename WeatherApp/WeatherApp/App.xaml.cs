@@ -15,7 +15,7 @@ namespace WeatherApp
             InitializeComponent();
             db.CreateDatebase();
             initGetBgColor();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new SplashScreen());
         }
 
         void initGetBgColor()
