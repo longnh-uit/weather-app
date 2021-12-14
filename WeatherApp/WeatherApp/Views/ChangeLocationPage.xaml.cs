@@ -27,14 +27,24 @@ namespace WeatherApp.Views
             Navigation.PushModalAsync(new SearchLocationPage());
         }
 
-        List<string> itemsList = new List<string>();
+        List<String> itemsList = new List<String>();
         void ItemsAdded()
         {
             itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
+            itemsList.Add("xyz");
+            itemsList.Add("alv");
+            itemsList.Add("dge");
             listPositionSearch.ItemsSource = itemsList;
         }
+
+        private void listPositionSearch_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (listPositionSearch.SelectedItem != null)
+            {
+                int index = itemsList.IndexOf(listPositionSearch.SelectedItem.ToString());
+                Navigation.PushAsync(new MainCarouselPage(index));
+            }
+        }
     }
+       
 }

@@ -23,7 +23,7 @@
                         <TapGestureRecognizer Tapped="Handle_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <ListView x:Name="listPositionSearch" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <ListView x:Name="listPositionSearch" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemSelected="listPositionSearch_ItemSelected" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

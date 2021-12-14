@@ -36,7 +36,7 @@
                        Grid.Row="0" Grid.Column="0"></Label>
                         <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large" VerticalTextAlignment="Center"
                        Grid.Row="1" Grid.Column="0"></Label>
-                        <Label Text="29°C" VerticalOptions="EndAndExpand"  FontSize="50"
+                        <Label Text="0°C" VerticalOptions="EndAndExpand"  FontSize="50" x:Name="temperatureTxt"
                        Grid.Row="0" Grid.RowSpan="2"  Grid.Column="1"></Label>
                         <Image Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg" 
                        Grid.Row="0" Grid.Column="2" 
