@@ -15,9 +15,19 @@ namespace WeatherApp
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
+            Detail = new NavigationPage(new MainCarouselPage());
+            
         }
+        public MainPage(int index)
+        {
+            InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+            FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
+            Detail = new NavigationPage(new MainCarouselPage(index));
 
+        }
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MainPageFlyoutMenuItem;

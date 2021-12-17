@@ -7,12 +7,12 @@
     <FlyoutPage.Flyout>
         <pages:MainPageFlyout x:Name="FlyoutPage"/>
     </FlyoutPage.Flyout>
-    <FlyoutPage.Detail>
+    <!--<FlyoutPage.Detail>
         <NavigationPage BarBackgroundColor="{DynamicResource PageBackgroundColor}">
             <x:Arguments>
                 <pages:MainCarouselPage/>
             </x:Arguments>
         </NavigationPage>
-    </FlyoutPage.Detail>
+    </FlyoutPage.Detail>-->
 </FlyoutPage>
     

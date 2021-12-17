@@ -39,28 +39,29 @@ namespace WeatherApp.Models
 
     public class Main
     {
-        public float temp { get; set; }
-        public float temp_min { get; set; }
-        public float temp_max { get; set; }
+        public double temp { get; set; }
+        public double feels_like { get; set; }
+        public double temp_min { get; set; }
+        public double temp_max { get; set; }
         public int pressure { get; set; }
         public int sea_level { get; set; }
         public int grnd_level { get; set; }
         public int humidity { get; set; }
-        public float temp_kf { get; set; }
+        public double temp_kf { get; set; }
     }
 
 
 
     public class Rain
     {
-        public float _3h { get; set; }
+        public double _1h { get; set; }
     }
 
     public class WeatherInfo
     {
         public Coord coord { get; set; }
         public Weather[] weather { get; set; }
-        public string _base { get; set; }
+        //public string _base { get; set; }
         public Main main { get; set; }
         public int visibility { get; set; }
         public Wind wind { get; set; }
@@ -70,20 +71,22 @@ namespace WeatherApp.Models
         public int timezone { get; set; }
         public int id { get; set; }
         public string name { get; set; }
-        public int cod { get; set; }
+        //public int cod { get; set; }
+        //public Rain rain { get; set; }
     }
 
     public class Coord
     {
-        public float lon { get; set; }
-        public float lat { get; set; }
+        public double lon { get; set; }
+        public double lat { get; set; }
     }
 
 
     public class Wind
     {
-        public float speed { get; set; }
+        public double speed { get; set; }
         public int deg { get; set; }
+        public double gust { get; set; }
     }
 
     public class Clouds

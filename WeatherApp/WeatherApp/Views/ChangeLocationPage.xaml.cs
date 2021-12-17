@@ -33,7 +33,7 @@ namespace WeatherApp.Views
             itemsList.Add("abc");
             itemsList.Add("xyz");
             itemsList.Add("alv");
-            itemsList.Add("dge");
+            
             listPositionSearch.ItemsSource = itemsList;
         }
 
@@ -42,7 +42,7 @@ namespace WeatherApp.Views
             if (listPositionSearch.SelectedItem != null)
             {
                 int index = itemsList.IndexOf(listPositionSearch.SelectedItem.ToString());
-                Navigation.PushAsync(new MainCarouselPage(index));
+                Navigation.PushAsync(new MainPage(index));
             }
         }
     }

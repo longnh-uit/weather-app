@@ -36,13 +36,13 @@
                        Grid.Row="0" Grid.Column="0"></Label>
                         <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large" VerticalTextAlignment="Center"
                        Grid.Row="1" Grid.Column="0"></Label>
-                        <Label Text="0°C" VerticalOptions="EndAndExpand"  FontSize="50" x:Name="temperatureTxt"
+                        <Label Text="0°C" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" FontSize="50" x:Name="temperatureTxt"
                        Grid.Row="0" Grid.RowSpan="2"  Grid.Column="1"></Label>
                         <Image x:Name="iconImg" Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
                        Grid.Row="0" Grid.Column="2" 
-                       HorizontalOptions="Center" VerticalOptions="EndAndExpand"     
-                       HeightRequest="50" WidthRequest="70"></Image>
-                        <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                       HorizontalOptions="Center" VerticalOptions="EndAndExpand" 
+                       HeightRequest="60" WidthRequest="65"></Image>
+                        <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="18"
                        Grid.Row="1" Grid.Column="2"></Label>
                         <Label Padding="0,20,0,0" x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
                        Grid.Row="2" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
@@ -163,11 +163,11 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Margin="0,0,10,0"
+                        <Image Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Margin="0,0,10,0" x:Name="iconPrimary"
                         Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
                         Aspect="AspectFill"
-                        HeightRequest="70"
-                        WidthRequest="70" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                        HeightRequest="100"
+                        WidthRequest="100" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
                         <Label Text="Độ ẩm"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
                         <Label Text="73%" x:Name="humidityTxt" Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center"

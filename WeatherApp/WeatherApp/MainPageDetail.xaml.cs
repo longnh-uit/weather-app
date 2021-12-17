@@ -20,7 +20,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             ItemsAdded();
-            GetWeatherInfo();
+            GetWeatherInfo("Hà Nội");
             Device.StartTimer(TimeSpan.FromSeconds(1), () => { Device.BeginInvokeOnMainThread(() => {
                 CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
                 TimeLabel.Text = DateTime.Now.ToString("HH:mm");
@@ -32,6 +32,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             ItemsAdded();
+            GetWeatherInfo(location);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 Device.BeginInvokeOnMainThread(() => {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
@@ -41,9 +42,9 @@ namespace WeatherApp
             });
         }
 
-        private async void GetWeatherInfo()
+        private async void GetWeatherInfo(string location)
         {
-            var url = $"http://192.168.1.2:80/weather/api/currentweather?name=Lọndon";
+            var url = $"http://192.168.1.4:80/weather/api/currentweather?name={location}";
 
             var result = await ApiCaller.Get(url);
 
@@ -54,15 +55,16 @@ namespace WeatherApp
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
                     descriptionTxt.Text = weatherInfo.weather[0].description;
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
-                    cityTxt.Text = weatherInfo.name.ToUpper();
+                    iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
+                    //cityTxt.Text = weatherInfo.name.ToUpper();
                     temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}°C";
-                    humidityTxt.Text = $"{weatherInfo.main.humidity}%";
-                    pressureTxt.Text = $"{weatherInfo.main.pressure}mb";
-                    visibilityTxt.Text = $"{weatherInfo.visibility / 1000} km";
-                    windTxt.Text = $"{weatherInfo.wind.speed * 3.6} km/h";
-                    cloudinessTxt.Text = $"{weatherInfo.clouds.all}%";
+                    humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
+                    pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}mb";
+                    visibilityTxt.Text = $"{(weatherInfo.visibility / 1000).ToString("0")} km";
+                    windTxt.Text = $"{(weatherInfo.wind.speed * 3.6).ToString("0")} km/h";
+                    cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}°C ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°C";
-                   
+                    
                     //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
                     //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
 

@@ -11,6 +11,10 @@
             <Style TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#50000000"/>
             </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{DynamicResource PageBackgroundColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

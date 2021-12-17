@@ -12,12 +12,12 @@ namespace WeatherApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainCarouselPage : CarouselPage
     {
-
+        string[] locations = new string[] { "Hà Nội", "Luân Đôn", "Dubai" };
         public MainCarouselPage()
         {
             InitializeComponent();
-            InitMainpageDetail();
-            txtName.Text = "0";
+            this.Children.Add(new MainPageDetail());
+            txtName.Text = "Hà Nội";
             //OnCurrentPageChanged();
             this.CurrentPageChanged += OnPageChanged;
         }
@@ -25,25 +25,23 @@ namespace WeatherApp
         {
 
             InitializeComponent();
-            txtName.Text = index.ToString();
-            this.Children.Add(new MainPageDetail());
-            this.Children.Add(new MainPageDetail());
-            this.Children.Add(new MainPageDetail());
+            InitMainpageDetail();
+            txtName.Text = locations[index].ToString();
             this.CurrentPage = this.Children[index];
             this.CurrentPageChanged += OnPageChanged;
         }
 
         public void InitMainpageDetail()
         {
-            for (int i = 0; i < 5; i++)
+            foreach(string name in locations)
             {
-                this.Children.Add(new MainPageDetail());
+                this.Children.Add(new MainPageDetail(name));
             }
         }
          public void OnPageChanged(object sender, EventArgs e )
         {
             int index = Children.IndexOf(CurrentPage);
-            txtName.Text = index.ToString();
+            txtName.Text = locations[index].ToString();
             this.CurrentPage = this.Children[index];
             
         }
