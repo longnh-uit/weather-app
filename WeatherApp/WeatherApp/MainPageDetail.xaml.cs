@@ -44,7 +44,7 @@ namespace WeatherApp
 
         private async void GetWeatherInfo(string location)
         {
-            var url = $"http://192.168.1.4:80/weather/api/currentweather?name={location}";
+            var url = $"http://192.168.1.6:80/weather/api/currentweather?name={location}";
 
             var result = await ApiCaller.Get(url);
 
@@ -61,7 +61,7 @@ namespace WeatherApp
                     humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
                     pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}mb";
                     visibilityTxt.Text = $"{(weatherInfo.visibility / 1000).ToString("0")} km";
-                    windTxt.Text = $"{(weatherInfo.wind.speed * 3.6).ToString("0")} km/h";
+                    windTxt.Text = $"Gió: {(weatherInfo.wind.speed * 3.6).ToString("0")} km/h";
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}°C ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°C";
                     

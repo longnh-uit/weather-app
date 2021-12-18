@@ -18,11 +18,12 @@
             </Grid.RowDefinitions>
             <Frame Grid.Row="0" CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="10,10,10,20">
+                                   IsClippedToBounds="True" Padding="10,0,10,20">
                 <StackLayout>
-                    <Grid RowSpacing="5" >
+                    <Grid RowSpacing="0" >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="50" ></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -30,24 +31,25 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label x:Name="dateLabel" Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"
-                       Grid.Row="0" Grid.Column="0"></Label>
-                        <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="Large" VerticalTextAlignment="Center"
-                       Grid.Row="1" Grid.Column="0"></Label>
-                        <Label Text="0°C" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" FontSize="50" x:Name="temperatureTxt"
-                       Grid.Row="0" Grid.RowSpan="2"  Grid.Column="1"></Label>
+                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
+                        <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="25" VerticalTextAlignment="Center"
+                       Grid.Row="2" Grid.Column="0"></Label>
+                        <Label Text="0°C" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="52" x:Name="temperatureTxt"
+                       Grid.Row="0" Grid.RowSpan="3"  Grid.Column="1"></Label>
                         <Image x:Name="iconImg" Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
-                       Grid.Row="0" Grid.Column="2" 
-                       HorizontalOptions="Center" VerticalOptions="EndAndExpand" 
-                       HeightRequest="60" WidthRequest="65"></Image>
-                        <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="18"
-                       Grid.Row="1" Grid.Column="2"></Label>
-                        <Label Padding="0,20,0,0" x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
-                       Grid.Row="2" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
+                       Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Aspect="AspectFill"
+                       HorizontalOptions="Center" VerticalOptions="End" 
+                       HeightRequest="60" WidthRequest="90"></Image>
+                        <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Start" 
+                         HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="18"
+                       Grid.Row="2" Grid.Column="2" ></Label>
+                        <Label x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                       Grid.Row="3" Padding="0,10,0,0" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
                         <Label Text="Gio: 19km/h" x:Name="windTxt" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
-                       Grid.Row="3" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
+                       Grid.Row="4" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
                     </Grid>
                 </StackLayout>
             </Frame>
@@ -56,10 +58,15 @@
                                    VerticalOptions="Start" HasShadow="True" 
                                    IsClippedToBounds="True" Padding="10,10,10,0">
                 <StackLayout Margin="0" Padding="0">
-                    <Label
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="rain.png" 
+                           HeightRequest="20"
+                           WidthRequest="20" />
+                        <Label
                        Text="Khả năng có mưa" FontSize="15"
                        FontAttributes="Bold"
                        HorizontalOptions="Start"/>
+                    </StackLayout>
                     <CollectionView x:Name="listByHour"  
                         ItemsLayout="HorizontalList" >
                         <CollectionView.ItemTemplate>
@@ -86,11 +93,18 @@
                                            Aspect="AspectFill"
                                            HeightRequest="50"
                                            WidthRequest="50" />
-                                        <Label Grid.Row="2" Grid.Column="0"
-                                           Text="2%" FontSize="16"
+                                        
+                                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <Image Source="rain.png" 
+                                            HeightRequest="12"
+                                            WidthRequest="12" VerticalOptions="Center"/>
+                                            <Label 
+                                           Text="2%" FontSize="15"
                                            LineBreakMode="TailTruncation"
-                                           FontAttributes="Italic"
-                                           VerticalOptions="Center" HorizontalOptions="Center"/>
+                                           FontAttributes="Italic" VerticalTextAlignment="Center"
+                                           />
+                                        </StackLayout>
+                                        
                                         <Label Grid.Row="3" Grid.Column="0"
                                            Text="29°C" FontSize="18"
                                            LineBreakMode="TailTruncation" HorizontalOptions="Center" />
