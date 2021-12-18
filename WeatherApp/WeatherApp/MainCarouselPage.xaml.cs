@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using WeatherApp.Models;
 
 namespace WeatherApp
 {
@@ -18,25 +19,26 @@ namespace WeatherApp
             InitializeComponent();
             this.Children.Add(new MainPageDetail());
             txtName.Text = "Hà Nội";
-            //OnCurrentPageChanged();
             this.CurrentPageChanged += OnPageChanged;
         }
-        public MainCarouselPage(int index)
+        public MainCarouselPage(Location location,int index)
         {
 
             InitializeComponent();
             InitMainpageDetail();
-            txtName.Text = locations[index].ToString();
+            txtName.Text = location.name;
             this.CurrentPage = this.Children[index];
             this.CurrentPageChanged += OnPageChanged;
         }
 
         public void InitMainpageDetail()
         {
-            foreach(string name in locations)
-            {
-                this.Children.Add(new MainPageDetail(name));
-            }
+            this.Children.Add(new MainPageDetail(105.8412, 21.0245)); // hà nội
+            //foreach (string name in locations)
+            //{
+                
+            //    this.Children.Add(new MainPageDetail(name));
+            //}
         }
          public void OnPageChanged(object sender, EventArgs e )
         {

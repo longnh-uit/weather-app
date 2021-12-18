@@ -8,6 +8,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -23,7 +24,17 @@
                         <TapGestureRecognizer Tapped="Handle_Tapped"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <ListView x:Name="listPositionSearch" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemSelected="listPositionSearch_ItemSelected" >
+                
+                <Image Source="home1.png" Grid.Row="1" Grid.Column="0"  WidthRequest="20" HeightRequest="5"></Image>
+                <Label Text="Hà Nội" VerticalOptions="Center" HorizontalOptions="Start" 
+                       Grid.Row="1" Grid.Column="1" FontSize="20" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_DefaultLocation"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <ListView x:Name="listPositionSearch" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                          ItemSelected="listPositionSearch_ItemSelected" IsEnabled="False">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -37,9 +48,10 @@
                                         <ColumnDefinition Width="50"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="marker_20px.png" Grid.Row="0" Grid.Column="0"  WidthRequest="20" HeightRequest="5"></Image>
-                                    <Label Text="Hà Nội" VerticalOptions="Center" HorizontalOptions="Start" 
+                                    <Label Text="{Binding nameLocation}" VerticalOptions="Center" HorizontalOptions="Start" 
                                         Grid.Row="0" Grid.Column="1" FontSize="20" Padding="10,0,0,0"></Label>
-                                    <Button Text="X" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" FontSize="20" ></Button>
+                                    <ImageButton x:Name="deleteLocation" Source="delete_30px" Clicked="deleteLocation_Clicked"
+                                        Grid.Row="0" Grid.Column="2" BackgroundColor="White" HeightRequest="20" WidthRequest="20"></ImageButton>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

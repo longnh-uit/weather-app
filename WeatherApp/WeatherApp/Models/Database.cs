@@ -21,7 +21,7 @@ namespace WeatherApp.Models
                 {
                     //create table
                     _ = connection.CreateTable<Variable>();
-                    //_ = connection.Update(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
+                    _ = connection.CreateTable<Location>();
                     _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
                     return true;
                 }
@@ -67,5 +67,77 @@ namespace WeatherApp.Models
                 throw;
             }
         }
+
+        public bool AddNewLocation(Location position)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "database.db");
+                var connection = new SQLiteConnection(path);
+
+                connection.Insert(position);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public bool DeleteLocation(string id)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "database.db");
+                var connection = new SQLiteConnection(path);
+
+                connection.Delete<Location>(id);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public List<Location> GetAllLocation()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "database.db");
+                var connection = new SQLiteConnection(path);
+
+                return connection.Table<Location>().ToList();
+
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        public List<Location> GetOneLocation(string id)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "database.db");
+                var connection = new SQLiteConnection(path);
+
+                return connection.Query<Location>("select * from Hotel where _id=" + id);
+
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        
     }
 }

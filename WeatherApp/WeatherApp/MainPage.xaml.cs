@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using WeatherApp.Models;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,12 +20,12 @@ namespace WeatherApp
             Detail = new NavigationPage(new MainCarouselPage());
             
         }
-        public MainPage(int index)
+        public MainPage(Location location,int index)
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            Detail = new NavigationPage(new MainCarouselPage(index));
+            Detail = new NavigationPage(new MainCarouselPage(location, index));
 
         }
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

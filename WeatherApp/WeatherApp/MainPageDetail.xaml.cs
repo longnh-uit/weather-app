@@ -20,7 +20,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             ItemsAdded();
-            GetWeatherInfo("Hà Nội");
+            GetWeatherInfo(105.8412, 21.0245);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => { Device.BeginInvokeOnMainThread(() => {
                 CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
                 TimeLabel.Text = DateTime.Now.ToString("HH:mm");
@@ -28,11 +28,11 @@ namespace WeatherApp
             }); return true; });
         }
 
-        public MainPageDetail(string location)
+        public MainPageDetail(double lon,double lat)
         {
             InitializeComponent();
             ItemsAdded();
-            GetWeatherInfo(location);
+            GetWeatherInfo(lon, lat);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 Device.BeginInvokeOnMainThread(() => {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
@@ -42,9 +42,9 @@ namespace WeatherApp
             });
         }
 
-        private async void GetWeatherInfo(string location)
+        private async void GetWeatherInfo(double lon, double lat)
         {
-            var url = $"http://192.168.1.6:80/weather/api/currentweather?name={location}";
+            var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={lon}&lat={lat}";
 
             var result = await ApiCaller.Get(url);
 
