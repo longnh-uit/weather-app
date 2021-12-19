@@ -35,11 +35,15 @@ namespace WeatherApp.Models
     public class Daily
     {
         public int dt { get; set; }
+        public string datetime { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }
         public int moonrise { get; set; }
         public int moonset { get; set; }
         public double moon_phase { get; set; }
+        public string temperature { get; set; }
+        public string rainability { get; set; }
+        public string image { get; set; }
         public class Temp
         {
             public double day { get; set; }

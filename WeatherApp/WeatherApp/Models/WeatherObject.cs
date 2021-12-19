@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace WeatherApp.Models
 {
@@ -54,6 +55,7 @@ namespace WeatherApp.Models
 
     public class Rain
     {
+        [JsonProperty("1h")]
         public double _1h { get; set; }
     }
 

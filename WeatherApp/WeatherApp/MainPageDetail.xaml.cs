@@ -24,10 +24,11 @@ namespace WeatherApp
             lat = 21.0245
 
         };
+
         public MainPageDetail()
         {
             InitializeComponent();
-            ItemsAdded();
+            //ItemsAdded();
             GetWeatherInfo(Hanoi);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => { Device.BeginInvokeOnMainThread(() => {
                 CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
@@ -39,7 +40,7 @@ namespace WeatherApp
         public MainPageDetail(Location location)
         {
             InitializeComponent();
-            ItemsAdded();
+            //ItemsAdded();
             GetWeatherInfo(location);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 Device.BeginInvokeOnMainThread(() => {
@@ -50,6 +51,20 @@ namespace WeatherApp
             });
         }
 
+        public DateTime getDateTime(long input)
+        {
+            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(input);
+            return dateTimeOffset.ToOffset(new TimeSpan(7, 0, 0)).DateTime;
+        }
+
+        //public string getDayOfWeek(string day)
+        //{
+        //    switch (day)
+        //    {
+        //        case "Monday":
+
+        //    }
+        //}
         private async void GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
@@ -72,11 +87,11 @@ namespace WeatherApp
                     windTxt.Text = $"Gió: {(weatherInfo.wind.speed * 3.6).ToString("0")} km/h";
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}°C ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°C";
-                    
+
                     //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
                     //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
 
-                    //GetForecast();
+                    GetDailyWeather(location);
                 }
                 catch (Exception ex)
                 {
@@ -89,6 +104,56 @@ namespace WeatherApp
             }
         }
 
+        private async void GetDailyWeather(Location location)
+        {
+            var url = $"http://www.xamarinweatherapi.somee.com/api/dailyweather?lon={location.lon}&lat={location.lat}";
+            var result = await ApiCaller.Get(url);
+
+            if (result.Successful)
+            {
+                try
+                {
+                    var forcastInfo = JsonConvert.DeserializeObject<DailyWeather>(result.Response);
+
+                    List<Daily> allList = new List<Daily>();
+
+                    foreach (var list in forcastInfo.daily)
+                    {
+                        //var date = DateTime.ParseExact(list.dt_txt, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
+                        //var date = new DateTime().ToUniversalTime().AddSeconds(list.dt);
+                        //var date = DateTime.Parse(list.dt.ToString());
+                        var date = getDateTime(list.dt);
+
+                        if (date > DateTime.Now)
+                        {
+                            
+                            list.datetime = date.DayOfWeek.ToString();
+                            list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
+                            list.temperature = $"{list.temp.min.ToString("0")}° ~ {list.temp.max.ToString("0")}°";
+                            list.rainability = $"{list.pop}%";
+                            allList.Add(list);
+                        }
+                    }
+                    listDatailDay.ItemsSource = allList;
+
+                    //dayOneTxt.Text = DateTime.Parse(allList[0].dt_txt).ToString("dddd");
+                    //dateOneTxt.Text = DateTime.Parse(allList[0].dt_txt).ToString("dd MMM");
+                    //iconOneImg.Source = $"w{allList[0].weather[0].icon}";
+                    //tempOneTxt.Text = allList[0].main.temp.ToString("0");
+
+                    
+
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Weather Info", ex.Message, "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Weather Info", "No forecast information found", "OK");
+            }
+        }
         List<string> itemsList = new List<string>();
         void ItemsAdded()
         {
