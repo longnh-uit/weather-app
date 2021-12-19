@@ -10,15 +10,15 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="0,10,0,10" Orientation="Vertical" >
-                            <Frame CornerRadius="10" HorizontalOptions="Center" 
+                        <StackLayout Margin="15,10,15,20" Orientation="Vertical">
+                            <Frame CornerRadius="10" HorizontalOptions="Fill" 
                                    VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="20" >
+                                   IsClippedToBounds="True" Padding="15,10,10,20" >
 
                                 <Grid HeightRequest="220" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" ></RowDefinition>
-                                        <RowDefinition Height="2" ></RowDefinition>
+                                        <RowDefinition Height="1" ></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
@@ -27,43 +27,43 @@
 
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                                        <ColumnDefinition Width="7*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="CN Th11 07" Grid.Row="0" Grid.Column="0" FontSize="17"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="29°C ~ 34°C" Grid.Row="0" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                    <Image Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg" 
-                       Grid.Row="0" Grid.Column="1" 
-                       HorizontalOptions="End" VerticalOptions="Center"
-                       HeightRequest="45" WidthRequest="45"></Image>
+                                    <Label Text="{Binding dateUTC}" Grid.Row="0" Grid.Column="0" FontSize="18"
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    <Label Text="{Binding temperature}" Grid.Row="0" Grid.Column="1" FontSize="25"
+                                           HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                    <Image Source="{Binding image}" 
+                                           Grid.Row="0" Grid.Column="1" Aspect="AspectFill"
+                                           HorizontalOptions="End" VerticalOptions="Center"
+                                           HeightRequest="60" WidthRequest="75"></Image>
 
                                     <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
 
-                                    <Label Text="Mưa dông" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
-                       HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                    <Label Text="{Binding weather[0].main}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
+                                        HorizontalOptions="Center" VerticalOptions="Center"></Label>
 
                                     <Label Text="Lượng mưa 2 in" Grid.Row="3" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
                                     <Label Text="Tốc độ gió 7km/h" Grid.Row="3" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    
                                     <Label Text="Độ ẩm 72%" Grid.Row="4" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
                                     <Label Text="Hướng gió" Grid.Row="4" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 
                                     <Label Text="Khả năng mưa 80%" Grid.Row="5" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                     </Label>
                                     <Label Text="Tầm nhìn 10km" Grid.Row="5" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
                                     <Label Text="Bình minh 05:34" Grid.Row="6" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
                                     <Label Text="Hoàng hôn 17:50" Grid.Row="6" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 
                                 </Grid>
                             </Frame>

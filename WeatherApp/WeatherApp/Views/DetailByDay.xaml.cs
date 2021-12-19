@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using WeatherApp.Models;
 namespace WeatherApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,19 +15,18 @@ namespace WeatherApp.Views
         public DetailByDay()
         {
             InitializeComponent();
-            ItemsAdded();
+            
+        }
+
+        public DetailByDay(List<Daily> allList)
+        {
+            InitializeComponent();
+            //ItemsAdded();
+            listItemDay.ItemsSource = allList;
         }
 
         List<string> itemsList = new List<string>();
-        void ItemsAdded()
-        {
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            listItemDay.ItemsSource = itemsList;
-        }
-
+        
         private void listItemDay_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var list = (ListView)sender;
