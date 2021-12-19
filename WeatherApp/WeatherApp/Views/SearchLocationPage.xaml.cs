@@ -90,14 +90,14 @@ namespace WeatherApp.Views
                 {
 
                     //DisplayAlert("Message",pos.name, "OK");
-                    //if (db.AddNewLocation(pos))
-                    //{
-                    //    Navigation.PopModalAsync();
-                    //}
-                    //else
-                    //{
-                    //    DisplayAlert("error", "try again", "ok");
-                    //}
+                    if (db.AddNewLocation(pos))
+                    {
+                        Navigation.PopModalAsync();
+                    }
+                    else
+                    {
+                        DisplayAlert("error", "try again", "ok");
+                    }
                 }
                 else
                 {

@@ -27,10 +27,9 @@ namespace WeatherApp.Views
         public ChangeLocationPage()
         {
             InitializeComponent();
-            InitListLocation();
         }
 
-        void InitListLocation()
+        public void InitListLocation()
         {
             locations = db.GetAllLocation();
             if (locations == null)
@@ -56,7 +55,7 @@ namespace WeatherApp.Views
         //delete location
         private void deleteLocation_Clicked(object sender, EventArgs e)
         {
-            var item = (Xamarin.Forms.ImageButton)sender;
+            var item = (ImageButton)sender;
             Device.BeginInvokeOnMainThread(async () =>
             {
                 var choice = await DisplayAlert("Message", "Are you sure to delete this location", "YES", "NO");
@@ -68,7 +67,7 @@ namespace WeatherApp.Views
                         await DisplayAlert("Message", "Remove item successfully", "OK");
 
                         //update listLocation ...
-                        await Navigation.PushAsync(new MainPage(Hanoi, 0));
+                        InitListLocation();
                     }
                     else
                     {
@@ -97,7 +96,11 @@ namespace WeatherApp.Views
             }
         }
 
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            InitListLocation();
+        }
     }
 
 }
