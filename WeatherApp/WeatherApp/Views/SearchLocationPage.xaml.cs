@@ -89,19 +89,19 @@ namespace WeatherApp.Views
                 if(pos.name != "Hà Nội")
                 {
 
-                    DisplayAlert("Message",pos.name, "OK");
+                    //DisplayAlert("Message",pos.name, "OK");
                     //if (db.AddNewLocation(pos))
                     //{
-                    //    Navigation.PushAsync(new ChangeLocationPage());
+                    //    Navigation.PopModalAsync();
                     //}
                     //else
                     //{
-                    //    DisplayAlert("Error", "Try Again", "OK");
+                    //    DisplayAlert("error", "try again", "ok");
                     //}
                 }
                 else
                 {
-                    Navigation.PushAsync(new NavigationPage(new ChangeLocationPage()));
+                    Navigation.PopModalAsync();
                 }
             }
         }

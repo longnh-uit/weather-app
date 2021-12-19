@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Emit;
 
 using Xamarin.Forms;
+using WeatherApp.Models;
 
 namespace WeatherApp
 {
@@ -12,6 +13,16 @@ namespace WeatherApp
      public class SplashScreen : ContentPage
     {
         Image splashImage;
+
+        Location Hanoi = new Location
+        {
+            _id = "123",
+            name = "Hà Nội",
+            lon = 105.8412,
+            lat = 21.0245
+
+        };
+
         public SplashScreen()
         {
             NavigationPage.SetHasNavigationBar(this, false);
@@ -37,7 +48,7 @@ namespace WeatherApp
             await splashImage.ScaleTo(1, 4000); 
             await splashImage.ScaleTo(0.9, 1500, Easing.Linear);
             await splashImage.ScaleTo(150, 1200, Easing.Linear);
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+            Application.Current.MainPage = new NavigationPage(new MainPage(Hanoi,0));
 
         }
 

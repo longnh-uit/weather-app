@@ -12,12 +12,20 @@ namespace WeatherApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : FlyoutPage
     {
+        Location Hanoi = new Location
+        {
+            _id = "123",
+            name = "Hà Nội",
+            lon = 105.8412,
+            lat = 21.0245
+
+        };
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            Detail = new NavigationPage(new MainCarouselPage());
+            Detail = new NavigationPage(new MainCarouselPage(Hanoi, 0));
             
         }
         public MainPage(Location location,int index)

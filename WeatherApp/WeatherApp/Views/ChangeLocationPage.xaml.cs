@@ -21,40 +21,64 @@ namespace WeatherApp.Views
             lat = 21.0245
 
         };
-
+        // init database 
+        private static Database db = new Database();
+        List<Location> locations;
         public ChangeLocationPage()
         {
             InitializeComponent();
-            //ItemsAdded();
-            listPositionSearch.ItemsSource = itemsList;
+            InitListLocation();
         }
 
+        void InitListLocation()
+        {
+            locations = db.GetAllLocation();
+            if (locations == null)
+            {
+                listPositionSearch.ItemsSource = null;
+                return;
+            }
+
+            listPositionSearch.ItemsSource = locations;
+        }
+
+        //redirect to search page
         private void AddButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new SearchLocationPage());
         }
+    
         void Handle_Tapped(object sender, System.EventArgs e)
         {
             Navigation.PushModalAsync(new SearchLocationPage());
         }
 
+        //delete location
         private void deleteLocation_Clicked(object sender, EventArgs e)
         {
-
-        }
-
-        List<Location> itemsList = new List<Location>();
-
-        void ItemsAdded()
-        {
-
-            itemsList.Add(new Location
+            var item = (Xamarin.Forms.ImageButton)sender;
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                name = "abc"
+                var choice = await DisplayAlert("Message", "Are you sure to delete this location", "YES", "NO");
+
+                if (choice)
+                {
+                    if (db.DeleteLocation(item.CommandParameter.ToString()))
+                    {
+                        await DisplayAlert("Message", "Remove item successfully", "OK");
+
+                        //update listLocation ...
+                        await Navigation.PushAsync(new MainPage(Hanoi, 0));
+                    }
+                    else
+                    {
+                        await DisplayAlert("Message", "Failed ", "OK");
+                    }
+                }
             });
         }
 
-
+        //click default location
         void Handle_DefaultLocation(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new MainPage(Hanoi, 0));
@@ -64,13 +88,16 @@ namespace WeatherApp.Views
         {
             if (listPositionSearch.SelectedItem != null)
             {
-                int index = itemsList.IndexOf((Location)listPositionSearch.SelectedItem);
-                Location position = (Location)listPositionSearch.SelectedItem;
-                Navigation.PushAsync(new MainPage(position, index));
+                if (locations != null)
+                {
+                    int index = locations.IndexOf((Location)listPositionSearch.SelectedItem);
+                    Location position = (Location)listPositionSearch.SelectedItem;
+                    Navigation.PushAsync(new MainPage(position, index + 1));
+                }
             }
         }
 
-       
+
     }
 
 }

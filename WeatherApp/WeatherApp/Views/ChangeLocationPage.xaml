@@ -34,7 +34,7 @@
                 </Label>
                 
                 <ListView x:Name="listPositionSearch" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                          ItemSelected="listPositionSearch_ItemSelected" IsEnabled="False">
+                          ItemSelected="listPositionSearch_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -45,13 +45,14 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                        <ColumnDefinition Width="35"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="marker_20px.png" Grid.Row="0" Grid.Column="0"  WidthRequest="20" HeightRequest="5"></Image>
-                                    <Label Text="{Binding nameLocation}" VerticalOptions="Center" HorizontalOptions="Start" 
+                                    <Label Text="{Binding name}" VerticalOptions="Center" HorizontalOptions="Start" 
                                         Grid.Row="0" Grid.Column="1" FontSize="20" Padding="10,0,0,0"></Label>
-                                    <ImageButton x:Name="deleteLocation" Source="delete_30px" Clicked="deleteLocation_Clicked"
-                                        Grid.Row="0" Grid.Column="2" BackgroundColor="White" HeightRequest="20" WidthRequest="20"></ImageButton>
+                                    <ImageButton x:Name="deleteLocation" Source="delete_30px" Clicked="deleteLocation_Clicked" 
+                                        CommandParameter="{Binding _id}" Grid.Row="0" Grid.Column="2" Padding="0,0,10,0"
+                                        BackgroundColor="Transparent" HeightRequest="25" WidthRequest="25"></ImageButton>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

@@ -16,11 +16,19 @@ namespace WeatherApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPageDetail : ContentPage
     {
+        Location Hanoi = new Location
+        {
+            _id = "123",
+            name = "Hà Nội",
+            lon = 105.8412,
+            lat = 21.0245
+
+        };
         public MainPageDetail()
         {
             InitializeComponent();
             ItemsAdded();
-            GetWeatherInfo(105.8412, 21.0245);
+            GetWeatherInfo(Hanoi);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => { Device.BeginInvokeOnMainThread(() => {
                 CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
                 TimeLabel.Text = DateTime.Now.ToString("HH:mm");
@@ -28,11 +36,11 @@ namespace WeatherApp
             }); return true; });
         }
 
-        public MainPageDetail(double lon,double lat)
+        public MainPageDetail(Location location)
         {
             InitializeComponent();
             ItemsAdded();
-            GetWeatherInfo(lon, lat);
+            GetWeatherInfo(location);
             Device.StartTimer(TimeSpan.FromSeconds(1), () => {
                 Device.BeginInvokeOnMainThread(() => {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
@@ -42,9 +50,9 @@ namespace WeatherApp
             });
         }
 
-        private async void GetWeatherInfo(double lon, double lat)
+        private async void GetWeatherInfo(Location location)
         {
-            var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={lon}&lat={lat}";
+            var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
 
             var result = await ApiCaller.Get(url);
 
