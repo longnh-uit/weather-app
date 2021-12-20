@@ -25,6 +25,7 @@ namespace WeatherApp.Views
             Variable color = App.db.GetBgColor();
             color.VariableValue = button.BackgroundColor.ToHex();
             App.db.UpdateBgColor(color);
+            DependencyService.Get<Helper.IStatusBar>().ChangeStatusBarColor(color.VariableValue);
         }
 
         private void BtnDefault_Clicked(object sender, EventArgs e)
@@ -33,6 +34,7 @@ namespace WeatherApp.Views
             Variable color = App.db.GetBgColor();
             color.VariableValue = "#7097DA";
             App.db.UpdateBgColor(color);
+            DependencyService.Get<Helper.IStatusBar>().ChangeStatusBarColor(color.VariableValue);
         }
     }
 }
