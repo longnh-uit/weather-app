@@ -49,7 +49,7 @@ namespace WeatherApp
             await splashImage.ScaleTo(1, 4000); 
             await splashImage.ScaleTo(0.9, 1500, Easing.Linear);
             await splashImage.ScaleTo(150, 1200, Easing.Linear);
-            Application.Current.MainPage = new NavigationPage(new MainPage(Hanoi, 0));
+            Application.Current.MainPage = new NavigationPage(new MainPage());
 
         }
 

@@ -26,20 +26,11 @@ namespace WeatherApp
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            NavigationPage navPage = new NavigationPage(new MainCarouselPage(Hanoi, 0));
+            NavigationPage navPage = new NavigationPage(new MainCarouselPage());
             Detail = navPage;
             
         }
-        public MainPage(Location location,int index)
-        {
-            InitializeComponent();
-            NavigationPage.SetHasBackButton(this, false);
-            FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            NavigationPage navPage = new NavigationPage(new MainCarouselPage(location, index));
-            Detail = navPage;
 
-
-        }
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MainPageFlyoutMenuItem;
@@ -49,6 +40,10 @@ namespace WeatherApp
             var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
 
+            MainCarouselPage detailPage = ((NavigationPage)Detail).RootPage as MainCarouselPage;
+
+
+            App.index = detailPage.Children.IndexOf(detailPage.CurrentPage);
             Detail.Navigation.PushAsync(page);
             IsPresented = false;
 

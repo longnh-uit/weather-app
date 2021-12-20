@@ -13,17 +13,9 @@ namespace WeatherApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChangeLocationPage : ContentPage
     {
-        Location Hanoi = new Location
-        {
-            _id = "123",
-            name = "Hà Nội",
-            lon = 105.8412,
-            lat = 21.0245
-
-        };
         // init database 
-        private static Database db = new Database();
-        List<Location> locations;
+        private static readonly Database db = App.db;
+        private List<Location> locations;
         public ChangeLocationPage()
         {
             InitializeComponent();
@@ -44,12 +36,12 @@ namespace WeatherApp.Views
         //redirect to search page
         private void AddButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new SearchLocationPage());
+            _ = Navigation.PushModalAsync(new SearchLocationPage());
         }
     
         void Handle_Tapped(object sender, System.EventArgs e)
         {
-            Navigation.PushModalAsync(new SearchLocationPage());
+            _ = Navigation.PushModalAsync(new SearchLocationPage());
         }
 
         //delete location
@@ -78,9 +70,10 @@ namespace WeatherApp.Views
         }
 
         //click default location
-        void Handle_DefaultLocation(object sender, System.EventArgs e)
+        private void Handle_DefaultLocation(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new MainPage(Hanoi, 0));
+            App.index = 0;
+            _ = Navigation.PopToRootAsync();
         }
 
         private void listPositionSearch_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -89,9 +82,8 @@ namespace WeatherApp.Views
             {
                 if (locations != null)
                 {
-                    int index = locations.IndexOf((Location)listPositionSearch.SelectedItem);
-                    Location position = (Location)listPositionSearch.SelectedItem;
-                    Navigation.PushAsync(new MainPage(position, index + 1));
+                    App.index = locations.IndexOf((Location)listPositionSearch.SelectedItem) + 1;
+                    _ = Navigation.PopToRootAsync();
                 }
             }
         }
