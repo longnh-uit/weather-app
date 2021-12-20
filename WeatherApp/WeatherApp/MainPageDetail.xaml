@@ -138,7 +138,7 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <Label Text="{Binding datetime}" Grid.RowSpan="2" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center"
-                                               FontSize="19" HorizontalOptions="Start" VerticalOptions="Center"
+                                               FontSize="20" HorizontalOptions="Start" VerticalOptions="Center"
                                                ></Label>
                                         <StackLayout Grid.Row="0" Grid.Column="1">
                                         <Image 
@@ -151,12 +151,12 @@
                                             <Image Source="rain.png" 
                                                 HeightRequest="20"
                                                 WidthRequest="20" />
-                                            <Label Text="{Binding rainability}"  
+                                            <Label Text="{Binding rainability}" TextColor="Orange"
                                                FontSize="18" HorizontalOptions="Center" VerticalOptions="Start"></Label>
                                         </StackLayout>
                                         </StackLayout>
                                         <Label Text="{Binding temperature}" Grid.Row="0"  Grid.RowSpan="2" Grid.Column="2" VerticalTextAlignment="Center"
-                                               FontSize="19" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                               FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"></Label>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

@@ -24,7 +24,7 @@ namespace WeatherApp
             lat = 21.0245
 
         };
-
+        List<Daily> allList = new List<Daily>();
         public MainPageDetail()
         {
             InitializeComponent();
@@ -57,14 +57,23 @@ namespace WeatherApp
             return dateTimeOffset.ToOffset(new TimeSpan(7, 0, 0)).DateTime;
         }
 
-        //public string getDayOfWeek(string day)
-        //{
-        //    switch (day)
-        //    {
-        //        case "Monday":
+        //convert day in week to vietnamese
+        public string getDayOfWeek(string day)
+        {
+            switch (day)
+            {
+                case "Monday": return "Thứ 2";
+                case "Tuesday": return "Thứ 3";
+                case "Wednesday": return "Thứ 4";
+                case "Thursday": return "Thứ 5";
+                case "Friday": return "Thứ 6";
+                case "Saturday": return "Thứ 7";
+                case "Sunday": return "Chủ nhật";
+                default: return "";
 
-        //    }
-        //}
+            }
+        }
+
         private async void GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
@@ -115,19 +124,14 @@ namespace WeatherApp
                 {
                     var forcastInfo = JsonConvert.DeserializeObject<DailyWeather>(result.Response);
 
-                    List<Daily> allList = new List<Daily>();
-
                     foreach (var list in forcastInfo.daily)
                     {
-                        //var date = DateTime.ParseExact(list.dt_txt, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
-                        //var date = new DateTime().ToUniversalTime().AddSeconds(list.dt);
-                        //var date = DateTime.Parse(list.dt.ToString());
                         var date = getDateTime(list.dt);
 
                         if (date > DateTime.Now)
                         {
-                            
-                            list.datetime = date.DayOfWeek.ToString();
+                            list.dateUTC = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
+                            list.datetime = getDayOfWeek(date.DayOfWeek.ToString());
                             list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
                             list.temperature = $"{list.temp.min.ToString("0")}° ~ {list.temp.max.ToString("0")}°";
                             list.rainability = $"{list.pop}%";
@@ -135,13 +139,6 @@ namespace WeatherApp
                         }
                     }
                     listDatailDay.ItemsSource = allList;
-
-                    //dayOneTxt.Text = DateTime.Parse(allList[0].dt_txt).ToString("dddd");
-                    //dateOneTxt.Text = DateTime.Parse(allList[0].dt_txt).ToString("dd MMM");
-                    //iconOneImg.Source = $"w{allList[0].weather[0].icon}";
-                    //tempOneTxt.Text = allList[0].main.temp.ToString("0");
-
-                    
 
                 }
                 catch (Exception ex)
@@ -155,18 +152,7 @@ namespace WeatherApp
             }
         }
         List<string> itemsList = new List<string>();
-        void ItemsAdded()
-        {
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            listByHour.ItemsSource = itemsList;
-            listDatailDay.ItemsSource = itemsList;
-        }
+      
 
         private void btnDetailHour_Clicked(object sender, EventArgs e)
         {
@@ -175,7 +161,7 @@ namespace WeatherApp
 
         private void btnDetailDay_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DetailByDay());
+            Navigation.PushAsync(new DetailByDay(allList));
         }
     }
 }

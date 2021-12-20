@@ -36,6 +36,7 @@ namespace WeatherApp.Models
     {
         public int dt { get; set; }
         public string datetime { get; set; }
+        public string dateUTC { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }
         public int moonrise { get; set; }
