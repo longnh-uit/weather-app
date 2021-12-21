@@ -85,28 +85,27 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label
-                                       Text="9:00" FontSize="20"
-                                       FontAttributes="Bold"
+                                       Text="{Binding time}" FontSize="16"
+                                       FontAttributes="None"
                                        LineBreakMode="TailTruncation" HorizontalOptions="Center"/>
                                         <Image Grid.Row="1" 
-                                           Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
+                                           Source="{Binding image}"
                                            Aspect="AspectFill"
-                                           HeightRequest="50"
-                                           WidthRequest="50" />
+                                           HeightRequest="60"
+                                           WidthRequest="75" />
                                         
                                         <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
                                             <Image Source="rain.png" 
-                                            HeightRequest="12"
-                                            WidthRequest="12" VerticalOptions="Center"/>
+                                            HeightRequest="13"
+                                            WidthRequest="13" VerticalOptions="Center"/>
                                             <Label 
-                                           Text="2%" FontSize="15"
+                                           Text="{Binding rainability}" FontSize="15" TextColor="Orange"
                                            LineBreakMode="TailTruncation"
-                                           FontAttributes="Italic" VerticalTextAlignment="Center"
-                                           />
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center"                                           />
                                         </StackLayout>
                                         
                                         <Label Grid.Row="3" Grid.Column="0"
-                                           Text="29°C" FontSize="18"
+                                           Text="{Binding temperature}" FontSize="20"
                                            LineBreakMode="TailTruncation" HorizontalOptions="Center" />
                                     </Grid>
                                 </StackLayout>

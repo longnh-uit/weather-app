@@ -25,16 +25,21 @@ namespace WeatherApp
 
         };
         List<Daily> allList = new List<Daily>();
+        List<Hourly> allListHour = new List<Hourly>();
         public MainPageDetail()
         {
             InitializeComponent();
             //ItemsAdded();
             GetWeatherInfo(Hanoi);
-            Device.StartTimer(TimeSpan.FromSeconds(1), () => { Device.BeginInvokeOnMainThread(() => {
-                CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
-                TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
-            }); return true; });
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
+                    TimeLabel.Text = DateTime.Now.ToString("HH:mm");
+                    dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                }); return true;
+            });
         }
 
         public MainPageDetail(Location location)
@@ -42,8 +47,10 @@ namespace WeatherApp
             InitializeComponent();
             //ItemsAdded();
             GetWeatherInfo(location);
-            Device.StartTimer(TimeSpan.FromSeconds(1), () => {
-                Device.BeginInvokeOnMainThread(() => {
+            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
                     TimeLabel.Text = DateTime.Now.ToString("HH:mm");
                     dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
@@ -140,6 +147,8 @@ namespace WeatherApp
                     }
                     listDatailDay.ItemsSource = allList;
 
+                    GetHourlyWeather(location);
+
                 }
                 catch (Exception ex)
                 {
@@ -151,8 +160,48 @@ namespace WeatherApp
                 await DisplayAlert("Weather Info", "No forecast information found", "OK");
             }
         }
-        List<string> itemsList = new List<string>();
-      
+
+        private async void GetHourlyWeather(Location location)
+        {
+            var url = $"http://www.xamarinweatherapi.somee.com/api/hourlyweather?lon={location.lon}&lat={location.lat}";
+            var result = await ApiCaller.Get(url);
+
+            if (result.Successful)
+            {
+                try
+                {
+                    var forcastInfo = JsonConvert.DeserializeObject<HourlyWeather>(result.Response);
+                    int i = 0;
+                    foreach (var list in forcastInfo.hourly)
+                    {
+                        i++;
+                        var date = getDateTime(list.dt);
+                        if (i < 24)
+                        {
+                            if (date > DateTime.Now)
+                            {
+                                list.dateUTC = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
+                                list.time = date.ToString("HH:mm");
+                                list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
+                                list.temperature = $"{list.temp.ToString("0")}°";
+                                list.rainability = $"{list.pop}%";
+                                allListHour.Add(list);
+                            }
+                        }
+                    }
+                    listByHour.ItemsSource = allListHour;
+
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Weather Info", ex.Message, "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Weather Info", "No forecast information found", "OK");
+            }
+        }
 
         private void btnDetailHour_Clicked(object sender, EventArgs e)
         {
