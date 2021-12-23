@@ -7,7 +7,7 @@
 
             <Label Text="Nhiệt độ" HorizontalOptions="Center" FontSize="Medium"/>
             <CollectionView x:Name="TemperaturePicker" HorizontalOptions="Center" VerticalOptions="Center"
-                        SelectionMode="Single" BackgroundColor="White" WidthRequest="90" HeightRequest="50">
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="90" HeightRequest="50" SelectionChanged="TemperaturePicker_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>

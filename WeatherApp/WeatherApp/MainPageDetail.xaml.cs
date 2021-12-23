@@ -11,6 +11,7 @@ using WeatherApp.Views;
 using WeatherApp.Helper;
 using Newtonsoft.Json;
 using WeatherApp.Models;
+using WeatherApp;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -96,7 +97,7 @@ namespace WeatherApp
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     //cityTxt.Text = weatherInfo.name.ToUpper();
-                    temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}°C";
+                    temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}{App.unit.tempUnitCurrent}";
                     humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
                     pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}mb";
                     visibilityTxt.Text = $"{(weatherInfo.visibility / 1000).ToString("0")} km";
