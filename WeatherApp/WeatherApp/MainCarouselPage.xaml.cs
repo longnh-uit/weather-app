@@ -43,6 +43,7 @@ namespace WeatherApp
                 }
             }
         }
+
         public void OnPageChanged(object sender, EventArgs e)
         {
             int index = Children.IndexOf(CurrentPage) == -1 ? App.index : Children.IndexOf(CurrentPage);

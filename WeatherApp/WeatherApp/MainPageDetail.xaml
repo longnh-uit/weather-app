@@ -64,7 +64,7 @@
                            WidthRequest="20" />
                         <Label
                        Text="Khả năng có mưa" FontSize="15"
-                       FontAttributes="Bold"
+                       FontAttributes="Italic"
                        HorizontalOptions="Start"/>
                     </StackLayout>
                     <CollectionView x:Name="listByHour"  
@@ -114,7 +114,7 @@
                     </CollectionView>
                     <Button BackgroundColor="Transparent"
                        Text="Chi tiết" FontSize="15" x:Name="btnDetailHour" Clicked="btnDetailHour_Clicked"   
-                       HorizontalOptions="End"/>
+                       TextColor="Orange" HorizontalOptions="End"/>
                 </StackLayout>
             </Frame>
 

@@ -56,6 +56,7 @@ namespace WeatherApp.Views
                 {
                     if (db.DeleteLocation(item.CommandParameter.ToString()))
                     {
+                        App.index = 0;
                         await DisplayAlert("Message", "Remove item successfully", "OK");
 
                         //update listLocation ...

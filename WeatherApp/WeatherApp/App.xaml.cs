@@ -11,6 +11,7 @@ namespace WeatherApp
     {
         public static Database db = new Database();
         public static int index = 0;
+        
         public App()
         {
             InitializeComponent();

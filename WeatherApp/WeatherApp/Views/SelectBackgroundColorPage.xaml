@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WeatherApp.Views.SelectBackgroundColorPage">
+             x:Class="WeatherApp.Views.SelectBackgroundColorPage"
+             Title="Chọn màu">
     <ContentPage.Content>
         <Grid RowSpacing="0" Margin="0 ,10,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -30,57 +31,98 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button BackgroundColor="#18465E" Grid.Row="0" Grid.Column="0" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                    <Button BackgroundColor="#18465E" Grid.Row="0" Grid.Column="0"
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#A52349" Grid.Row="0" Grid.Column="1" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
-                    <Button BackgroundColor="#B2461F" Grid.Row="0" Grid.Column="2" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
-                    <Button BackgroundColor="#CF592B" Grid.Row="0" Grid.Column="3" CornerRadius="50" 
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
+                    <Button BackgroundColor="#B2461F" Grid.Row="0" Grid.Column="2"
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
+                    <Button BackgroundColor="#CF592B" Grid.Row="0" Grid.Column="3"
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
                             Clicked="Button_Clicked"></Button>
 
                     <Button BackgroundColor="#E86E7B" Grid.Row="1" Grid.Column="1"
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#E39394" Grid.Row="1" Grid.Column="0" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#EE9597" Grid.Row="1" Grid.Column="3" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#DAA28B" Grid.Row="1" Grid.Column="2" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
 
                     <Button BackgroundColor="#445C4F" Grid.Row="2" Grid.Column="0" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#434E48" Grid.Row="2" Grid.Column="1" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#465A65" Grid.Row="2" Grid.Column="2" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#75536E" Grid.Row="2" Grid.Column="3" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
 
                     <Button BackgroundColor="#5D4038" Grid.Row="3" Grid.Column="1" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#BA9E9B" Grid.Row="3" Grid.Column="0" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#B0B42B" Grid.Row="3" Grid.Column="3" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#0098A6" Grid.Row="3" Grid.Column="2" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
 
                     <Button BackgroundColor="#11A67C" Grid.Row="4" Grid.Column="1" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#32B8AF" Grid.Row="4" Grid.Column="0" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#24BCA3" Grid.Row="4" Grid.Column="3" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                     <Button BackgroundColor="#82B3BA" Grid.Row="4" Grid.Column="2" 
-                            CornerRadius="50" Clicked="Button_Clicked"></Button>
+                            HeightRequest="86" WidthRequest="86" CornerRadius="43"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            Clicked="Button_Clicked"></Button>
                 </Grid>
             </StackLayout>
             </ScrollView>
             <StackLayout Grid.Row="1" Grid.Column="0">
-                <Button HeightRequest="100" HorizontalOptions="FillAndExpand" x:Name="BtnDefault"
+                <Button HeightRequest="50" HorizontalOptions="FillAndExpand" x:Name="BtnDefault"
+                        TextColor="White"
                         BackgroundColor="{DynamicResource PageBackgroundColor}" Clicked="BtnDefault_Clicked"
-                        Text="Sử dụng màu mặc định" FontSize="Large"></Button>
+                        Text="Sử dụng màu mặc định" FontSize="20"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
