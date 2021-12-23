@@ -9,9 +9,10 @@ namespace WeatherApp
 {
     public partial class App : Application
     {
-        public static Database db = new Database();
         public static int index = 0;
-        
+        public static List<string> temperatureOptions = new List<string>() { "°C", "°F" };
+        public static Units unit;
+        public static Database db = new Database();
         public App()
         {
             InitializeComponent();

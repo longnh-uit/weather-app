@@ -45,26 +45,61 @@
                                     <Label Text="{Binding weather[0].main}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
                                         HorizontalOptions="Center" VerticalOptions="Center"></Label>
 
-                                    <Label Text="Lượng mưa 2 in" Grid.Row="3" Grid.Column="0" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Tốc độ gió 7km/h" Grid.Row="3" Grid.Column="1" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    
-                                    <Label Text="Độ ẩm 72%" Grid.Row="4" Grid.Column="0" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Hướng gió" Grid.Row="4" Grid.Column="1" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Sức ép "  FontSize="18"
+                                        HorizontalOptions="Start" HorizontalTextAlignment="Start"></Label>
+                                        <Label Text="{Binding pressure}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
 
-                                    <Label Text="Khả năng mưa 80%" Grid.Row="5" Grid.Column="0" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                                    </Label>
-                                    <Label Text="Tầm nhìn 10km" Grid.Row="5" Grid.Column="1" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Bình minh 05:34" Grid.Row="6" Grid.Column="0" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Hoàng hôn 17:50" Grid.Row="6" Grid.Column="1" FontSize="18"
-                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Tốc độ gió "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding wind_speed}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
 
+                                    <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Độ ẩm "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding humidity}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Hướng gió "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding wind_deg}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Bình Minh "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding sunrise}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="6" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Hoàng Hôn "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding sunrset}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Khả năng mưa "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding pop}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Chỉ số UV "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding uvi}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
                                 </Grid>
                             </Frame>
                         </StackLayout>

@@ -4,6 +4,7 @@ using System.Text;
 
 using SQLite;
 
+    using WeatherApp;
 namespace WeatherApp.Models
 {
     public class Database
@@ -22,6 +23,13 @@ namespace WeatherApp.Models
                     //create table
                     _ = connection.CreateTable<Variable>();
                     _ = connection.CreateTable<Location>();
+                    _ = connection.CreateTable<Units>();
+                    if (GetUnit().Count == 0)
+                    {
+                        _ = connection.Insert(new Units { tempUnitCurrent = "°C", distanceUnitCurrent = "m", speedUnitCurrent = "m/s", pressureUnitCurrent = "mBar", rainUnitCurrent = "mm" });
+
+                    }
+                    App.unit= GetUnit()[0];
                     _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
                     return true;
                 }
@@ -45,6 +53,39 @@ namespace WeatherApp.Models
             catch (Exception)
             {
                 return null;
+                throw;
+            }
+        }
+        public List<Units> GetUnit()
+        {
+            try
+            {
+                // Create Database
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                    return connection.Table<Units>().ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        public bool UpdateUnit(Units unit)
+        {
+            try
+            {
+                // Create Database
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    connection.Update(unit);
+                    return true;
+                }
+                //return connection.Query<Variable>("select * from Variable where bgColorName=" + bgColor);
+            }
+            catch (Exception)
+            {
+                return false;
                 throw;
             }
         }
@@ -138,6 +179,6 @@ namespace WeatherApp.Models
             }
         }
 
-        
+
     }
 }
