@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
              x:Class="WeatherApp.Views.DetailByDay"
              BackgroundColor="{DynamicResource PageBackgroundColor}" 
              Title="7 ngày tới">
@@ -42,8 +43,8 @@
 
                                     <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
 
-                                    <Label Text="{Binding weather[0].main}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
-                                        HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                                    <Label Text="{Binding weather[0].description}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
+                                        HorizontalOptions="Center" VerticalOptions="Center" TextTransform="Uppercase" FontAttributes="Italic"></Label>
 
                                     <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
                                         <Label Text="Sức ép "  FontSize="18"
@@ -53,9 +54,9 @@
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                                        <Label Text="Tốc độ gió "  FontSize="18"
+                                        <Label Text="Tốc độ gió " FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label Text="{Binding wind_speed}"  FontSize="18" 
+                                        <Label x:Name="windSpeedTxt" Text="{Binding wind_speed}"  FontSize="18" 
                                         HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
                                     </StackLayout>
 

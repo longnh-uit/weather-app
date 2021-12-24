@@ -83,15 +83,6 @@ namespace WeatherApp
             }
         }
 
-        public WeatherInfo ConvertUnit(WeatherInfo data)
-        {
-            if(App.unit.tempUnitCurrent == "°F")
-            {
-                data.main.temp = data.main.temp * 1.8 + 32;
-            }
-            return data;
-        }
-
         private async void GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
@@ -103,18 +94,18 @@ namespace WeatherApp
                 try
                 {
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
-                    weatherInfo = ConvertUnit(weatherInfo);
+                    weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
                     descriptionTxt.Text = weatherInfo.weather[0].description;
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     //cityTxt.Text = weatherInfo.name.ToUpper();
                     temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}{App.unit.tempUnitCurrent}";
                     humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
-                    pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}mb";
-                    visibilityTxt.Text = $"{(weatherInfo.visibility / 1000).ToString("0")} km";
-                    windTxt.Text = $"Gió: {(weatherInfo.wind.speed * 3.6).ToString("0")} km/h";
+                    pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
+                    visibilityTxt.Text = $"{weatherInfo.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
+                    windTxt.Text = $"Gió: {weatherInfo.wind.speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
-                    maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}°C ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°C";
+                    maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
 
                     //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
                     //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
@@ -153,9 +144,10 @@ namespace WeatherApp
                 try
                 {
                     var forcastInfo = JsonConvert.DeserializeObject<DailyWeather>(result.Response);
-
+                    
                     foreach (var list in forcastInfo.daily)
                     {
+                        //ConvertUnit.DailyWeather(list);
                         var date = getDateTime(list.dt);
 
                         if (date > DateTime.Now)
@@ -165,12 +157,13 @@ namespace WeatherApp
                             list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
                             list.temperature = $"{list.temp.min.ToString("0")}° ~ {list.temp.max.ToString("0")}°";
                             list.rainability = $"{list.pop}%";
+                            
                             allList.Add(list);
                         }
                     }
                     listDatailDay.ItemsSource = allList;
-
                     
+
 
                 }
                 catch (Exception ex)
@@ -198,6 +191,7 @@ namespace WeatherApp
                     foreach (var list in forcastInfo.hourly)
                     {
                         i++;
+                        //ConvertUnit.HourlyWeather(list);
                         var date = getDateTime(list.dt);
                         if (i < 24)
                         {
