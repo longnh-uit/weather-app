@@ -82,6 +82,15 @@ namespace WeatherApp
             }
         }
 
+        public WeatherInfo ConvertUnit(WeatherInfo data)
+        {
+            if(App.unit.tempUnitCurrent == "°F")
+            {
+                data.main.temp = data.main.temp * 1.8 + 32;
+            }
+            return data;
+        }
+
         private async void GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
@@ -93,6 +102,7 @@ namespace WeatherApp
                 try
                 {
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
+                    weatherInfo = ConvertUnit(weatherInfo);
                     descriptionTxt.Text = weatherInfo.weather[0].description;
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
@@ -108,7 +118,7 @@ namespace WeatherApp
                     //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
                     //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
 
-                    GetDailyWeather(location);
+                    GetHourlyWeather(location);
                 }
                 catch (Exception ex)
                 {
@@ -148,7 +158,7 @@ namespace WeatherApp
                     }
                     listDatailDay.ItemsSource = allList;
 
-                    GetHourlyWeather(location);
+                    
 
                 }
                 catch (Exception ex)
@@ -191,6 +201,7 @@ namespace WeatherApp
                         }
                     }
                     listByHour.ItemsSource = allListHour;
+                    GetDailyWeather(location);
 
                 }
                 catch (Exception ex)
