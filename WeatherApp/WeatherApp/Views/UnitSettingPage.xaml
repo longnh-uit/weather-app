@@ -39,7 +39,7 @@
 
             <Label Text="Định dạng thời gian" HorizontalOptions="Center" FontSize="Medium"  Margin="0,10,0,0"/>
             <CollectionView x:Name="TimeFormatPicker" HorizontalOptions="Center" VerticalOptions="Center"
-                        SelectionMode="Single" BackgroundColor="White" WidthRequest="150" HeightRequest="50">
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="150" HeightRequest="50" SelectionChanged="TimeFormatPicker_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>
@@ -71,7 +71,7 @@
             
             <Label Text="Khoảng cách" HorizontalOptions="Center" FontSize="Medium" Margin="0,10,0,0"/>
             <CollectionView x:Name="DistancePicker" HorizontalOptions="Center" VerticalOptions="Center"
-                        SelectionMode="Single" BackgroundColor="White" WidthRequest="100" HeightRequest="50">
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="100" HeightRequest="50" SelectionChanged="DistancePicker_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>
@@ -103,7 +103,7 @@
 
             <Label Text="Tốc độ" HorizontalOptions="Center" FontSize="Medium" Margin="0,10,0,0"/>
             <CollectionView x:Name="SpeedPicker" HorizontalOptions="Center" VerticalOptions="Center"
-                        SelectionMode="Single" BackgroundColor="White" WidthRequest="360" HeightRequest="50">
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="240" HeightRequest="50" SelectionChanged="SpeedPicker_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>
@@ -136,7 +136,7 @@
 
             <Label Text="Sức ép" HorizontalOptions="Center" FontSize="Medium" Margin="0,10,0,0"/>
             <CollectionView x:Name="PressurePicker" HorizontalOptions="Center" VerticalOptions="Center"
-                        SelectionMode="Single" BackgroundColor="White" WidthRequest="300" HeightRequest="50">
+                        SelectionMode="Single" BackgroundColor="White" WidthRequest="300" HeightRequest="50" SelectionChanged="PressurePicker_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>

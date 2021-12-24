@@ -11,8 +11,12 @@ namespace WeatherApp
     {
         public static int index = 0;
         public static List<string> temperatureOptions = new List<string>() { "°C", "°F" };
+        public static List<string> distanceOptions = new List<string>() { "m", "km" };
+        public static List<string> speedOptions = new List<string>() {"mph", "km/h", "m/s", "ft/s" };
+        public static List<string> pressureOptions = new List<string>() { "psi", "mBar", "inHg", "bar", "mmHg" };
         public static Units unit;
         public static Database db = new Database();
+        
         public App()
         {
             InitializeComponent();
