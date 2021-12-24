@@ -11,7 +11,7 @@ using WeatherApp.Views;
 using WeatherApp.Helper;
 using Newtonsoft.Json;
 using WeatherApp.Models;
-using WeatherApp;
+using Plugin.LocalNotification;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -48,6 +48,7 @@ namespace WeatherApp
             InitializeComponent();
             //ItemsAdded();
             GetWeatherInfo(location);
+
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -117,6 +118,17 @@ namespace WeatherApp
 
                     //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
                     //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
+
+                    // Notification part
+                    NotificationRequest notification = new NotificationRequest
+                    {
+                        BadgeNumber = 1,
+                        Silent = true,
+                        NotificationId = 1337,
+                        Subtitle = DateTime.Now.ToString("HH:mm"),
+                        Description = $"{descriptionTxt.Text} {temperatureTxt.Text}\n{location.name}"
+                    };
+                    NotificationCenter.Current.Show(notification);
 
                     GetHourlyWeather(location);
                 }

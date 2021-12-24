@@ -101,7 +101,7 @@
                                             <Label 
                                            Text="{Binding rainability}" FontSize="15" TextColor="Orange"
                                            LineBreakMode="TailTruncation"
-                                           VerticalTextAlignment="Center" HorizontalOptions="Center"                                           />
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center"/>
                                         </StackLayout>
                                         
                                         <Label Grid.Row="3" Grid.Column="0"
