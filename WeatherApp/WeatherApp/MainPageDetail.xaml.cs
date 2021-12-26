@@ -98,7 +98,6 @@ namespace WeatherApp
                     descriptionTxt.Text = weatherInfo.weather[0].description;
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
-                    //cityTxt.Text = weatherInfo.name.ToUpper();
                     temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}{App.unit.tempUnitCurrent}";
                     humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
                     pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
@@ -106,9 +105,6 @@ namespace WeatherApp
                     windTxt.Text = $"Gió: {weatherInfo.wind.speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
-
-                    //var dt = new DateTime().ToUniversalTime().AddSeconds(weatherInfo.dt);
-                    //dateLabel.Text = dt.ToString("dddd, MMM dd").ToUpper();
 
                     // Notification part
                     NotificationRequest notification = new NotificationRequest
@@ -144,10 +140,11 @@ namespace WeatherApp
                 try
                 {
                     var forcastInfo = JsonConvert.DeserializeObject<DailyWeather>(result.Response);
-                    
+
                     foreach (var list in forcastInfo.daily)
                     {
-                        //ConvertUnit.DailyWeather(list);
+
+                        ConvertUnit.DailyWeather(list);
                         var date = getDateTime(list.dt);
 
                         if (date > DateTime.Now)
@@ -155,14 +152,25 @@ namespace WeatherApp
                             list.dateUTC = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
                             list.datetime = getDayOfWeek(date.DayOfWeek.ToString());
                             list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
-                            list.temperature = $"{list.temp.min.ToString("0")}° ~ {list.temp.max.ToString("0")}°";
-                            list.rainability = $"{list.pop}%";
                             
+                            list.temp.min = Math.Round(list.temp.min);
+                            list.temp.max = Math.Round(list.temp.max);
+                            list.sunriseText = getDateTime(list.sunrise).ToString("HH:mm");
+                            list.sunsetText = getDateTime(list.sunset).ToString("HH:mm");
+                            list.unit = new Unit()
+                            {
+                                tempUnitCurrent = App.unit.tempUnitCurrent,
+                                distanceUnitCurrent = App.unit.distanceUnitCurrent,
+                                speedUnitCurrent = App.unit.speedUnitCurrent,
+                                rainUnitCurrent = App.unit.rainUnitCurrent,
+                                pressureUnitCurrent = App.unit.pressureUnitCurrent,
+
+                            };
                             allList.Add(list);
                         }
                     }
                     listDatailDay.ItemsSource = allList;
-                    
+
 
 
                 }
@@ -191,7 +199,7 @@ namespace WeatherApp
                     foreach (var list in forcastInfo.hourly)
                     {
                         i++;
-                        //ConvertUnit.HourlyWeather(list);
+                        ConvertUnit.HourlyWeather(list);
                         var date = getDateTime(list.dt);
                         if (i < 24)
                         {
@@ -200,8 +208,23 @@ namespace WeatherApp
                                 list.dateUTC = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
                                 list.time = date.ToString("HH:mm");
                                 list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
-                                list.temperature = $"{list.temp.ToString("0")}°";
+                                list.temp = Math.Round(list.temp);
                                 list.rainability = $"{list.pop}%";
+
+                                list.unit = new Unit()
+                                {
+                                    tempUnitCurrent = App.unit.tempUnitCurrent,
+                                    distanceUnitCurrent = App.unit.distanceUnitCurrent,
+                                    speedUnitCurrent = App.unit.speedUnitCurrent,
+                                    rainUnitCurrent = App.unit.rainUnitCurrent,
+                                    pressureUnitCurrent = App.unit.pressureUnitCurrent,
+
+                                };
+                                //list.unit.tempUnitCurrent = App.unit.tempUnitCurrent;
+                                //list.unit.distanceUnitCurrent = App.unit.distanceUnitCurrent;
+                                //list.unit.speedUnitCurrent = App.unit.speedUnitCurrent;
+                                //list.unit.rainUnitCurrent = App.unit.rainUnitCurrent;
+                                //list.unit.pressureUnitCurrent = App.unit.pressureUnitCurrent;
                                 allListHour.Add(list);
                             }
                         }

@@ -112,4 +112,13 @@ namespace WeatherApp.Models
         public string description { get; set; }
         public string icon { get; set; }
     }
+
+    public class Unit
+    {
+        public string tempUnitCurrent { get; set; }
+        public string distanceUnitCurrent { get; set; }
+        public string speedUnitCurrent { get; set; }
+        public string pressureUnitCurrent { get; set; }
+        public string rainUnitCurrent { get; set; }
+    }
 }

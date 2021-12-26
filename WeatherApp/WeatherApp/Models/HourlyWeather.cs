@@ -57,9 +57,16 @@ namespace WeatherApp.Models
         public Weather[] weather { get; set; }
         public int clouds { get; set; }
         public double pop { get; set; }
+        // create  new variable
+        public Unit unit { get; set; }
         public string image { get; set; }
         public string temperature { get; set; }
         public string rainability { get; set; }
+        public string rainAmountText { get; set; }
+        public string wind_degText { get; set; }
+        public string visibilityText { get; set; }
+        public string humidityText { get; set; }
+        //
         public class Rain
         {
             [JsonProperty("1h")]

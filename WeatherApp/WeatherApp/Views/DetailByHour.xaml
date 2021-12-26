@@ -44,8 +44,17 @@
                                     <Label Text="Mưa dông" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
                        HorizontalOptions="Center" VerticalOptions="Center"></Label>
 
-                                    <Label Text="Lượng mưa 2 in" Grid.Row="3" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+                                    <Label Grid.Row="3" Grid.Column="0" FontSize="18"
+                       HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text=""/>
+                                                <Span Text="{Binding temp}"/>
+                                                <Span Text="°"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    
                                     <Label Text="Tốc độ gió 7km/h" Grid.Row="3" Grid.Column="1" FontSize="18"
                        HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 

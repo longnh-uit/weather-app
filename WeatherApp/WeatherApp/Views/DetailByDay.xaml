@@ -34,8 +34,19 @@
 
                                     <Label Text="{Binding dateUTC}" Grid.Row="0" Grid.Column="0" FontSize="18"
                                         HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="{Binding temperature}" Grid.Row="0" Grid.Column="1" FontSize="25"
-                                           HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="1" FontSize="24"
+                                           HorizontalOptions="Start" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding temp.min}"/>
+                                                <Span Text="°"/>
+                                                <Span Text="~"/>
+                                                <Span Text="{Binding temp.max}"/>
+                                                <Span Text="°"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
                                     <Image Source="{Binding image}" 
                                            Grid.Row="0" Grid.Column="1" Aspect="AspectFill"
                                            HorizontalOptions="End" VerticalOptions="Center"
@@ -49,22 +60,45 @@
                                     <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
                                         <Label Text="Sức ép "  FontSize="18"
                                         HorizontalOptions="Start" HorizontalTextAlignment="Start"></Label>
-                                        <Label Text="{Binding pressure}"  FontSize="18" 
-                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding pressure}"/>
+                                                    <Span Text="{Binding unit.pressureUnitCurrent}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                                         <Label Text="Tốc độ gió " FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label x:Name="windSpeedTxt" Text="{Binding wind_speed}"  FontSize="18" 
-                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding wind_speed}"/>
+                                                    <Span Text="{Binding unit.speedUnitCurrent}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
                                         <Label Text="Độ ẩm "  FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label Text="{Binding humidity}"  FontSize="18" 
-                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding humidity}"/>
+                                                    <Span Text="%"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
@@ -77,22 +111,29 @@
                                     <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
                                         <Label Text="Bình Minh "  FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label Text="{Binding sunrise}"  FontSize="18" 
+                                        <Label Text="{Binding sunriseText}"  FontSize="18" 
                                         HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="6" Grid.Column="0" Orientation="Horizontal">
                                         <Label Text="Hoàng Hôn "  FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label Text="{Binding sunrset}"  FontSize="18" 
+                                        <Label Text="{Binding sunsetText}"  FontSize="18" 
                                         HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
                                         <Label Text="Khả năng mưa "  FontSize="18"
                                         HorizontalOptions="Start" VerticalOptions="Center"></Label>
-                                        <Label Text="{Binding pop}"  FontSize="18" 
-                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding pop}"/>
+                                                    <Span Text="%"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </StackLayout>
 
                                     <StackLayout Grid.Row="6" Grid.Column="1" Orientation="Horizontal">

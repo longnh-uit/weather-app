@@ -42,9 +42,14 @@ namespace WeatherApp.Models
         public int moonrise { get; set; }
         public int moonset { get; set; }
         public double moon_phase { get; set; }
-        public string temperature { get; set; }
-        public string rainability { get; set; }
+        // create new variable 
+        public Unit unit { get; set; }
         public string image { get; set; }
+        public string sunsetText { get; set; }
+        public string sunriseText { get; set; }
+        public string wind_degText { get; set; }
+
+        //
         public class Temp
         {
             public double day { get; set; }

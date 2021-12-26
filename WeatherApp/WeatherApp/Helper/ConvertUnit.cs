@@ -21,10 +21,10 @@ namespace WeatherApp.Helper
                 data.visibility = data.visibility / 1000;
             }
 
-            if (App.unit.rainUnitCurrent == "mm")
-            {
-                data.main.temp = Math.Round(data.wind.speed * 0.0393700787);
-            }
+            //if (App.unit.rainUnitCurrent == "mm")
+            //{
+            //    data. = Math.Round(data.wind.speed * 0.0393700787);
+            //}
 
             switch (App.unit.speedUnitCurrent)
             {
@@ -53,7 +53,7 @@ namespace WeatherApp.Helper
                 case "mmHg":
                     data.main.pressure = (int)Math.Round(data.main.pressure * 0.750061683);
                     break;
-                default: data.wind.speed = data.wind.speed; break;
+                default: data.main.pressure = data.main.pressure; break;
             }
             return data;
         }
