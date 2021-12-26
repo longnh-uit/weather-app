@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using WeatherApp.Helper;
 using Newtonsoft.Json;
 using WeatherApp.Models;
+using Plugin.LocalNotification;
 
 namespace WeatherApp.Views
 {
@@ -92,6 +93,7 @@ namespace WeatherApp.Views
                     //DisplayAlert("Message",pos.name, "OK");
                     if (db.AddNewLocation(pos))
                     {
+                        ShowAlertNotification(pos);
                         Navigation.PopModalAsync();
                     }
                     else
@@ -103,6 +105,37 @@ namespace WeatherApp.Views
                 {
                     Navigation.PopModalAsync();
                 }
+            }
+        }
+
+        private async void ShowAlertNotification(Location location)
+        {
+            var url = $"http://www.xamarinweatherapi.somee.com/api/alert?lon={location.lon}&lat={location.lat}";
+
+            var result = await ApiCaller.Get(url);
+
+            if (result.Successful)
+            {
+                try
+                {
+                    Alert alert = JsonConvert.DeserializeObject<Alert>(result.Response);
+                    if (alert.alerts == null)
+                        return;
+                    // Notification part
+                    NotificationRequest notification = new NotificationRequest
+                    {
+                        BadgeNumber = 1,
+                        Title = alert.alerts[alert.alerts.Length - 1].sender_name,
+                        Subtitle = alert.alerts[alert.alerts.Length - 1].event_name,
+                        Description = alert.alerts[alert.alerts.Length - 1].description
+                    };
+                    NotificationCenter.Current.Show(notification);
+                }
+                catch
+                {
+
+                }
+
             }
         }
     }
