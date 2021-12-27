@@ -25,7 +25,7 @@ namespace WeatherApp.Views
             listItemDay.ItemsSource = allList;
         }
         
-        List<string> itemsList = new List<string>();
+        
         
         private void listItemDay_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

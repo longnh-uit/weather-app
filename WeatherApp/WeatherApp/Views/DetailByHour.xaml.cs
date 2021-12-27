@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using WeatherApp.Models;
 namespace WeatherApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,17 +15,14 @@ namespace WeatherApp.Views
         public DetailByHour()
         {
             InitializeComponent();
-            ItemsAdded();
+            
         }
-        List<string> itemsList = new List<string>();
-        void ItemsAdded()
+        public DetailByHour(List<Hourly> allList)
         {
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            itemsList.Add("abc");
-            listItemHour.ItemsSource = itemsList;
+            InitializeComponent();
+            listItemHour.ItemsSource = allList;
         }
+       
 
         private void listItemHour_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

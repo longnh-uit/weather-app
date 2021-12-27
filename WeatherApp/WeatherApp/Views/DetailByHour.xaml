@@ -10,10 +10,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="0,10,0,10" Orientation="Vertical" >
+                        <StackLayout Margin="15,10,15,20" Orientation="Vertical" >
                             <Frame CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="15" >
+                                   IsClippedToBounds="True" Padding="15,10,10,20" >
 
                                 <Grid HeightRequest="200" >
                                     <Grid.RowDefinitions>
@@ -26,48 +26,119 @@
 
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                                        <ColumnDefinition Width="6*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Label Text="10:00 CN Th11 07" Grid.Row="0" Grid.Column="0" FontSize="20"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="29°C" Grid.Row="0" Grid.Column="1" FontSize="20"
-                       HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                                    <Image Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg" 
-                       Grid.Row="0" Grid.Column="1" 
-                       HorizontalOptions="End" VerticalOptions="Center"
-                       HeightRequest="50" WidthRequest="50"></Image>
-
-                                    <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
-
-                                    <Label Text="Mưa dông" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
-                       HorizontalOptions="Center" VerticalOptions="Center"></Label>
-
-                                    <Label Grid.Row="3" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
+                                    <Label Grid.Row="0" Grid.Column="0" FontSize="20"
+                                        HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text=""/>
-                                                <Span Text="{Binding temp}"/>
-                                                <Span Text="°"/>
+                                                <Span Text="{Binding time} "/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding dateUTC}"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                    <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Label FontSize="25"  Padding="20,0,10,0"
+                                        HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding temp}"/>
+                                                    <Span Text="°"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Image Source="{Binding image}"
+                                           Grid.Row="0" Grid.Column="1" Aspect="AspectFill"
+                                           HorizontalOptions="End" VerticalOptions="Center"
+                                           HeightRequest="60" WidthRequest="75"></Image>
+
+                                    </StackLayout>
+    
+                                    <BoxView BackgroundColor="White" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                                    <Label Text="{Binding weather[0].description}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="22"
+                                        HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Italic"></Label>
+
+                                    <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Sức ép "  FontSize="18"
+                                        HorizontalOptions="Start" HorizontalTextAlignment="Start"></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding pressure}"/>
+                                                    <Span Text="{Binding unit.pressureUnitCurrent}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Tốc độ gió " FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding wind_speed}"/>
+                                                    <Span Text="{Binding unit.speedUnitCurrent}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Độ ẩm "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding humidity}"/>
+                                                    <Span Text="%"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Hướng gió "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label Text="{Binding wind_deg}"  FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
+                                        <Label Text="Khả năng mưa "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding pop}"/>
+                                                    <Span Text="%"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                                        <Label Text="Điểm sương "  FontSize="18"
+                                        HorizontalOptions="Start" VerticalOptions="Center"></Label>
+                                        <Label FontSize="18" 
+                                        HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding dew_point}"/>
+                                                    <Span Text="°"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
                                     
-                                    <Label Text="Tốc độ gió 7km/h" Grid.Row="3" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-
-                                    <Label Text="Độ ẩm 72%" Grid.Row="4" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-                                    <Label Text="Hướng gió" Grid.Row="4" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
-
-                                    <Label Text="Khả năng mưa 80%" Grid.Row="5" Grid.Column="0" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                                    </Label>
-                                    <Label Text="Tầm nhìn 10km" Grid.Row="5" Grid.Column="1" FontSize="18"
-                       HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
 
                                 </Grid>
                             </Frame>

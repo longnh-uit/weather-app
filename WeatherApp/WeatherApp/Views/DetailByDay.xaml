@@ -40,7 +40,7 @@
                                             <FormattedString>
                                                 <Span Text="{Binding temp.min}"/>
                                                 <Span Text="°"/>
-                                                <Span Text="~"/>
+                                                <Span Text=" ~ "/>
                                                 <Span Text="{Binding temp.max}"/>
                                                 <Span Text="°"/>
                                             </FormattedString>

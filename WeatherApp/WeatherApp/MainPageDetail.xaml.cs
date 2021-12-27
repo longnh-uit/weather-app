@@ -209,8 +209,8 @@ namespace WeatherApp
                                 list.time = date.ToString("HH:mm");
                                 list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
                                 list.temp = Math.Round(list.temp);
-                                list.rainability = $"{list.pop}%";
-
+                                list.wind_speed = Math.Round(list.wind_speed);
+                                list.dew_point = Math.Round(list.dew_point);
                                 list.unit = new Unit()
                                 {
                                     tempUnitCurrent = App.unit.tempUnitCurrent,
@@ -220,15 +220,12 @@ namespace WeatherApp
                                     pressureUnitCurrent = App.unit.pressureUnitCurrent,
 
                                 };
-                                //list.unit.tempUnitCurrent = App.unit.tempUnitCurrent;
-                                //list.unit.distanceUnitCurrent = App.unit.distanceUnitCurrent;
-                                //list.unit.speedUnitCurrent = App.unit.speedUnitCurrent;
-                                //list.unit.rainUnitCurrent = App.unit.rainUnitCurrent;
-                                //list.unit.pressureUnitCurrent = App.unit.pressureUnitCurrent;
+      
                                 allListHour.Add(list);
                             }
                         }
                     }
+                    
                     listByHour.ItemsSource = allListHour;
                     GetDailyWeather(location);
 
@@ -246,7 +243,7 @@ namespace WeatherApp
 
         private void btnDetailHour_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DetailByHour());
+            Navigation.PushAsync(new DetailByHour(allListHour));
         }
 
         private void btnDetailDay_Clicked(object sender, EventArgs e)

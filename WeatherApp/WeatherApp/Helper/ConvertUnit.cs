@@ -112,7 +112,8 @@ namespace WeatherApp.Helper
         {
             if (App.unit.tempUnitCurrent == "°F")
             {
-                data.temp = data.temp * 1.8 + 32;  
+                data.temp = data.temp * 1.8 + 32;
+                data.dew_point = data.dew_point * 1.8 + 32;
             }
 
             //if (App.unit.distanceUnitCurrent == "km")
