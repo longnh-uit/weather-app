@@ -60,11 +60,7 @@ namespace WeatherApp
             });
         }
 
-        public DateTime getDateTime(long input)
-        {
-            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(input);
-            return dateTimeOffset.ToOffset(new TimeSpan(7, 0, 0)).DateTime;
-        }
+       
 
         //convert day in week to vietnamese
         public string getDayOfWeek(string day)
@@ -145,7 +141,7 @@ namespace WeatherApp
                     {
 
                         ConvertUnit.DailyWeather(list);
-                        var date = getDateTime(list.dt);
+                        var date = ConvertUnit.getDateTime(list.dt);
 
                         if (date > DateTime.Now)
                         {
@@ -155,8 +151,8 @@ namespace WeatherApp
                             
                             list.temp.min = Math.Round(list.temp.min);
                             list.temp.max = Math.Round(list.temp.max);
-                            list.sunriseText = getDateTime(list.sunrise).ToString("HH:mm");
-                            list.sunsetText = getDateTime(list.sunset).ToString("HH:mm");
+                            list.sunriseText = ConvertUnit.getDateTime(list.sunrise).ToString("HH:mm");
+                            list.sunsetText = ConvertUnit.getDateTime(list.sunset).ToString("HH:mm");
                             list.unit = new Unit()
                             {
                                 tempUnitCurrent = App.unit.tempUnitCurrent,
@@ -200,7 +196,7 @@ namespace WeatherApp
                     {
                         i++;
                         ConvertUnit.HourlyWeather(list);
-                        var date = getDateTime(list.dt);
+                        var date = ConvertUnit.getDateTime(list.dt);
                         if (i < 24)
                         {
                             if (date > DateTime.Now)

@@ -1,16 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WeatherApp.Views.HistoryWeatherPage">
+             x:Class="WeatherApp.Views.HistoryWeatherPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="15">
+            <Label Text="Chọn lịch sử thời tiết: " FontSize="20"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
             <Picker x:Name="prkSelectedDay"
                 FontSize="Medium"
                 SelectedIndexChanged="prkSelectedDay_SelectedIndexChanged"
                 Grid.Row="2" Grid.Column="1"></Picker>
+
+            <Label Text="Vị trí:" FontSize="20"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+
+            <StackLayout Orientation="Horizontal">
+                <Image Source="home1.png"   WidthRequest="20" HeightRequest="5"></Image>
+                <Label Text="Hà Nội" VerticalOptions="Center" HorizontalOptions="Start" 
+                       FontSize="20" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_DefaultLocation"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <ListView x:Name="listPosition" 
+                          ItemSelected="listPosition_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="0,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Image Source="marker_20px.png" Grid.Row="0" Grid.Column="0" WidthRequest="20" HeightRequest="5"></Image>
+                                <Label Text="{Binding name}" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Start" 
+                                         FontSize="20" Padding="0,0,0,0"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

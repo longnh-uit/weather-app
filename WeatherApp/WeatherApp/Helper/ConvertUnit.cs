@@ -6,7 +6,11 @@ namespace WeatherApp.Helper
 {
     public class ConvertUnit
     {
-
+        public static DateTime getDateTime(long input)
+        {
+            DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(input);
+            return dateTimeOffset.ToOffset(new TimeSpan(7, 0, 0)).DateTime;
+        }
         public static WeatherInfo CurrentWeather(WeatherInfo data)
         {
             if (App.unit.tempUnitCurrent == "°F")
