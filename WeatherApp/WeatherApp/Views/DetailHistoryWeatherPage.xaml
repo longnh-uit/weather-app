@@ -1,13 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WeatherApp.Views.DetailHistoryWeatherPage">
+             x:Class="WeatherApp.Views.DetailHistoryWeatherPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
+        <StackLayout HorizontalOptions="Center">
+            <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Start" 
+                    HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="45"></Label>
+            <Label FontSize="20" 
+                    HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span x:Name="positionText"/>
+                        <Span Text=", "/>
+                        <Span x:Name="dateLabel"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Image x:Name="iconImg" Source="" Aspect="AspectFill"
+                    HorizontalOptions="Center" VerticalOptions="End" 
+                    HeightRequest="140" WidthRequest="140"></Image>
+
+            <Label Text="0°C" VerticalOptions="Start" HorizontalOptions="Center" FontSize="72" x:Name="temperatureTxt"
+                        ></Label>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

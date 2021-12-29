@@ -17,6 +17,7 @@ namespace WeatherApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPageDetail : ContentPage
     {
+        public Location locationGlobal;
         Location Hanoi = new Location
         {
             _id = "123",
@@ -46,8 +47,8 @@ namespace WeatherApp
         public MainPageDetail(Location location)
         {
             InitializeComponent();
-            //ItemsAdded();
-            GetWeatherInfo(location);
+            locationGlobal = location;
+            GetWeatherInfo(locationGlobal);
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
@@ -245,6 +246,14 @@ namespace WeatherApp
         private void btnDetailDay_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DetailByDay(allList));
+        }
+
+        private async void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            var url = $"http://www.xamarinweatherapi.somee.com/api/updateweather";
+            await ApiCaller.Get(url);
+            GetDailyWeather(locationGlobal);
+            refreshPage.IsRefreshing = false;
         }
     }
 }

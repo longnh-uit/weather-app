@@ -46,10 +46,10 @@ namespace WeatherApp
 
         public void OnPageChanged(object sender, EventArgs e)
         {
-            int index = Children.IndexOf(CurrentPage) == -1 ? App.index : Children.IndexOf(CurrentPage);
-            if (index > 0)
+            App.index = Children.IndexOf(CurrentPage) == -1 ? App.index : Children.IndexOf(CurrentPage);
+            if (App.index > 0)
             {
-                txtName.Text = locations[index - 1].name.ToString();
+                txtName.Text = locations[App.index - 1].name.ToString();
             }
             else { txtName.Text = Hanoi.name; }
 

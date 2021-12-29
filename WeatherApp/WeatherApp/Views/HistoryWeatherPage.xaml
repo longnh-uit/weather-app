@@ -27,8 +27,7 @@
                 </Label>
             </StackLayout>
 
-            <ListView x:Name="listPosition" 
-                          ItemSelected="listPosition_ItemSelected">
+            <ListView x:Name="listPosition" ItemTapped="listPosition_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

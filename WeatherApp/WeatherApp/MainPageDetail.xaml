@@ -6,167 +6,102 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="marker_20px.png" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
+    <RefreshView RefreshColor="Black" Refreshing="RefreshView_Refreshing" x:Name="refreshPage">
+        <ScrollView>
 
 
-        <Grid RowSpacing="20" Margin="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="240"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Frame Grid.Row="0" CornerRadius="10" HorizontalOptions="Center" 
+            <Grid RowSpacing="20" Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="240"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
                                    IsClippedToBounds="True" Padding="10,0,10,20">
-                <StackLayout>
-                    <Grid RowSpacing="0" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" ></RowDefinition>
-                            <RowDefinition Height="20"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="dateLabel" Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"
+                    <StackLayout>
+                        <Grid RowSpacing="0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50" ></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="dateLabel" Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"
                        Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
-                        <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="25" VerticalTextAlignment="Center"
+                            <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="25" VerticalTextAlignment="Center"
                        Grid.Row="2" Grid.Column="0"></Label>
-                        <Label Text="0°C" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="52" x:Name="temperatureTxt"
+                            <Label Text="0°C" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="52" x:Name="temperatureTxt"
                        Grid.Row="0" Grid.RowSpan="3"  Grid.Column="1"></Label>
-                        <Image x:Name="iconImg" Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
+                            <Image x:Name="iconImg" Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
                        Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Aspect="AspectFill"
                        HorizontalOptions="Center" VerticalOptions="End" 
                        HeightRequest="60" WidthRequest="90"></Image>
-                        <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Start" 
+                            <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Start" 
                          HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="18"
                        Grid.Row="2" Grid.Column="2" ></Label>
-                        <Label x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                            <Label x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
                        Grid.Row="3" Padding="0,10,0,0" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
-                        <Label Text="Gio: 19km/h" x:Name="windTxt" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
+                            <Label Text="Gio: 19km/h" x:Name="windTxt" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
                        Grid.Row="4" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
-                    </Grid>
-                </StackLayout>
-            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
 
-            <Frame Grid.Row="1" CornerRadius="10" HorizontalOptions="Center" 
+                <Frame Grid.Row="1" CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
                                    IsClippedToBounds="True" Padding="10,10,10,0">
-                <StackLayout Margin="0" Padding="0">
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="rain.png" 
+                    <StackLayout Margin="0" Padding="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="rain.png" 
                            HeightRequest="20"
                            WidthRequest="20" />
-                        <Label
+                            <Label
                        Text="Khả năng có mưa" FontSize="15"
                        FontAttributes="Italic"
                        HorizontalOptions="Start"/>
-                    </StackLayout>
-                    <CollectionView x:Name="listByHour"  
+                        </StackLayout>
+                        <CollectionView x:Name="listByHour"  
                         ItemsLayout="HorizontalList" >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Grid Padding="0,0,0,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Grid Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
 
-                                        </Grid.ColumnDefinitions>
+                                            </Grid.ColumnDefinitions>
 
-                                        <Label
+                                            <Label
                                        Text="{Binding time}" FontSize="16"
                                        FontAttributes="None"
                                        LineBreakMode="TailTruncation" HorizontalOptions="Center"/>
-                                        <Image Grid.Row="1" 
+                                            <Image Grid.Row="1" 
                                            Source="{Binding image}"
                                            Aspect="AspectFill"
                                            HeightRequest="60"
                                            WidthRequest="75" />
 
-                                        <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
-                                            <Image Source="rain.png" 
+                                            <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                                                <Image Source="rain.png" 
                                             HeightRequest="13"
                                             WidthRequest="13" VerticalOptions="Center"/>
-                                            <Label FontSize="15" TextColor="Orange"
+                                                <Label FontSize="15" TextColor="Orange"
                                            LineBreakMode="TailTruncation"
                                            VerticalTextAlignment="Center" HorizontalOptions="Center">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="{Binding pop}"/>
-                                                        <Span Text="%"/>
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-
-                                        </StackLayout>
-                                        <Label Grid.Row="3" Grid.Column="0"
-                                            FontSize="20"
-                                           LineBreakMode="TailTruncation" HorizontalOptions="Center" >
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding temp}"/>
-                                                    <Span Text="°"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-
-                                    </Grid>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button BackgroundColor="Transparent"
-                       Text="Chi tiết" FontSize="15" x:Name="btnDetailHour" Clicked="btnDetailHour_Clicked"   
-                       HorizontalOptions="End"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="2" CornerRadius="10" HorizontalOptions="Center" 
-                                   VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="10">
-                <StackLayout HeightRequest="700">
-                    <ListView x:Name="listDatailDay" HasUnevenRows="True" SeparatorVisibility="None" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Margin="10">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding datetime}" Grid.RowSpan="2" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center"
-                                               FontSize="20" HorizontalOptions="Start" VerticalOptions="Center"
-                                               ></Label>
-                                        <StackLayout Grid.Row="0" Grid.Column="1">
-                                            <Image 
-                                           Source="{Binding image}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="70"
-                                           WidthRequest="90" HorizontalOptions="Center"/>
-                                            <StackLayout Orientation="Horizontal" 
-                                                     HorizontalOptions="Center" VerticalOptions="End">
-                                                <Image Source="rain.png" 
-                                                HeightRequest="20"
-                                                WidthRequest="20" />
-                                                <Label FontSize="18" TextColor="Orange"
-                                                    LineBreakMode="TailTruncation"
-                                                    VerticalTextAlignment="Center" HorizontalOptions="Center">
                                                     <Label.FormattedText>
                                                         <FormattedString>
                                                             <Span Text="{Binding pop}"/>
@@ -174,77 +109,144 @@
                                                         </FormattedString>
                                                     </Label.FormattedText>
                                                 </Label>
+
                                             </StackLayout>
-                                        </StackLayout>
-                                        <Label Grid.Row="0"  Grid.RowSpan="2" Grid.Column="2" VerticalTextAlignment="Center"
+                                            <Label Grid.Row="3" Grid.Column="0"
+                                            FontSize="20"
+                                           LineBreakMode="TailTruncation" HorizontalOptions="Center" >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding temp}"/>
+                                                        <Span Text="°"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Button BackgroundColor="Transparent"
+                       Text="Chi tiết" FontSize="15" x:Name="btnDetailHour" Clicked="btnDetailHour_Clicked"   
+                       HorizontalOptions="End"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" CornerRadius="10" HorizontalOptions="Center" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="10">
+                    <StackLayout HeightRequest="700">
+                        <ListView x:Name="listDatailDay" HasUnevenRows="True" SeparatorVisibility="None" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding datetime}" Grid.RowSpan="2" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center"
+                                               FontSize="20" HorizontalOptions="Start" VerticalOptions="Center"
+                                               ></Label>
+                                            <StackLayout Grid.Row="0" Grid.Column="1">
+                                                <Image 
+                                           Source="{Binding image}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="70"
+                                           WidthRequest="90" HorizontalOptions="Center"/>
+                                                <StackLayout Orientation="Horizontal" 
+                                                     HorizontalOptions="Center" VerticalOptions="End">
+                                                    <Image Source="rain.png" 
+                                                HeightRequest="20"
+                                                WidthRequest="20" />
+                                                    <Label FontSize="18" TextColor="Orange"
+                                                    LineBreakMode="TailTruncation"
+                                                    VerticalTextAlignment="Center" HorizontalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding pop}"/>
+                                                                <Span Text="%"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <Label Grid.Row="0"  Grid.RowSpan="2" Grid.Column="2" VerticalTextAlignment="Center"
                                                FontSize="22" HorizontalOptions="Center" VerticalOptions="Center" >
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding temp.min}"/>
-                                                    <Span Text="°"/>
-                                                    <Span Text=" ~ "/>
-                                                    <Span Text="{Binding temp.max}"/>
-                                                    <Span Text="°"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button BackgroundColor="Transparent"
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding temp.min}"/>
+                                                        <Span Text="°"/>
+                                                        <Span Text=" ~ "/>
+                                                        <Span Text="{Binding temp.max}"/>
+                                                        <Span Text="°"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button BackgroundColor="Transparent"
                        Text="Chi tiết" FontSize="15" x:Name="btnDetailDay" Clicked="btnDetailDay_Clicked"   
                        HorizontalOptions="End"/>
-                </StackLayout>
-            </Frame>
-            <Frame Grid.Row="3" CornerRadius="10" HorizontalOptions="Center" 
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="3" CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
                                    IsClippedToBounds="True"  Margin="0,0,0,20">
-                <StackLayout>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
 
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Margin="0,0,10,0" x:Name="iconPrimary"
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Margin="0,0,10,0" x:Name="iconPrimary"
                         Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
                         Aspect="AspectFill"
                         HeightRequest="100"
                         WidthRequest="100" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
-                        <Label Text="Độ ẩm"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"
+                            <Label Text="Độ ẩm"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                        <Label Text="73%" x:Name="humidityTxt" Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="73%" x:Name="humidityTxt" Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-                        <Label Text="Tầm nhìn" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"
+                            <Label Text="Tầm nhìn" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                        <Label Text="1km" x:Name="visibilityTxt" Grid.Row="1" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="1km" x:Name="visibilityTxt" Grid.Row="1" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-                        <Label Text="Chỉ số UV" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"
+                            <Label Text="Chỉ số UV" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                        <Label Text="1" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="1" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-                        <Label Text="Mây che phủ" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"
+                            <Label Text="Mây che phủ" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                        <Label Text="73%" x:Name="cloudinessTxt" Grid.Row="3" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="73%" x:Name="cloudinessTxt" Grid.Row="3" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-                        <Label Text="Sức ép" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"
+                            <Label Text="Sức ép" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                        <Label Text="1006mb" x:Name="pressureTxt" Grid.Row="4" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="1006mb" x:Name="pressureTxt" Grid.Row="4" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
 
-                    </Grid>
-                </StackLayout>
-            </Frame>
-        </Grid>
-    </ScrollView>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

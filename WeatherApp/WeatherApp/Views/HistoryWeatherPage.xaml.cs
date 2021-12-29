@@ -16,6 +16,7 @@ namespace WeatherApp.Views
         private static readonly Database db = App.db;
         private List<Location> locations;
         public long Selected_dt;
+        public int indexItem;
         //public static DateTime today = DateTime.ParseExact(DateTime.Now.ToString(), "yyyy-MM-ddTHH:mm:sszzz", System.Globalization.CultureInfo.InvariantCulture);
 
         long unixStart = (long)DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
@@ -70,32 +71,35 @@ namespace WeatherApp.Views
             {
                 case 0:
                     Selected_dt = unixStart - 86400;
+                    indexItem = selectedVehicleIndex;
                     break;
                 case 1:
-                    Selected_dt = unixStart - 86400 * 2;        
+                    Selected_dt = unixStart - 86400 * 2;
+                    indexItem = selectedVehicleIndex;
                     break;
                 case 2:
-                    Selected_dt = unixStart - 86400 * 3;               
+                    Selected_dt = unixStart - 86400 * 3;
+                    indexItem = selectedVehicleIndex;
                     break;
                 default: break;
             }
         }
 
-        private void listPosition_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void Handle_DefaultLocation(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DetailHistoryWeatherPage(Hanoi, Selected_dt,indexItem));
+        }
+
+        private void listPosition_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (listPosition.SelectedItem != null)
             {
                 if (locations != null)
                 {
                     Location pos = (Location)listPosition.SelectedItem;
-                    Navigation.PushAsync(new DetailHistoryWeatherPage(pos,Selected_dt));
+                    Navigation.PushAsync(new DetailHistoryWeatherPage(pos, Selected_dt, indexItem));
                 }
             }
-        }
-
-        private void Handle_DefaultLocation(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new DetailHistoryWeatherPage(Hanoi, Selected_dt));
         }
     }
 }
