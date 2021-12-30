@@ -19,7 +19,7 @@ namespace WeatherApp.Views
         {
             InitializeComponent();
         }
-        public DetailHistoryWeatherPage(Location location, long dt,int title)
+        public DetailHistoryWeatherPage(Location location, long dt, int title)
         {
             InitializeComponent();
             GetHistoryWeather(location, dt);
@@ -42,8 +42,9 @@ namespace WeatherApp.Views
                 default: break;
             }
         }
-        
-        private async void GetHistoryWeather(Location location,long dt)
+        public List<HistoryWeather.Hourly> allListHour = new List<HistoryWeather.Hourly>();
+
+        private async void GetHistoryWeather(Location location, long dt)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/timemachine?lon={location.lon}&lat={location.lat}&dt={dt}";
 
@@ -53,26 +54,55 @@ namespace WeatherApp.Views
             {
                 try
                 {
+
                     var weatherInfo = JsonConvert.DeserializeObject<HistoryWeather>(result.Response);
                     var date = ConvertUnit.getDateTime(dt);
                     //await DisplayAlert("dfd", location.name, weatherInfo.current.weather[0].description, weatherInfo.current.temp.ToString());
                     //weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
-                    //descriptionTxt.Text = weatherInfo.weather[0].description;
+                    descriptionTxt.Text = weatherInfo.current.weather[0].description;
                     positionText.Text = location.name;
-                    dateLabel.Text = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
+                    dateLabel.Text = ", " + date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.current.weather[0].icon}@2x.png";
                     //iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     temperatureTxt.Text = $"{weatherInfo.current.temp.ToString("0")}{App.unit.tempUnitCurrent}";
-                    //humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
-                    //pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
-                    //visibilityTxt.Text = $"{weatherInfo.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
-                    //windTxt.Text = $"Gió: {weatherInfo.wind.speed.ToString("0")} {App.unit.speedUnitCurrent}";
+                    humidityTxt.Text = $"{weatherInfo.current.humidity.ToString("0")}%";
+                    pressureTxt.Text = $"{weatherInfo.current.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
+                    visibilityTxt.Text = $"{weatherInfo.current.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
+                    windSpeedTxt.Text = $"{weatherInfo.current.wind_speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     //cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     //maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
-
+                    sunriseTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunrise).ToString("HH:mm");
+                    sunsetTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunset).ToString("HH:mm");
                     // Notification part
 
+                    int i = 0;
+                    foreach (var list in weatherInfo.hourly)
+                    {
+                        i++;
+                        //ConvertUnit.HourlyWeather(list);
+                        var dateHourly = ConvertUnit.getDateTime(list.dt);
+                        if (i < 24)
+                        {
+                            list.time = dateHourly.ToString("HH:mm");
+                            list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
+                            list.temp = Math.Round(list.temp);
 
+                            //list.unit = new Unit()
+                            //{
+                            //    tempUnitCurrent = App.unit.tempUnitCurrent,
+                            //    distanceUnitCurrent = App.unit.distanceUnitCurrent,
+                            //    speedUnitCurrent = App.unit.speedUnitCurrent,
+                            //    rainUnitCurrent = App.unit.rainUnitCurrent,
+                            //    pressureUnitCurrent = App.unit.pressureUnitCurrent,
+
+                            //};
+
+                            allListHour.Add(list);
+
+                        }
+                    }
+
+                    listByHour.ItemsSource = allListHour;
 
 
                 }

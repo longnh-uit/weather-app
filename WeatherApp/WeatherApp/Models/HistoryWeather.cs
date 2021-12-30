@@ -24,8 +24,18 @@ namespace WeatherApp.Models
             public double wind_speed { get; set; }
             public double wind_gust { get; set; }
             public int wind_deg { get; set; }
-            public double rain { get; set; }
-            public double snow { get; set; }
+            public class Rain
+            {
+                [JsonProperty("1h")]
+                public double _1h { get; set; }
+            }
+            public Rain rain { get; set; }
+            public class Snow
+            {
+                [JsonProperty("1h")]
+                public double _1h { get; set; }
+            }
+            public Snow snow { get; set; }
             public Weather[] weather { get; set; }
         }
         public Current current { get; set; }
@@ -55,6 +65,9 @@ namespace WeatherApp.Models
             }
             public Snow snow { get; set; }
             public Weather[] weather { get; set; }
+            //add
+            public string time { get; set; }
+            public string image { get; set; }
         }
         public Hourly[] hourly { get; set; }
     }

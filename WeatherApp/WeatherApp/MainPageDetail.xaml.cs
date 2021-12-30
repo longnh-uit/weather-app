@@ -61,7 +61,33 @@ namespace WeatherApp
             });
         }
 
-       
+       void getBgImage(string desc)
+        {
+            if(!(App.db.GetBgColor().VariableValue == "#7097DA"))
+            {
+                BackgroundImageSource = null;
+            }
+            else
+            {
+                if (desc.Contains("mây"))
+                {
+                    BackgroundImageSource = "lc.png";
+                }
+                else if(desc.Contains("bầu trời"))
+                {
+                    BackgroundImageSource = "c.png";
+                }
+
+                if (desc.Contains("u ám"))
+                {
+                    BackgroundImageSource = "s.png";
+                }
+                else if (desc.Contains("mưa"))
+                {
+                    BackgroundImageSource = "lr.png";
+                }
+            }
+        }
 
         //convert day in week to vietnamese
         public string getDayOfWeek(string day)
@@ -93,6 +119,7 @@ namespace WeatherApp
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
                     weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
                     descriptionTxt.Text = weatherInfo.weather[0].description;
+                    getBgImage(weatherInfo.weather[0].description);
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     temperatureTxt.Text = $"{weatherInfo.main.temp.ToString("0")}{App.unit.tempUnitCurrent}";
