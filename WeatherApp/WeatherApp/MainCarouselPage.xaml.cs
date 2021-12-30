@@ -34,12 +34,12 @@ namespace WeatherApp
         public void InitMainpageDetail()
         {
             Children.Clear();
-            Children.Add(new MainPageDetail(Hanoi)); // hà nội
+            Children.Add(new MainPageDetail(Hanoi, Children.Count)); // hà nội
             if (locations != null)
             { 
                 foreach (Location position in locations)
                 {
-                    Children.Add(new MainPageDetail(position));
+                    Children.Add(new MainPageDetail(position, Children.Count));
                 }
             }
         }

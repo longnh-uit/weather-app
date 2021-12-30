@@ -18,6 +18,8 @@ namespace WeatherApp
     public partial class MainPageDetail : ContentPage
     {
         public Location locationGlobal;
+        private int index;
+        public int Index { get => index; }
         Location Hanoi = new Location
         {
             _id = "123",
@@ -28,10 +30,10 @@ namespace WeatherApp
         };
         List<Daily> allList = new List<Daily>();
         List<Hourly> allListHour = new List<Hourly>();
-        public MainPageDetail()
+        public MainPageDetail(int index)
         {
             InitializeComponent();
-            //ItemsAdded();
+            this.index = index;
             GetWeatherInfo(Hanoi);
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
@@ -44,10 +46,11 @@ namespace WeatherApp
             });
         }
 
-        public MainPageDetail(Location location)
+        public MainPageDetail(Location location, int index)
         {
             InitializeComponent();
             locationGlobal = location;
+            this.index = index;
             GetWeatherInfo(locationGlobal);
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
@@ -130,17 +133,20 @@ namespace WeatherApp
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
 
-                    // Notification part
-                    NotificationRequest notification = new NotificationRequest
+                    if (location.name.Equals("Hà Nội"))
                     {
-                        BadgeNumber = 1,
-                        Silent = true,
-                        NotificationId = 1337,
-                        Subtitle = DateTime.Now.ToString("HH:mm"),
-                        Description = $"{descriptionTxt.Text} {temperatureTxt.Text}\n{location.name}"
-                    };
-                    NotificationCenter.Current.Show(notification);
 
+                        // Notification part
+                        NotificationRequest notification = new NotificationRequest
+                        {
+                            BadgeNumber = 1,
+                            Silent = true,
+                            NotificationId = 1337,
+                            Subtitle = DateTime.Now.ToString("HH:mm"),
+                            Description = $"{descriptionTxt.Text} {temperatureTxt.Text}\n{location.name}"
+                        };
+                        NotificationCenter.Current.Show(notification);
+                    }
                     GetHourlyWeather(location);
                 }
                 catch (Exception ex)
@@ -267,11 +273,13 @@ namespace WeatherApp
 
         private void btnDetailHour_Clicked(object sender, EventArgs e)
         {
+            App.index = index;
             Navigation.PushAsync(new DetailByHour(allListHour));
         }
 
         private void btnDetailDay_Clicked(object sender, EventArgs e)
         {
+            App.index = index;
             Navigation.PushAsync(new DetailByDay(allList));
         }
 
