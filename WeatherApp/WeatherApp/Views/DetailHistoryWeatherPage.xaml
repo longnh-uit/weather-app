@@ -6,25 +6,42 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout HorizontalOptions="Center" Margin="0,20,0,10">
-                <Label Text="" x:Name="descriptionTxt" VerticalOptions="Start" 
-                    HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="45"></Label>
-                <Label FontSize="20" 
-                    HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span x:Name="positionText"/>
-                            
-                            <Span x:Name="dateLabel"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                <Frame Margin="15" CornerRadius="10" HorizontalOptions="Fill" 
+                                   VerticalOptions="Start" HasShadow="True" 
+                                   IsClippedToBounds="True" Padding="0,20,0,20">
+                    <Grid RowSpacing="0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" ></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
 
-                <Image x:Name="iconImg" Source="" Aspect="AspectFill"
-                    HorizontalOptions="Center" VerticalOptions="End" 
-                    HeightRequest="140" WidthRequest="140"></Image>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                <Label Text="" VerticalOptions="Start" HorizontalOptions="Center" FontSize="72" x:Name="temperatureTxt"
-                        ></Label>
+                        <Label x:Name="dateLabel" Text="" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"
+                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="1"></Label>
+                        <Label x:Name ="positionText" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="25" VerticalTextAlignment="Center"
+                       Grid.Row="1" Grid.Column="0" Grid.RowSpan="1"></Label>
+
+                        <Image x:Name="iconImg" Source=""
+                       Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Aspect="AspectFill"
+                       HorizontalOptions="Center" VerticalOptions="Center" 
+                       HeightRequest="50" WidthRequest="90"></Image>
+                        <Label Text="" x:Name="descriptionTxt" VerticalOptions="Start" 
+                         HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="20"
+                       Grid.Row="2" Grid.Column="2" ></Label>
+                        <Label x:Name="temperatureTxt" Text="" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="52"
+                       Grid.Row="3" Padding="0,10,0,0" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
+                        <Label Text="" x:Name="feelLikeText" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="22"
+                       Grid.Row="4" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
+                    </Grid>
+                </Frame>
+
 
                 <Frame Margin="15" CornerRadius="10" HorizontalOptions="Center" 
                                    VerticalOptions="Start" HasShadow="True" 
@@ -132,7 +149,7 @@
                             FontSize="18" HorizontalOptions="Start"></Label>
                             <Label Text="" x:Name="sunsetTxt" Grid.Row="7" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-                            
+
 
                         </Grid>
                     </StackLayout>

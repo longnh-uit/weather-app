@@ -8,8 +8,6 @@
     </ContentPage.ToolbarItems>
     <RefreshView RefreshColor="Black" Refreshing="RefreshView_Refreshing" x:Name="refreshPage">
         <ScrollView>
-
-
             <Grid RowSpacing="20" Margin="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -17,41 +15,34 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" CornerRadius="10" HorizontalOptions="Center" 
+                <Frame Grid.Row="0" CornerRadius="10" HorizontalOptions="Fill" 
                                    VerticalOptions="Start" HasShadow="True" 
-                                   IsClippedToBounds="True" Padding="10,0,10,20">
+                                   IsClippedToBounds="True" Padding="10,30,10,20">
                     <StackLayout>
-                        <Grid RowSpacing="0" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50" ></RowDefinition>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label x:Name="dateLabel" Text="CN Th11 07" VerticalOptions="End" HorizontalOptions="CenterAndExpand" FontSize="18" VerticalTextAlignment="Center"
-                       Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Label>
-                            <Label x:Name ="TimeLabel" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" FontSize="25" VerticalTextAlignment="Center"
-                       Grid.Row="2" Grid.Column="0"></Label>
-                            <Label Text="0°C" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="52" x:Name="temperatureTxt"
-                       Grid.Row="0" Grid.RowSpan="3"  Grid.Column="1"></Label>
-                            <Image x:Name="iconImg" Source="https://png.pngtree.com/png-clipart/20190614/original/pngtree-summer-rain-vector-icon-png-image_3742712.jpg"
-                       Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Aspect="AspectFill"
-                       HorizontalOptions="Center" VerticalOptions="End" 
-                       HeightRequest="60" WidthRequest="90"></Image>
-                            <Label Text="Nhieu May" x:Name="descriptionTxt" VerticalOptions="Start" 
-                         HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="18"
-                       Grid.Row="2" Grid.Column="2" ></Label>
-                            <Label x:Name="maxMinTempText" Text="Cao: 29°C ~ Thap: 29°C" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
-                       Grid.Row="3" Padding="0,10,0,0" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
-                            <Label Text="Gio: 19km/h" x:Name="windTxt" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="18"
-                       Grid.Row="4" Grid.ColumnSpan="3"  Grid.Column="0"></Label>
-                        </Grid>
+                        
+                            <Label Text="" x:Name="descriptionTxt" VerticalOptions="Start" 
+                    HorizontalTextAlignment="Center" HorizontalOptions="Center" FontSize="35"></Label>
+                            <Label FontSize="20" 
+                    HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span x:Name="TimeLabel"/>
+
+                                        <Span x:Name="dateLabel"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Image x:Name="iconImg" Source="" Aspect="AspectFill"
+                    HorizontalOptions="Center" VerticalOptions="End" 
+                    HeightRequest="140" WidthRequest="140"></Image>
+                        <Label Text="" VerticalOptions="Start" HorizontalOptions="Center" FontSize="70" x:Name="temperatureTxt"
+                        ></Label>
+                        <Label x:Name="maxMinTempText" Text="" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="25"
+                        Padding="0,10,0,0" ></Label>
+
+
+
                     </StackLayout>
                 </Frame>
 
@@ -210,7 +201,7 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
-
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
@@ -236,13 +227,18 @@
                             FontSize="18" HorizontalOptions="End"></Label>
                             <Label Text="Mây che phủ" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                            <Label Text="73%" x:Name="cloudinessTxt" Grid.Row="3" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="" x:Name="cloudinessTxt" Grid.Row="3" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
                             <Label Text="Sức ép" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="Start"></Label>
-                            <Label Text="1006mb" x:Name="pressureTxt" Grid.Row="4" Grid.Column="2" VerticalTextAlignment="Center"
+                            <Label Text="" x:Name="pressureTxt" Grid.Row="4" Grid.Column="2" VerticalTextAlignment="Center"
                             FontSize="18" HorizontalOptions="End"></Label>
-
+                            <Label Text="Gió" Grid.Row="5" Grid.Column="1" VerticalTextAlignment="Center"
+                            FontSize="18" HorizontalOptions="Start"></Label>
+                            <Label Text="" x:Name="windTxt" Grid.Row="5" Grid.Column="2" VerticalTextAlignment="Center"
+                            FontSize="18" HorizontalOptions="End"></Label>
+                            
+                            
                         </Grid>
                     </StackLayout>
                 </Frame>

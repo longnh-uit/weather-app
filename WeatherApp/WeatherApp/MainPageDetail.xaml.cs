@@ -59,7 +59,7 @@ namespace WeatherApp
                 {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
                     TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                    dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                    dateLabel.Text = ", "+ DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
                 }); return true;
             });
         }

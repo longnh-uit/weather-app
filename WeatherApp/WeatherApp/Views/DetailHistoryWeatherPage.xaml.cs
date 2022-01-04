@@ -61,7 +61,7 @@ namespace WeatherApp.Views
                     //weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
                     descriptionTxt.Text = weatherInfo.current.weather[0].description;
                     positionText.Text = location.name;
-                    dateLabel.Text = ", " + date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
+                    dateLabel.Text = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.current.weather[0].icon}@2x.png";
                     //iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     temperatureTxt.Text = $"{weatherInfo.current.temp.ToString("0")}{App.unit.tempUnitCurrent}";
@@ -69,7 +69,7 @@ namespace WeatherApp.Views
                     pressureTxt.Text = $"{weatherInfo.current.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
                     visibilityTxt.Text = $"{weatherInfo.current.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
                     windSpeedTxt.Text = $"{weatherInfo.current.wind_speed.ToString("0")} {App.unit.speedUnitCurrent}";
-                    //cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
+                    feelLikeText.Text = $"Cảm giác như: {weatherInfo.current.feels_like.ToString("0")}{App.unit.tempUnitCurrent}";
                     //maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
                     sunriseTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunrise).ToString("HH:mm");
                     sunsetTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunset).ToString("HH:mm");
