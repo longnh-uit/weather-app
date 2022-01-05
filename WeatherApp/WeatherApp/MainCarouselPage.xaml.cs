@@ -34,22 +34,22 @@ namespace WeatherApp
         public void InitMainpageDetail()
         {
             Children.Clear();
-            Children.Add(new MainPageDetail(Hanoi)); // hà nội
+            Children.Add(new MainPageDetail(Hanoi, Children.Count)); // hà nội
             if (locations != null)
             { 
                 foreach (Location position in locations)
                 {
-                    Children.Add(new MainPageDetail(position));
+                    Children.Add(new MainPageDetail(position, Children.Count));
                 }
             }
         }
 
         public void OnPageChanged(object sender, EventArgs e)
         {
-            App.index = Children.IndexOf(CurrentPage) == -1 ? App.index : Children.IndexOf(CurrentPage);
-            if (App.index > 0)
+            int index = Children.IndexOf(CurrentPage) == -1 ? App.index : Children.IndexOf(CurrentPage);
+            if (index > 0)
             {
-                txtName.Text = locations[App.index - 1].name.ToString();
+                txtName.Text = locations[index - 1].name.ToString();
             }
             else { txtName.Text = Hanoi.name; }
 
