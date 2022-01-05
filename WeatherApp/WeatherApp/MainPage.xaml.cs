@@ -9,27 +9,22 @@ using Xamarin.Forms.Xaml;
 using WeatherApp.Models;
 using WeatherApp.Views;
 using Xamarin.Essentials;
+using WeatherApp.Helper;
+using Newtonsoft.Json;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : FlyoutPage
     {
-        Models.Location Hanoi = new Models.Location
-        {
-            _id = "123",
-            name = "Hà Nội",
-            lon = 105.8412,
-            lat = 21.0245
-
-        };
+        private Models.Location curLocation = App.curLocation; 
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
+            GetLocationCurrent();
             NavigationPage navPage = new NavigationPage(new MainCarouselPage());
             Detail = navPage;
-            GetLocationCurrent();
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -51,11 +46,11 @@ namespace WeatherApp
             FlyoutPage.ListView.SelectedItem = null;
         }
 
+        // lấy tọa độ hiện tại
         public async void GetLocationCurrent()
         {
             try
             {
-
                 var position = await Geolocation.GetLastKnownLocationAsync();
                 if (position == null)
                 {
@@ -67,16 +62,35 @@ namespace WeatherApp
                 }
                 if (position == null)
                 {
-                    await DisplayAlert("abc", "No GPS", "ok");
+                    curLocation = null;
                 }
                 else
                 {
-                    await DisplayAlert("abc", position.ToString(), "ok");
+                    var url = $"http://www.xamarinweatherapi.somee.com/api/getLocation?lon={position.Longitude}&lat={position.Latitude}";
+
+                    var result = await ApiCaller.Get(url);
+                    if (result.Successful)
+                    {
+                        try
+                        {
+                            var locationInfo = JsonConvert.DeserializeObject<Models.Location>(result.Response);
+                            curLocation = locationInfo;
+                            
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Weather Info", ex.Message, "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Weather Info", "No information found", "OK");
+                    }
                 }
             }
             catch (Exception ex)
             {
-
+                await DisplayAlert("sdsd", "error", "ok");
             }
         }
     }

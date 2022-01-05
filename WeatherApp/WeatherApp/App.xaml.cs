@@ -19,7 +19,7 @@ namespace WeatherApp
         public static List<string> pressureOptions = new List<string>() { "psi", "mBar", "inHg", "bar", "mmHg" };
         public static Units unit;
         public static Database db = new Database();
-        
+        public static Location curLocation;
         public App()
         {
             InitializeComponent();

@@ -33,10 +33,16 @@ namespace WeatherApp
 
         public void InitMainpageDetail()
         {
+
             Children.Clear();
-            Children.Add(new MainPageDetail(Hanoi, Children.Count)); // hà nội
+            if (App.curLocation == null)
+            {
+                App.curLocation = Hanoi;
+            }
+            Children.Add(new MainPageDetail(App.curLocation, Children.Count));
+
             if (locations != null)
-            { 
+            {
                 foreach (Location position in locations)
                 {
                     Children.Add(new MainPageDetail(position, Children.Count));
@@ -51,7 +57,7 @@ namespace WeatherApp
             {
                 txtName.Text = locations[index - 1].name.ToString();
             }
-            else { txtName.Text = Hanoi.name; }
+            else { txtName.Text = App.curLocation.name; }
 
         }
 
@@ -60,9 +66,9 @@ namespace WeatherApp
             base.OnAppearing();
             locations = db.GetAllLocation();
             InitMainpageDetail();
-            txtName.Text = App.index > 0 ? locations[App.index - 1].name : Hanoi.name;
+            txtName.Text = App.index > 0 ? locations[App.index - 1].name : App.curLocation.name;
             CurrentPage = Children[App.index];
-            
+
         }
 
         //public void PageRight(this CarouselPage carouselPage)
