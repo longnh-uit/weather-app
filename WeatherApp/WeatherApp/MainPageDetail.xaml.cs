@@ -290,5 +290,10 @@ namespace WeatherApp
             GetDailyWeather(locationGlobal);
             refreshPage.IsRefreshing = false;
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

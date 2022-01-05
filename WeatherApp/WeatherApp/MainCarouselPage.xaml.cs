@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WeatherApp.Models;
+using WeatherApp.Helper;
+using Newtonsoft.Json;
 
 namespace WeatherApp
 {
@@ -29,6 +31,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             CurrentPageChanged += OnPageChanged;
+            GetLocationCurrent();
         }
 
         public void InitMainpageDetail()
@@ -70,6 +73,56 @@ namespace WeatherApp
             CurrentPage = Children[App.index];
 
         }
+
+        public async void GetLocationCurrent()
+        {
+            try
+            {
+                var position = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
+                if (position == null)
+                {
+                    position = await Xamarin.Essentials.Geolocation.GetLocationAsync(new Xamarin.Essentials.GeolocationRequest
+                    {
+                        DesiredAccuracy = Xamarin.Essentials.GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
+                }
+                if (position == null)
+                {
+                    App.curLocation = null;
+                }
+                else
+                {
+                    var url = $"http://www.xamarinweatherapi.somee.com/api/getlocation?lon={position.Longitude}&lat={position.Latitude}";
+
+                    var result = await ApiCaller.Get(url);
+                    if (result.Successful)
+                    {
+                        try
+                        {
+                            var locationInfo = JsonConvert.DeserializeObject<Models.Location>(result.Response);
+                            App.curLocation = locationInfo;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Weather Info", ex.Message, "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Weather Info", "No information found", "OK");
+                    }
+                }
+                App.index = 0;
+                InitMainpageDetail();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("sdsd", "error", "ok");
+            }
+        }
+
 
         //public void PageRight(this CarouselPage carouselPage)
         //{

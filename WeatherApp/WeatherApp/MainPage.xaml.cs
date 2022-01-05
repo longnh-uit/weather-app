@@ -22,7 +22,7 @@ namespace WeatherApp
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            GetLocationCurrent();
+            // GetLocationCurrent();
             NavigationPage navPage = new NavigationPage(new MainCarouselPage());
             Detail = navPage;
         }
