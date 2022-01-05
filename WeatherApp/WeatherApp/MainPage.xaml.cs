@@ -8,12 +8,13 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WeatherApp.Models;
 using WeatherApp.Views;
+using Xamarin.Essentials;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : FlyoutPage
     {
-        Location Hanoi = new Location
+        Models.Location Hanoi = new Models.Location
         {
             _id = "123",
             name = "Hà Nội",
@@ -28,7 +29,7 @@ namespace WeatherApp
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
             NavigationPage navPage = new NavigationPage(new MainCarouselPage());
             Detail = navPage;
-            
+            GetLocationCurrent();
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -50,5 +51,33 @@ namespace WeatherApp
             FlyoutPage.ListView.SelectedItem = null;
         }
 
+        public async void GetLocationCurrent()
+        {
+            try
+            {
+
+                var position = await Geolocation.GetLastKnownLocationAsync();
+                if (position == null)
+                {
+                    position = await Geolocation.GetLocationAsync(new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
+                }
+                if (position == null)
+                {
+                    await DisplayAlert("abc", "No GPS", "ok");
+                }
+                else
+                {
+                    await DisplayAlert("abc", position.ToString(), "ok");
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
