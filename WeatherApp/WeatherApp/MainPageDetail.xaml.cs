@@ -242,6 +242,7 @@ namespace WeatherApp
                                 list.temp = Math.Round(list.temp);
                                 list.wind_speed = Math.Round(list.wind_speed);
                                 list.dew_point = Math.Round(list.dew_point);
+                                list.weather[0].description = ConvertUnit.FirstCharToUpper(list.weather[0].description);
                                 list.unit = new Unit()
                                 {
                                     tempUnitCurrent = App.unit.tempUnitCurrent,
