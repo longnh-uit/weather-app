@@ -42,13 +42,17 @@ namespace WeatherApp
             {
                 App.curLocation = Hanoi;
             }
-            Children.Add(new MainPageDetail(App.curLocation, Children.Count));
+            var page = new MainPageDetail(App.curLocation, Children.Count);
+            page.getLocation += GetLocationCurrent;
+            Children.Add(page);
 
             if (locations != null)
             {
                 foreach (Location position in locations)
                 {
-                    Children.Add(new MainPageDetail(position, Children.Count));
+                    page = new MainPageDetail(App.curLocation, Children.Count);
+                    page.getLocation += GetLocationCurrent;
+                    Children.Add(page);
                 }
             }
         }
@@ -119,7 +123,7 @@ namespace WeatherApp
             }
             catch (Exception ex)
             {
-                await DisplayAlert("sdsd", "error", "ok");
+                await DisplayAlert("Error", ex.Message, "ok");
             }
         }
 

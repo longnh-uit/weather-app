@@ -20,6 +20,7 @@ namespace WeatherApp
         public Location locationGlobal;
         private int index;
         public int Index { get => index; }
+        public Action getLocation;
         //Location Hanoi = new Location
         //{
         //    _id = "123",
@@ -291,9 +292,9 @@ namespace WeatherApp
             refreshPage.IsRefreshing = false;
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private void GetLocationButton_Clicked(object sender, EventArgs e)
         {
-
+            getLocation?.Invoke();
         }
     }
 }
