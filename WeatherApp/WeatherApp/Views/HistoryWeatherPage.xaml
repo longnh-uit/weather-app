@@ -11,6 +11,7 @@
             <Picker x:Name="prkSelectedDay"
                 FontSize="Medium"
                 SelectedIndexChanged="prkSelectedDay_SelectedIndexChanged"
+                TextColor="White"
                 Grid.Row="2" Grid.Column="1"></Picker>
 
             <Label Text="Vị trí:" FontSize="20"

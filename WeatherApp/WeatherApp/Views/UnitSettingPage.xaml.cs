@@ -25,9 +25,6 @@ namespace WeatherApp.Views
             TemperaturePicker.ItemsSource = App.temperatureOptions;
             TemperaturePicker.SelectedItem = App.temperatureOptions[App.temperatureOptions.IndexOf(App.unit.tempUnitCurrent)];
 
-            TimeFormatPicker.ItemsSource = timeFormatOptions;
-            TimeFormatPicker.SelectedItem = timeFormatOptions[1];
-
             DistancePicker.ItemsSource = App.distanceOptions;
             DistancePicker.SelectedItem = App.distanceOptions[App.distanceOptions.IndexOf(App.unit.distanceUnitCurrent)];
 

@@ -16,13 +16,11 @@ namespace WeatherApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : FlyoutPage
     {
-        private Models.Location curLocation = App.curLocation; 
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
-            // GetLocationCurrent();
             NavigationPage navPage = new NavigationPage(new MainCarouselPage());
             Detail = navPage;
         }
@@ -44,54 +42,6 @@ namespace WeatherApp
             IsPresented = false;
 
             FlyoutPage.ListView.SelectedItem = null;
-        }
-
-        // lấy tọa độ hiện tại
-        public async void GetLocationCurrent()
-        {
-            try
-            {
-                var position = await Geolocation.GetLastKnownLocationAsync();
-                if (position == null)
-                {
-                    position = await Geolocation.GetLocationAsync(new GeolocationRequest
-                    {
-                        DesiredAccuracy = GeolocationAccuracy.Medium,
-                        Timeout = TimeSpan.FromSeconds(30)
-                    });
-                }
-                if (position == null)
-                {
-                    curLocation = null;
-                }
-                else
-                {
-                    var url = $"http://www.xamarinweatherapi.somee.com/api/getLocation?lon={position.Longitude}&lat={position.Latitude}";
-
-                    var result = await ApiCaller.Get(url);
-                    if (result.Successful)
-                    {
-                        try
-                        {
-                            var locationInfo = JsonConvert.DeserializeObject<Models.Location>(result.Response);
-                            curLocation = locationInfo;
-                            
-                        }
-                        catch (Exception ex)
-                        {
-                            await DisplayAlert("Weather Info", ex.Message, "OK");
-                        }
-                    }
-                    else
-                    {
-                        await DisplayAlert("Weather Info", "No information found", "OK");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("sdsd", "error", "ok");
-            }
         }
     }
 }
