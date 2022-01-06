@@ -19,6 +19,7 @@ namespace WeatherApp.Views
         public ChangeLocationPage()
         {
             InitializeComponent();
+            defaultLocation.Text = App.curLocation.name;
         }
 
         public void InitListLocation()
@@ -50,21 +51,21 @@ namespace WeatherApp.Views
             var item = (ImageButton)sender;
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var choice = await DisplayAlert("Message", "Are you sure to delete this location", "YES", "NO");
+                var choice = await DisplayAlert("Message", "Bạn có chắc chắn xóa vị trí này không?", "Có", "Không");
 
                 if (choice)
                 {
                     if (db.DeleteLocation(item.CommandParameter.ToString()))
                     {
                         App.index = 0;
-                        await DisplayAlert("Message", "Remove item successfully", "OK");
+                        await DisplayAlert("Message", "Đã xóa thành công", "OK");
 
                         //update listLocation ...
                         InitListLocation();
                     }
                     else
                     {
-                        await DisplayAlert("Message", "Failed ", "OK");
+                        await DisplayAlert("Message", "Thất bại", "OK");
                     }
                 }
             });

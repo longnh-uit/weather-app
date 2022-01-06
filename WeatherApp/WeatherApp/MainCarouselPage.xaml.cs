@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WeatherApp.Models;
+using WeatherApp.Helper;
+using Newtonsoft.Json;
 
 namespace WeatherApp
 {
@@ -29,17 +31,28 @@ namespace WeatherApp
         {
             InitializeComponent();
             CurrentPageChanged += OnPageChanged;
+            GetLocationCurrent();
         }
 
         public void InitMainpageDetail()
         {
+
             Children.Clear();
-            Children.Add(new MainPageDetail(Hanoi, Children.Count)); // hà nội
+            if (App.curLocation == null)
+            {
+                App.curLocation = Hanoi;
+            }
+            var page = new MainPageDetail(App.curLocation, Children.Count);
+            page.getLocation += GetLocationCurrent;
+            Children.Add(page);
+
             if (locations != null)
-            { 
+            {
                 foreach (Location position in locations)
                 {
-                    Children.Add(new MainPageDetail(position, Children.Count));
+                    page = new MainPageDetail(position, Children.Count);
+                    page.getLocation += GetLocationCurrent;
+                    Children.Add(page);
                 }
             }
         }
@@ -51,7 +64,7 @@ namespace WeatherApp
             {
                 txtName.Text = locations[index - 1].name.ToString();
             }
-            else { txtName.Text = Hanoi.name; }
+            else { txtName.Text = App.curLocation.name; }
 
         }
 
@@ -60,10 +73,60 @@ namespace WeatherApp
             base.OnAppearing();
             locations = db.GetAllLocation();
             InitMainpageDetail();
-            txtName.Text = App.index > 0 ? locations[App.index - 1].name : Hanoi.name;
+            txtName.Text = App.index > 0 ? locations[App.index - 1].name : App.curLocation.name;
             CurrentPage = Children[App.index];
-            
+
         }
+
+        public async void GetLocationCurrent()
+        {
+            try
+            {
+                var position = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
+                if (position == null)
+                {
+                    position = await Xamarin.Essentials.Geolocation.GetLocationAsync(new Xamarin.Essentials.GeolocationRequest
+                    {
+                        DesiredAccuracy = Xamarin.Essentials.GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
+                }
+                if (position == null)
+                {
+                    App.curLocation = null;
+                }
+                else
+                {
+                    var url = $"http://www.xamarinweatherapi.somee.com/api/getlocation?lon={position.Longitude}&lat={position.Latitude}";
+
+                    var result = await ApiCaller.Get(url);
+                    if (result.Successful)
+                    {
+                        try
+                        {
+                            var locationInfo = JsonConvert.DeserializeObject<Models.Location>(result.Response);
+                            App.curLocation = locationInfo;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Weather Info", ex.Message, "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Weather Info", "No information found", "OK");
+                    }
+                }
+                App.index = 0;
+                InitMainpageDetail();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "ok");
+            }
+        }
+
 
         //public void PageRight(this CarouselPage carouselPage)
         //{

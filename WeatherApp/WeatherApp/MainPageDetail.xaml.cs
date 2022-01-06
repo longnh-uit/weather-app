@@ -20,21 +20,22 @@ namespace WeatherApp
         public Location locationGlobal;
         private int index;
         public int Index { get => index; }
-        Location Hanoi = new Location
-        {
-            _id = "123",
-            name = "Hà Nội",
-            lon = 105.8412,
-            lat = 21.0245
+        public Action getLocation;
+        //Location Hanoi = new Location
+        //{
+        //    _id = "123",
+        //    name = "Hà Nội",
+        //    lon = 105.8412,
+        //    lat = 21.0245
 
-        };
+        //};
         List<Daily> allList = new List<Daily>();
         List<Hourly> allListHour = new List<Hourly>();
         public MainPageDetail(int index)
         {
             InitializeComponent();
             this.index = index;
-            GetWeatherInfo(Hanoi);
+            GetWeatherInfo(App.curLocation);
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -129,9 +130,9 @@ namespace WeatherApp
                     humidityTxt.Text = $"{weatherInfo.main.humidity.ToString("0")}%";
                     pressureTxt.Text = $"{weatherInfo.main.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
                     visibilityTxt.Text = $"{weatherInfo.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
-                    windTxt.Text = $"Gió: {weatherInfo.wind.speed.ToString("0")} {App.unit.speedUnitCurrent}";
+                    windTxt.Text = $"{weatherInfo.wind.speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
-                    maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
+                    maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thấp: {weatherInfo.main.temp_min.ToString("0")}°";
 
                     if (location.name.Equals("Hà Nội"))
                     {
@@ -289,6 +290,11 @@ namespace WeatherApp
             await ApiCaller.Get(url);
             GetDailyWeather(locationGlobal);
             refreshPage.IsRefreshing = false;
+        }
+
+        private void GetLocationButton_Clicked(object sender, EventArgs e)
+        {
+            getLocation?.Invoke();
         }
     }
 }

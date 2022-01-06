@@ -4,7 +4,7 @@
              x:Class="WeatherApp.MainPageDetail"
              Title="Detail" BackgroundColor="{DynamicResource PageBackgroundColor}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="marker_20px.png" Order="Primary" Priority="0" />
+        <ToolbarItem x:Name="GetLocationButton" IconImageSource="marker_20px.png" Order="Primary" Priority="0" Clicked="GetLocationButton_Clicked" />
     </ContentPage.ToolbarItems>
     <RefreshView RefreshColor="Black" Refreshing="RefreshView_Refreshing" x:Name="refreshPage">
         <ScrollView>
