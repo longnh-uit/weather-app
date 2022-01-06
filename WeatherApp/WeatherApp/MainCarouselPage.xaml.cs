@@ -50,7 +50,7 @@ namespace WeatherApp
             {
                 foreach (Location position in locations)
                 {
-                    page = new MainPageDetail(App.curLocation, Children.Count);
+                    page = new MainPageDetail(position, Children.Count);
                     page.getLocation += GetLocationCurrent;
                     Children.Add(page);
                 }
