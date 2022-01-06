@@ -80,6 +80,16 @@ namespace WeatherApp
 
         public async void GetLocationCurrent()
         {
+            var settingService = DependencyService.Get<ISettingService>();
+            if (!settingService.IsGPSAvailable())
+            {
+                var gpsOption = await DisplayAlert("Thông báo", "GPS của bạn dương như bị tắt, bạn có muốn bật tính năng này không", "OK", "HUỶ");
+                if (gpsOption)
+                {
+                    settingService.OpenSettings();
+                }
+                return;
+            }
             try
             {
                 var position = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
