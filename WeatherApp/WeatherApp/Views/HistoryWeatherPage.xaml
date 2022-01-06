@@ -20,7 +20,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Image Source="home1.png"   WidthRequest="20" HeightRequest="5"></Image>
-                <Label Text="Hà Nội" VerticalOptions="Center" HorizontalOptions="Start" 
+                <Label Text="" VerticalOptions="Center" HorizontalOptions="Start" x:Name="defaultLocation"
                        FontSize="20" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Handle_DefaultLocation"/>

@@ -122,7 +122,7 @@ namespace WeatherApp
                 {
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
                     weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
-                    descriptionTxt.Text = weatherInfo.weather[0].description;
+                    descriptionTxt.Text = ConvertUnit.FirstCharToUpper(weatherInfo.weather[0].description);
                     getBgImage(weatherInfo.weather[0].description);
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
