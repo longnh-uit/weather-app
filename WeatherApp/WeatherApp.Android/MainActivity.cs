@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Plugin.LocalNotification;
-
+using Acr.UserDialogs;
 namespace WeatherApp.Droid
 {
     [Activity(Label = "WeatherApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
@@ -16,7 +16,7 @@ namespace WeatherApp.Droid
             base.OnCreate(savedInstanceState);
 
             NotificationCenter.CreateNotificationChannel();
-
+            UserDialogs.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

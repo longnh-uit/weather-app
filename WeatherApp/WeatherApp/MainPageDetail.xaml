@@ -40,7 +40,9 @@
                         ></Label>
                         <Label x:Name="maxMinTempText" Text="" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="25"
                         Padding="0,10,0,0" ></Label>
-
+                        <Button BackgroundColor="Transparent" x:Name="test"
+                       Text="Chi tiết" FontSize="15"  Clicked="test_Clicked"   
+                       HorizontalOptions="End"/>
 
 
                     </StackLayout>

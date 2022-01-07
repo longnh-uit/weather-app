@@ -12,6 +12,7 @@ using WeatherApp.Helper;
 using Newtonsoft.Json;
 using WeatherApp.Models;
 using Plugin.LocalNotification;
+using Acr.UserDialogs;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -21,21 +22,13 @@ namespace WeatherApp
         private int index;
         public int Index { get => index; }
         public Action getLocation;
-        //Location Hanoi = new Location
-        //{
-        //    _id = "123",
-        //    name = "Hà Nội",
-        //    lon = 105.8412,
-        //    lat = 21.0245
-
-        //};
         List<Daily> allList = new List<Daily>();
         List<Hourly> allListHour = new List<Hourly>();
         public MainPageDetail(int index)
         {
             InitializeComponent();
             this.index = index;
-            GetWeatherInfo(App.curLocation);
+            LoadingData(App.curLocation);
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -52,7 +45,7 @@ namespace WeatherApp
             InitializeComponent();
             locationGlobal = location;
             this.index = index;
-            GetWeatherInfo(locationGlobal);
+            LoadingData(locationGlobal);
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
@@ -65,7 +58,13 @@ namespace WeatherApp
             });
         }
 
-       void getBgImage(string desc)
+        async void LoadingData(Location location)
+        {
+            UserDialogs.Instance.ShowLoading("Đang tải", MaskType.Black);
+            await GetWeatherInfo(location);
+            UserDialogs.Instance.HideLoading();
+        }
+        void getBgImage(string desc)
         {
             if(!(App.db.GetBgColor().VariableValue == "#7097DA"))
             {
@@ -110,7 +109,7 @@ namespace WeatherApp
             }
         }
 
-        private async void GetWeatherInfo(Location location)
+        private async Task GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
 
@@ -296,6 +295,13 @@ namespace WeatherApp
         private void GetLocationButton_Clicked(object sender, EventArgs e)
         {
             getLocation?.Invoke();
+        }
+
+        private void test_Clicked(object sender, EventArgs e)
+        {
+            UserDialogs.Instance.ShowLoading("Đang tải", MaskType.Black);
+          
+            //UserDialogs.Instance.HideLoading();
         }
     }
 }
