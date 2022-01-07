@@ -42,6 +42,7 @@
                 </Frame>
 
                 <Button Text="Gửi" BackgroundColor="White" TextColor="Black" 
+                        x:Name="submmitBtn" Clicked="submmitBtn_Clicked"
                         CornerRadius="30" FontAttributes="Bold" FontSize="20"/>
             </StackLayout>
         </StackLayout>

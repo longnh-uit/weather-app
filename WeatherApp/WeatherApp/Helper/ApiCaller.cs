@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace WeatherApp.Helper
 {
     public class ApiCaller
@@ -13,9 +13,6 @@ namespace WeatherApp.Helper
         {
             using (var client = new HttpClient())
             {
-                //if (!string.IsNullOrWhiteSpace(authId))
-                //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", authId);
-
                 var request = await client.GetAsync(url);
                 if (request.IsSuccessStatusCode)
                 {
@@ -25,7 +22,34 @@ namespace WeatherApp.Helper
                     return new ApiResponse { ErrorMessage = request.ReasonPhrase };
             }
         }
+
+        public static async Task<ApiResponse> PostContact(string email, string name, string msg)
+        {
+            using (var client = new HttpClient())
+            {
+                var info = new
+                {
+                    email = email,
+                    name = name,
+                    message = msg,
+                };
+
+                string url = "https://chito-stationery.herokuapp.com/contact/add";
+                StringContent content = new StringContent(JsonConvert.SerializeObject(info), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return new ApiResponse { Response = await response.Content.ReadAsStringAsync() };
+                }
+                else
+                    return new ApiResponse { ErrorMessage = response.ReasonPhrase };
+            }
+
+        }
     }
+
+
+
 
     public class ApiResponse
     {
