@@ -28,7 +28,7 @@ namespace WeatherApp.Helper
         {
             using (var client = new HttpClient())
             {
-                string url = "https://chito-stationery.herokuapp.com/contact/add";
+                string url = "http://www.xamarinweatherapi.somee.com/api/contact/";
                 StringContent content = new StringContent(JsonConvert.SerializeObject(info), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 if (response.IsSuccessStatusCode)

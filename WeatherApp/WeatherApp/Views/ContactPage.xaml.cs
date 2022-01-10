@@ -145,8 +145,8 @@ namespace WeatherApp.Views
                 var result = await ApiCaller.PostContact(info);
                 if (result.Successful)
                 {
-                    Notify notify = JsonConvert.DeserializeObject<Notify>(result.Response);
-                    await DisplayAlert("Thông báo", notify.msg, "OK");
+                    string notify = result.Response;
+                    await DisplayAlert("Thông báo", notify, "OK");
                     emailTxt.Text = "";
                     nameTxt.Text = "";
                     msgTxt.Text = "";
