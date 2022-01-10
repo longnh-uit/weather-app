@@ -133,7 +133,7 @@ namespace WeatherApp
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thấp: {weatherInfo.main.temp_min.ToString("0")}°";
 
-                    if (location.name.Equals("Hà Nội"))
+                    if (location == App.curLocation)
                     {
 
                         // Notification part
