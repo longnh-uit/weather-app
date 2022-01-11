@@ -15,5 +15,14 @@ namespace WeatherApp.Droid
             Android.Locations.LocationManager manager = (Android.Locations.LocationManager)Android.App.Application.Context.GetSystemService(Android.Content.Context.LocationService);
             return manager.IsProviderEnabled(Android.Locations.LocationManager.GpsProvider);
         }
+
+        public void OpenPrivacySetting()
+        {
+            var intent = new Android.Content.Intent(Android.Provider.Settings.ActionApplicationDetailsSettings);
+            intent.AddFlags(Android.Content.ActivityFlags.NewTask);
+            var uri = Android.Net.Uri.FromParts("package", "com.companyname.weatherapp", null);
+            intent.SetData(uri);
+            Xamarin.Essentials.Platform.CurrentActivity.StartActivity(intent);
+        }
     }
 }

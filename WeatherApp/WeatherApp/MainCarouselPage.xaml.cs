@@ -17,6 +17,7 @@ namespace WeatherApp
     {
         private static readonly Database db = App.db;
         private List<Location> locations;
+        private PauseTokenSource pts = new PauseTokenSource();
 
         private readonly Location Hanoi = new Location
         {
@@ -81,15 +82,37 @@ namespace WeatherApp
         public async void GetLocationCurrent()
         {
             var settingService = DependencyService.Get<ISettingService>();
+
+            var status = await Xamarin.Essentials.Permissions.CheckStatusAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
+
+            if (status == Xamarin.Essentials.PermissionStatus.Denied)
+            {
+                var permissionOption = await DisplayAlert("Thông báo", "Ứng dụng này cần quyền sử dụng tính năng này. Bạn có thể cấp chúng trong cài đặt ứng dụng", "CÀI ĐẶT", "HUỶ");
+                if (permissionOption)
+                {
+                    settingService.OpenPrivacySetting();
+                    status = await Xamarin.Essentials.Permissions.CheckStatusAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
+                    if (status == Xamarin.Essentials.PermissionStatus.Denied) return;
+                }
+                else return;
+            }
+
+
             if (!settingService.IsGPSAvailable())
             {
                 var gpsOption = await DisplayAlert("Thông báo", "GPS của bạn dương như bị tắt, bạn có muốn bật tính năng này không", "OK", "HUỶ");
                 if (gpsOption)
                 {
                     settingService.OpenSettings();
+                    var gpsAvailable = settingService.IsGPSAvailable();
+                    if (!gpsAvailable) return;
                 }
-                return;
+                else return;
             }
+        //}
+
+        //public async void GetLocationTask()
+        //{ 
             try
             {
                 var position = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();

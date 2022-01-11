@@ -296,12 +296,5 @@ namespace WeatherApp
         {
             getLocation?.Invoke();
         }
-
-        private void test_Clicked(object sender, EventArgs e)
-        {
-            UserDialogs.Instance.ShowLoading("Đang tải", MaskType.Black);
-          
-            //UserDialogs.Instance.HideLoading();
-        }
     }
 }

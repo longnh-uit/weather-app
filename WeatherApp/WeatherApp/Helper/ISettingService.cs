@@ -8,5 +8,6 @@ namespace WeatherApp.Helper
     {
         void OpenSettings();
         bool IsGPSAvailable();
+        void OpenPrivacySetting();
     }
 }
