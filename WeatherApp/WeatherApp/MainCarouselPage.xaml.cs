@@ -18,6 +18,7 @@ namespace WeatherApp
         private static readonly Database db = App.db;
         private List<Location> locations;
         private PauseTokenSource pts = new PauseTokenSource();
+        private bool locationFlag1 = false, locationFlag2 = false;
 
         private readonly Location Hanoi = new Location
         {
@@ -72,6 +73,10 @@ namespace WeatherApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            if (locationFlag1)
+                GetLocationCurrent1();
+            else if (locationFlag2)
+                GetLocationCurrent2();
             locations = db.GetAllLocation();
             InitMainpageDetail();
             txtName.Text = App.index > 0 ? locations[App.index - 1].name : App.curLocation.name;
@@ -91,12 +96,22 @@ namespace WeatherApp
                 if (permissionOption)
                 {
                     settingService.OpenPrivacySetting();
-                    status = await Xamarin.Essentials.Permissions.CheckStatusAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
-                    if (status == Xamarin.Essentials.PermissionStatus.Denied) return;
+                    locationFlag1 = true;
+                    return;
                 }
                 else return;
             }
+            GetLocationCurrent1();
 
+        }
+
+        public async void GetLocationCurrent1()
+        {
+            locationFlag1 = false;
+            var settingService = DependencyService.Get<ISettingService>();
+
+            var status = await Xamarin.Essentials.Permissions.CheckStatusAsync<Xamarin.Essentials.Permissions.LocationWhenInUse>();
+            if (status == Xamarin.Essentials.PermissionStatus.Denied) return;
 
             if (!settingService.IsGPSAvailable())
             {
@@ -104,15 +119,21 @@ namespace WeatherApp
                 if (gpsOption)
                 {
                     settingService.OpenSettings();
-                    var gpsAvailable = settingService.IsGPSAvailable();
-                    if (!gpsAvailable) return;
+                    locationFlag2 = true;
+                    return;
                 }
                 else return;
             }
-        //}
+            GetLocationCurrent2();
+        }
 
-        //public async void GetLocationTask()
-        //{ 
+        public async void GetLocationCurrent2()
+        {
+            locationFlag2 = false;
+            var settingService = DependencyService.Get<ISettingService>();
+            var gpsAvailable = settingService.IsGPSAvailable();
+            if (!gpsAvailable) return;
+
             try
             {
                 var position = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();

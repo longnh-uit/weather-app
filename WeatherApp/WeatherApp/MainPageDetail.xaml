@@ -27,7 +27,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span x:Name="TimeLabel"/>
-
+                                        <Span Text=" "/>
                                         <Span x:Name="dateLabel"/>
                                     </FormattedString>
                                 </Label.FormattedText>

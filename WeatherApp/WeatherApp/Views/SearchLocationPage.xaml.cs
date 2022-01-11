@@ -87,7 +87,7 @@ namespace WeatherApp.Views
             if (listPositionSearch.SelectedItem != null)
             {
                 Location pos = (Location)listPositionSearch.SelectedItem;
-                if(pos.name != "Hà Nội")
+                if(pos != App.curLocation)
                 {
 
                     //DisplayAlert("Message",pos.name, "OK");

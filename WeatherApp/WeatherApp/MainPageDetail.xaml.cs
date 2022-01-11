@@ -19,7 +19,8 @@ namespace WeatherApp
     public partial class MainPageDetail : ContentPage
     {
         public Location locationGlobal;
-        private int index;
+        private readonly int index;
+        private int timezone = 0;
         public int Index { get => index; }
         public Action getLocation;
         List<Daily> allList = new List<Daily>();
@@ -34,10 +35,12 @@ namespace WeatherApp
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
-                    TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                    dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                    var now = DateTime.UtcNow.AddSeconds(timezone);
+                    TimeLabel.Text = now.ToString("HH:mm");
+                    dateLabel.Text = now.ToString("ddd", culture) + ", Th" + now.ToString("MM") + " " + now.ToString("dd");
                 }); return true;
             });
+
         }
 
         public MainPageDetail(Location location, int index)
@@ -52,8 +55,9 @@ namespace WeatherApp
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
-                    TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                    dateLabel.Text = ", "+ DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                    var now = DateTime.UtcNow.AddSeconds(timezone);
+                    TimeLabel.Text = now.ToString("HH:mm");
+                    dateLabel.Text = now.ToString("ddd", culture) + ", Th" + now.ToString("MM") + " " + now.ToString("dd");
                 }); return true;
             });
         }
@@ -121,6 +125,7 @@ namespace WeatherApp
                 {
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
                     weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
+                    timezone = weatherInfo.timezone;
                     descriptionTxt.Text = ConvertUnit.FirstCharToUpper(weatherInfo.weather[0].description);
                     getBgImage(weatherInfo.weather[0].description);
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
