@@ -21,7 +21,7 @@ namespace WeatherApp.Views
 
         void initLocation()
         {
-            var url = $"https://www.windy.com/?{App.curLocation.lat};{App.curLocation.lon}";
+            var url = $"https://www.windy.com/{App.curLocation.lat}/{App.curLocation.lon}";
             browser.Source = url;
         }
     }
