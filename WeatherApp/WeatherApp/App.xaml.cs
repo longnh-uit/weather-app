@@ -24,6 +24,7 @@ namespace WeatherApp
         {
             InitializeComponent();
             db.CreateDatebase();
+            curLocation = db.GetDefaultLocation();
             InitGetBgColor();
             ShowAlertNotification();
 

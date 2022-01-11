@@ -9,4 +9,7 @@ namespace WeatherApp
     {
 
     }
+    public class CustomEditor : Editor
+    {
+    }
 }

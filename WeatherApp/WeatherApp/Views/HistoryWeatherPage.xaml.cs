@@ -34,6 +34,7 @@ namespace WeatherApp.Views
             InitializeComponent();
             InitPreviousTime();
             InitListLocation();
+            defaultLocation.Text = App.curLocation.name;
         }
 
         void InitPreviousTime()
@@ -87,7 +88,7 @@ namespace WeatherApp.Views
 
         private void Handle_DefaultLocation(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new DetailHistoryWeatherPage(Hanoi, Selected_dt,indexItem));
+            Navigation.PushAsync(new DetailHistoryWeatherPage(App.curLocation, Selected_dt,indexItem));
         }
 
         private void listPosition_ItemTapped(object sender, ItemTappedEventArgs e)

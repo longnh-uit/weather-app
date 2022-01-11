@@ -27,7 +27,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span x:Name="TimeLabel"/>
-
+                                        <Span Text=" "/>
                                         <Span x:Name="dateLabel"/>
                                     </FormattedString>
                                 </Label.FormattedText>
@@ -40,7 +40,6 @@
                         ></Label>
                         <Label x:Name="maxMinTempText" Text="" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontSize="25"
                         Padding="0,10,0,0" ></Label>
-
 
 
                     </StackLayout>

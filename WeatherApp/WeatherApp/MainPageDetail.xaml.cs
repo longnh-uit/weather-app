@@ -12,39 +12,35 @@ using WeatherApp.Helper;
 using Newtonsoft.Json;
 using WeatherApp.Models;
 using Plugin.LocalNotification;
+using Acr.UserDialogs;
 namespace WeatherApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPageDetail : ContentPage
     {
         public Location locationGlobal;
-        private int index;
+        private readonly int index;
+        private int timezone = 0;
         public int Index { get => index; }
         public Action getLocation;
-        //Location Hanoi = new Location
-        //{
-        //    _id = "123",
-        //    name = "Hà Nội",
-        //    lon = 105.8412,
-        //    lat = 21.0245
-
-        //};
         List<Daily> allList = new List<Daily>();
         List<Hourly> allListHour = new List<Hourly>();
         public MainPageDetail(int index)
         {
             InitializeComponent();
             this.index = index;
-            GetWeatherInfo(App.curLocation);
+            LoadingData(App.curLocation);
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
-                    TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                    dateLabel.Text = DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                    var now = DateTime.UtcNow.AddSeconds(timezone);
+                    TimeLabel.Text = now.ToString("HH:mm");
+                    dateLabel.Text = now.ToString("ddd", culture) + ", Th" + now.ToString("MM") + " " + now.ToString("dd");
                 }); return true;
             });
+
         }
 
         public MainPageDetail(Location location, int index)
@@ -52,20 +48,27 @@ namespace WeatherApp
             InitializeComponent();
             locationGlobal = location;
             this.index = index;
-            GetWeatherInfo(locationGlobal);
+            LoadingData(locationGlobal);
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
-                    TimeLabel.Text = DateTime.Now.ToString("HH:mm");
-                    dateLabel.Text = ", "+ DateTime.Now.ToString("ddd", culture) + ", Th" + DateTime.Now.ToString("MM") + " " + DateTime.Now.ToString("dd");
+                    var now = DateTime.UtcNow.AddSeconds(timezone);
+                    TimeLabel.Text = now.ToString("HH:mm");
+                    dateLabel.Text = now.ToString("ddd", culture) + ", Th" + now.ToString("MM") + " " + now.ToString("dd");
                 }); return true;
             });
         }
 
-       void getBgImage(string desc)
+        async void LoadingData(Location location)
+        {
+            UserDialogs.Instance.ShowLoading("Đang tải", MaskType.Black);
+            await GetWeatherInfo(location);
+            UserDialogs.Instance.HideLoading();
+        }
+        void getBgImage(string desc)
         {
             if(!(App.db.GetBgColor().VariableValue == "#7097DA"))
             {
@@ -110,7 +113,7 @@ namespace WeatherApp
             }
         }
 
-        private async void GetWeatherInfo(Location location)
+        private async Task GetWeatherInfo(Location location)
         {
             var url = $"http://www.xamarinweatherapi.somee.com/api/currentweather?lon={location.lon}&lat={location.lat}";
 
@@ -122,7 +125,8 @@ namespace WeatherApp
                 {
                     var weatherInfo = JsonConvert.DeserializeObject<WeatherInfo>(result.Response);
                     weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
-                    descriptionTxt.Text = weatherInfo.weather[0].description;
+                    timezone = weatherInfo.timezone;
+                    descriptionTxt.Text = ConvertUnit.FirstCharToUpper(weatherInfo.weather[0].description);
                     getBgImage(weatherInfo.weather[0].description);
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
@@ -134,7 +138,7 @@ namespace WeatherApp
                     cloudinessTxt.Text = $"{weatherInfo.clouds.all.ToString("0")}%";
                     maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thấp: {weatherInfo.main.temp_min.ToString("0")}°";
 
-                    if (location.name.Equals("Hà Nội"))
+                    if (location == App.curLocation)
                     {
 
                         // Notification part
@@ -242,6 +246,7 @@ namespace WeatherApp
                                 list.temp = Math.Round(list.temp);
                                 list.wind_speed = Math.Round(list.wind_speed);
                                 list.dew_point = Math.Round(list.dew_point);
+                                list.weather[0].description = ConvertUnit.FirstCharToUpper(list.weather[0].description);
                                 list.unit = new Unit()
                                 {
                                     tempUnitCurrent = App.unit.tempUnitCurrent,

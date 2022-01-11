@@ -4,32 +4,54 @@ using System.Text;
 
 using SQLite;
 
-    using WeatherApp;
 namespace WeatherApp.Models
 {
     public class Database
     {
         private readonly string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        private string path;
+
+        private class DefaultLocation : Location {
+            public DefaultLocation() { }
+
+            public DefaultLocation(Location location)
+            {
+                _id = location._id;
+                lon = location.lon;
+                lat = location.lat;
+                name = location.name;
+            }
+        }
 
         public bool CreateDatebase()
         {
             try
             {
                 // Create Database
-                path = System.IO.Path.Combine(folder, "database.db");
+                string path = System.IO.Path.Combine(folder, "database.db");
                 using (SQLiteConnection connection = new SQLiteConnection(path))
                 {
                     //create table
                     _ = connection.CreateTable<Variable>();
                     _ = connection.CreateTable<Location>();
                     _ = connection.CreateTable<Units>();
+                    _ = connection.CreateTable<DefaultLocation>();
                     if (GetUnit().Count == 0)
                     {
                         _ = connection.Insert(new Units { tempUnitCurrent = "°C", distanceUnitCurrent = "m", speedUnitCurrent = "m/s", pressureUnitCurrent = "mBar", rainUnitCurrent = "mm" });
 
                     }
-                    App.unit= GetUnit()[0];
+
+                    if (connection.Table<DefaultLocation>().ToList().Count == 0)
+                    {
+                        _ = connection.Insert(new DefaultLocation
+                        {
+                            _id = "123",
+                            name = "Hà Nội",
+                            lon = 105.8412,
+                            lat = 21.0245
+                        });
+                    }
+                    App.unit = GetUnit()[0];
                     _ = connection.Insert(new Variable { VariableName = "backgroundColor", VariableValue = "#7097DA" });
                     return true;
                 }
@@ -46,6 +68,7 @@ namespace WeatherApp.Models
             try
             {
                 // Create Database
+                string path = System.IO.Path.Combine(folder, "database.db");
                 using (SQLiteConnection connection = new SQLiteConnection(path))
                     return connection.Table<Variable>().FirstOrDefault(x => x.VariableName == "backgroundColor");
                 //return connection.Query<Variable>("select * from Variable where bgColorName=" + bgColor);
@@ -61,6 +84,7 @@ namespace WeatherApp.Models
             try
             {
                 // Create Database
+                string path = System.IO.Path.Combine(folder, "database.db");
                 using (SQLiteConnection connection = new SQLiteConnection(path))
                     return connection.Table<Units>().ToList();
             }
@@ -76,6 +100,7 @@ namespace WeatherApp.Models
             try
             {
                 // Create Database
+                string path = System.IO.Path.Combine(folder, "database.db");
                 using (SQLiteConnection connection = new SQLiteConnection(path))
                 {
                     connection.Update(unit);
@@ -95,6 +120,7 @@ namespace WeatherApp.Models
             try
             {
                 // Create Database
+                string path = System.IO.Path.Combine(folder, "database.db");
                 using (SQLiteConnection connection = new SQLiteConnection(path))
                 {
                     connection.Update(color);
@@ -179,6 +205,24 @@ namespace WeatherApp.Models
             }
         }
 
+        public Location GetDefaultLocation()
+        {
+            string path = System.IO.Path.Combine(folder, "database.db");
+            using (SQLiteConnection connection = new SQLiteConnection(path))
+            {
+                return connection.Table<DefaultLocation>().FirstOrDefault(x => true);
+            }
+        }
+
+        public void ChangeDefaultLocation(Location location)
+        {
+            string path = System.IO.Path.Combine(folder, "database.db");
+            using (SQLiteConnection connection = new SQLiteConnection(path))
+            {
+                _ = connection.DeleteAll<DefaultLocation>();
+                _ = connection.Insert(new DefaultLocation(location));
+            }
+        }
 
     }
 }

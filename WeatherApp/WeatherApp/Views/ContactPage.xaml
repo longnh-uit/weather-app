@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Views.ContactPage"
+             xmlns:local="clr-namespace:WeatherApp"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="10">
+                <Label Text="Liên hệ" TextColor="White" HorizontalOptions="CenterAndExpand" 
+                       FontAttributes="Bold" FontSize="30"/>
+            </StackLayout>
+
+            <StackLayout Padding="0" Margin="15,10">
+                <Frame BackgroundColor="white" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0"
+                       HorizontalOptions="FillAndExpand" CornerRadius="30">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="LightGray" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                            <Image Source="email.png" Aspect="AspectFill" Margin="5"/>
+                        </Frame>
+
+                        <local:CustomEntry x:Name="emailTxt" Placeholder="Email" Text=""
+                                           TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                    </StackLayout>
+                </Frame>
+                <Label TextColor="Red" FontAttributes="Italic" FontSize="Medium" x:Name="errorEmail"></Label>
+                <Frame BackgroundColor="White" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame BackgroundColor="LightGray" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                            <Image Source="user.png" Aspect="AspectFill" Margin="7"/>
+                        </Frame>
+
+                        <local:CustomEntry x:Name="nameTxt" Placeholder="Họ và tên" Text=""
+                                           TextColor="Black" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                    </StackLayout>
+                    
+                </Frame>
+                <Label TextColor="Red" FontAttributes="Italic" FontSize="Medium" x:Name="errorName"></Label>
+                <Frame BackgroundColor="White" BorderColor="DarkGray" Margin="0,15,0,0" 
+                       Padding="0,0,0,25" HorizontalOptions="FillAndExpand" CornerRadius="10">
+                    <StackLayout Padding="10,0">
+                        <local:CustomEditor x:Name="msgTxt" Keyboard="Plain" Placeholder="Nhập vào nội dung" 
+                                            AutoSize="TextChanges" MaxLength="200" HeightRequest="200" 
+                                            TextColor="Black" Text=""/>
+                    </StackLayout>
+                </Frame>
+                <Label TextColor="Red" FontAttributes="Italic" FontSize="Medium" x:Name="errorMsg"></Label>
+                <Button Text="Gửi" BackgroundColor="White" TextColor="Black" 
+                        x:Name="submmitBtn" Clicked="submmitBtn_Clicked"
+                        CornerRadius="30" FontAttributes="Bold" FontSize="20"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
