@@ -78,7 +78,7 @@ namespace WeatherApp
             {
                 if (desc.Contains("mây"))
                 {
-                    BackgroundImageSource = "lc.png";
+                    BackgroundImageSource = "lc.jpg";
                 }
                 else if(desc.Contains("bầu trời"))
                 {
@@ -87,12 +87,17 @@ namespace WeatherApp
 
                 if (desc.Contains("u ám"))
                 {
-                    BackgroundImageSource = "s.png";
+                    BackgroundImageSource = "s.jpg";
                 }
                 else if (desc.Contains("mưa"))
                 {
                     BackgroundImageSource = "lr.png";
                 }
+                else if (desc.Contains("tuyết"))
+                {
+                    BackgroundImageSource = "sn.png";
+                }
+
             }
         }
 
