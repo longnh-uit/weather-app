@@ -35,10 +35,6 @@ namespace WeatherApp.Helper
                 data.visibility = data.visibility / 1000;
             }
 
-            //if (App.unit.rainUnitCurrent == "mm")
-            //{
-            //    data. = Math.Round(data.wind.speed * 0.0393700787);
-            //}
 
             switch (App.unit.speedUnitCurrent)
             {
@@ -80,15 +76,6 @@ namespace WeatherApp.Helper
                 data.temp.min = data.temp.min * 1.8 + 32;
             }
 
-            //if (App.unit.distanceUnitCurrent == "km")
-            //{
-            //    data.visibility = data.visibility / 1000;
-            //}
-
-            //if (App.unit.rainUnitCurrent == "mm")
-            //{
-            //    data.main.temp = Math.Round(data.wind.speed * 0.0393700787);
-            //}
 
             switch (App.unit.speedUnitCurrent)
             {
@@ -130,16 +117,6 @@ namespace WeatherApp.Helper
                 data.dew_point = data.dew_point * 1.8 + 32;
             }
 
-            //if (App.unit.distanceUnitCurrent == "km")
-            //{
-            //    data.visibility = data.visibility / 1000;
-            //}
-
-            //if (App.unit.rainUnitCurrent == "mm")
-            //{
-            //    data.main.temp = Math.Round(data.wind.speed * 0.0393700787);
-            //}
-
             switch (App.unit.speedUnitCurrent)
             {
                 case "km/h":
@@ -170,6 +147,55 @@ namespace WeatherApp.Helper
                 default: data.pressure = data.pressure; break;
             }
 
+        }
+        public static HistoryWeather HistoryWeather(HistoryWeather data)
+        {
+            if (App.unit.tempUnitCurrent == "°F")
+            {
+                data.current.temp = data.current.temp * 1.8 + 32;
+                data.current.feels_like = data.current.feels_like * 1.8 + 32;       
+            }
+
+            if (App.unit.distanceUnitCurrent == "km")
+            {
+                data.current.visibility = data.current.visibility / 1000;
+            }
+
+            //if (App.unit.rainUnitCurrent == "mm")
+            //{
+            //    data. = Math.Round(data.wind.speed * 0.0393700787);
+            //}
+
+            switch (App.unit.speedUnitCurrent)
+            {
+                case "km/h":
+                    data.current.wind_speed = data.current.wind_speed * 3.6;
+                    break;
+                case "ft/s":
+                    data.current.wind_speed = Math.Round(data.current.wind_speed * 3.2808398950131);
+                    break;
+                case "mph":
+                    data.current.wind_speed = Math.Round(data.current.wind_speed * 2.23693629);
+                    break;
+                default: data.current.wind_speed = data.current.wind_speed; break;
+            }
+            switch (App.unit.pressureUnitCurrent)
+            {
+                case "inHg":
+                    data.current.pressure = (int)Math.Round(data.current.pressure * 0.02953);
+                    break;
+                case "psi":
+                    data.current.pressure = (int)Math.Round(data.current.pressure * 0.0145037738);
+                    break;
+                case "bar":
+                    data.current.pressure = data.current.pressure / 1000;
+                    break;
+                case "mmHg":
+                    data.current.pressure = (int)Math.Round(data.current.pressure * 0.750061683);
+                    break;
+                default: data.current.pressure = data.current.pressure; break;
+            }
+            return data;
         }
     }
 }

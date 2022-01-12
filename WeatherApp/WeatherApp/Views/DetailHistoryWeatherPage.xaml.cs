@@ -57,20 +57,19 @@ namespace WeatherApp.Views
 
                     var weatherInfo = JsonConvert.DeserializeObject<HistoryWeather>(result.Response);
                     var date = ConvertUnit.getDateTime(dt);
-                    //await DisplayAlert("dfd", location.name, weatherInfo.current.weather[0].description, weatherInfo.current.temp.ToString());
-                    //weatherInfo = ConvertUnit.CurrentWeather(weatherInfo);
+                    weatherInfo = ConvertUnit.HistoryWeather(weatherInfo);
                     descriptionTxt.Text = weatherInfo.current.weather[0].description;
                     positionText.Text = location.name;
                     dateLabel.Text = date.ToString("ddd", CultureInfo.CreateSpecificCulture("vi-VN")) + ", Th" + date.ToString("MM") + " " + date.ToString("dd");
                     iconImg.Source = $"http://openweathermap.org/img/wn/{weatherInfo.current.weather[0].icon}@2x.png";
-                    //iconPrimary.Source = $"http://openweathermap.org/img/wn/{weatherInfo.weather[0].icon}@2x.png";
                     temperatureTxt.Text = $"{weatherInfo.current.temp.ToString("0")}{App.unit.tempUnitCurrent}";
                     humidityTxt.Text = $"{weatherInfo.current.humidity.ToString("0")}%";
                     pressureTxt.Text = $"{weatherInfo.current.pressure.ToString("0")}{App.unit.pressureUnitCurrent}";
                     visibilityTxt.Text = $"{weatherInfo.current.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
                     windSpeedTxt.Text = $"{weatherInfo.current.wind_speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     feelLikeText.Text = $"Cảm giác như: {weatherInfo.current.feels_like.ToString("0")}{App.unit.tempUnitCurrent}";
-                    //maxMinTempText.Text = $"Cao: {weatherInfo.main.temp_max.ToString("0")}° ~ Thap: {weatherInfo.main.temp_min.ToString("0")}°";
+                    uviTxt.Text = $"C{weatherInfo.current.uvi.ToString("0")}";
+                    cloudinessTxt.Text = $"C{weatherInfo.current.cloud.ToString("0")}%";
                     sunriseTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunrise).ToString("HH:mm");
                     sunsetTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunset).ToString("HH:mm");
                     // Notification part
@@ -85,26 +84,19 @@ namespace WeatherApp.Views
                         {
                             list.time = dateHourly.ToString("HH:mm");
                             list.image = $"http://openweathermap.org/img/wn/{list.weather[0].icon}@2x.png";
-                            list.temp = Math.Round(list.temp);
-
-                            //list.unit = new Unit()
-                            //{
-                            //    tempUnitCurrent = App.unit.tempUnitCurrent,
-                            //    distanceUnitCurrent = App.unit.distanceUnitCurrent,
-                            //    speedUnitCurrent = App.unit.speedUnitCurrent,
-                            //    rainUnitCurrent = App.unit.rainUnitCurrent,
-                            //    pressureUnitCurrent = App.unit.pressureUnitCurrent,
-
-                            //};
+                            if (App.unit.tempUnitCurrent == "°F")
+                            {
+                                list.temp = Math.Round(list.temp * 1.8 + 32);
+                            }
+                            else
+                            {
+                                list.temp = Math.Round(list.temp);
+                            }
 
                             allListHour.Add(list);
-
                         }
                     }
-
                     listByHour.ItemsSource = allListHour;
-
-
                 }
                 catch (Exception ex)
                 {
