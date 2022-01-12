@@ -68,8 +68,8 @@ namespace WeatherApp.Views
                     visibilityTxt.Text = $"{weatherInfo.current.visibility.ToString("0")}{App.unit.distanceUnitCurrent}";
                     windSpeedTxt.Text = $"{weatherInfo.current.wind_speed.ToString("0")} {App.unit.speedUnitCurrent}";
                     feelLikeText.Text = $"Cảm giác như: {weatherInfo.current.feels_like.ToString("0")}{App.unit.tempUnitCurrent}";
-                    uviTxt.Text = $"C{weatherInfo.current.uvi.ToString("0")}";
-                    cloudinessTxt.Text = $"C{weatherInfo.current.cloud.ToString("0")}%";
+                    uviTxt.Text = $"{weatherInfo.current.uvi.ToString("0")}";
+                    cloudinessTxt.Text = $"{weatherInfo.current.cloud.ToString("0")}%";
                     sunriseTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunrise).ToString("HH:mm");
                     sunsetTxt.Text = ConvertUnit.getDateTime(weatherInfo.current.sunset).ToString("HH:mm");
                     // Notification part
