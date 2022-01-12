@@ -25,7 +25,7 @@
                     </Label.GestureRecognizers>
                 </Label>
                 
-                <Image Source="home1.png" Grid.Row="1" Grid.Column="0"  WidthRequest="20" HeightRequest="5"></Image>
+                <Image Source="home_50px.png" Grid.Row="1" Grid.Column="0"  WidthRequest="20" HeightRequest="5"></Image>
                 <Label Text="" x:Name="defaultLocation" VerticalOptions="Center" HorizontalOptions="Start" 
                        Grid.Row="1" Grid.Column="1" FontSize="20" >
                     <Label.GestureRecognizers>

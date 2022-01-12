@@ -197,10 +197,12 @@ namespace WeatherApp
                                 tempUnitCurrent = App.unit.tempUnitCurrent,
                                 distanceUnitCurrent = App.unit.distanceUnitCurrent,
                                 speedUnitCurrent = App.unit.speedUnitCurrent,
+                                
                                 rainUnitCurrent = App.unit.rainUnitCurrent,
                                 pressureUnitCurrent = App.unit.pressureUnitCurrent,
 
                             };
+                            list.pop *= 100;
                             allList.Add(list);
                         }
                     }
@@ -256,6 +258,7 @@ namespace WeatherApp
                                     pressureUnitCurrent = App.unit.pressureUnitCurrent,
 
                                 };
+                                list.pop *= 100;
       
                                 allListHour.Add(list);
                             }

@@ -22,7 +22,7 @@ namespace WeatherApp.View_Models
                 new MainPageFlyoutMenuItem { Id = 2, Title = "Màu nền", Icon = "paint_palette_20px.png", TargetType = typeof(SelectBackgroundColorPage) },
                 new MainPageFlyoutMenuItem { Id = 3, Title = "Lịch sử thời tiết", Icon = "log_20px.png", TargetType = typeof(HistoryWeatherPage) },
                 new MainPageFlyoutMenuItem { Id = 4, Title = "Liên hệ chúng tôi", Icon = "online_support_20px.png", TargetType = typeof(ContactPage) },
-                new MainPageFlyoutMenuItem { Id = 4, Title = "Radar thời tiết", Icon = "online_support_20px.png", TargetType = typeof(RaderWeather) }
+                new MainPageFlyoutMenuItem { Id = 4, Title = "Radar thời tiết", Icon = "radar_20px.png", TargetType = typeof(RaderWeather) }
             });
         }
 
